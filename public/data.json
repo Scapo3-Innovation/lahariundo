@@ -1,0 +1,561 @@
+{
+  "helplines": [
+    {
+      "id": "police-antinarcotics",
+      "label_en": "Kerala Police Anti-Narcotics",
+      "label_ml": "കേരള പോലീസ് മയക്കുമരുന്ന് വിരുദ്ധ ഹെൽപ്‌ലൈൻ",
+      "type": "call",
+      "value": "VERIFY_POLICE_ANTINARCOTICS_NUMBER",
+      "note_en": "24/7 anonymous tip line for reporting drug activity",
+      "note_ml": "മയക്കുമരുന്ന് പ്രവർത്തനം റിപ്പോർട്ട് ചെയ്യാൻ 24/7 അനോണിമസ് ലൈൻ",
+      "emergency": false
+    },
+    {
+      "id": "police-emergency",
+      "label_en": "Police Emergency",
+      "label_ml": "പോലീസ് അടിയന്തിരം",
+      "type": "call",
+      "value": "100",
+      "note_en": "For immediate emergencies",
+      "note_ml": "അടിയന്തര സഹായത്തിന്",
+      "emergency": true
+    },
+    {
+      "id": "vimukthi-counselling",
+      "label_en": "Vimukthi Counselling Helpline",
+      "label_ml": "വിമുക്തി കൗൺസലിംഗ് ഹെൽപ്‌ലൈൻ",
+      "type": "call",
+      "value": "14405",
+      "note_en": "Free, confidential counselling — 8am to 8pm",
+      "note_ml": "സൗജന്യ, രഹസ്യ കൗൺസലിംഗ് — രാവിലെ 8 മുതൽ വൈകുന്നേരം 8 വരെ",
+      "emergency": false
+    },
+    {
+      "id": "report-whatsapp",
+      "label_en": "Report via WhatsApp (Police)",
+      "label_ml": "WhatsApp വഴി റിപ്പോർട്ട് ചെയ്യുക (പോലീസ്)",
+      "type": "whatsapp",
+      "value": "9995966666",
+      "note_en": "Send anonymous tip directly to Kerala Police Anti-Narcotic Cell",
+      "note_ml": "കേരള പോലീസ് ആന്റി-നാർക്കോട്ടിക് സെല്ലിലേക്ക് നേരിട്ട് അനോണിമസ് ടിപ്പ് അയക്കൂ",
+      "emergency": false
+    }
+  ],
+  "resources": [
+    {
+      "id": "manas-call",
+      "category": "report",
+      "label_en": "MANAS National Narcotics Helpline",
+      "label_ml": "MANAS ദേശീയ നാർക്കോട്ടിക്സ് ഹെൽപ്‌ലൈൻ",
+      "channel": "call",
+      "value": "1933",
+      "desc_en": "Report drug activity anonymously to the Narcotics Control Bureau. Free, 24/7.",
+      "desc_ml": "Narcotics Control Bureau-ലേക്ക് അനോണിമസ് ആയി ഡ്രഗ് പ്രവർത്തനം റിപ്പോർട്ട് ചെയ്യൂ. സൗജന്യം, 24/7.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "manas-web",
+      "category": "report",
+      "label_en": "MANAS NCB Web Portal",
+      "label_ml": "MANAS NCB വെബ് പോർട്ടൽ",
+      "channel": "web",
+      "value": "https://ncbmanas.gov.in",
+      "desc_en": "File an anonymous online report with the Narcotics Control Bureau.",
+      "desc_ml": "Narcotics Control Bureau-ലേക്ക് ഓൺലൈൻ അനോണിമസ് റിപ്പോർട്ട് ഫയൽ ചെയ്യൂ.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "manas-email",
+      "category": "report",
+      "label_en": "MANAS NCB Email",
+      "label_ml": "MANAS NCB ഇമെയിൽ",
+      "channel": "email",
+      "value": "info.ncbmanas@gov.in",
+      "desc_en": "Email a tip to the Narcotics Control Bureau. You may stay anonymous.",
+      "desc_ml": "Narcotics Control Bureau-ലേക്ക് ഇമെയിൽ ടിപ്പ് അയക്കൂ. അനോണിമസ് ആകാം.",
+      "hours": null,
+      "verified": true
+    },
+    {
+      "id": "manas-umang",
+      "category": "report",
+      "label_en": "MANAS via UMANG App",
+      "label_ml": "UMANG ആപ്പ് വഴി MANAS",
+      "channel": "web",
+      "value": "https://web.umang.gov.in",
+      "desc_en": "Access MANAS reporting via the UMANG government services app (search 'MANAS' inside the app).",
+      "desc_ml": "UMANG സർക്കാർ ആപ്പ് വഴി MANAS-ൽ റിപ്പോർട്ട് ചെയ്യൂ (ആപ്പിൽ 'MANAS' തിരഞ്ഞ് നോക്കൂ).",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "kerala-wa-antinarcotics",
+      "category": "report",
+      "label_en": "Kerala Police Anti-Narcotic WhatsApp",
+      "label_ml": "കേരള പോലീസ് ആന്റി-നാർക്കോട്ടിക് WhatsApp",
+      "channel": "whatsapp",
+      "value": "9995966666",
+      "desc_en": "Anonymous tip directly to Kerala Police Anti-Narcotic Cell via WhatsApp.",
+      "desc_ml": "Kerala Police Anti-Narcotic Cell-ലേക്ക് WhatsApp വഴി അനോണിമസ് ടിപ്പ് അയക്കൂ.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "antinarcotics-cell-1",
+      "category": "report",
+      "label_en": "Anti-Narcotic Special Cell (1)",
+      "label_ml": "ആന്റി-നാർക്കോട്ടിക് സ്പെഷ്യൽ സെൽ (1)",
+      "channel": "call",
+      "value": "9497979794",
+      "desc_en": "Kerala Police Anti-Narcotic Special Cell direct line.",
+      "desc_ml": "കേരള പോലീസ് ആന്റി-നാർക്കോട്ടിക് സ്പെഷ്യൽ സെൽ നേരിട്ടുള്ള ലൈൻ.",
+      "hours": null,
+      "verified": true
+    },
+    {
+      "id": "antinarcotics-cell-2",
+      "category": "report",
+      "label_en": "Anti-Narcotic Special Cell (2)",
+      "label_ml": "ആന്റി-നാർക്കോട്ടിക് സ്പെഷ്യൽ സെൽ (2)",
+      "channel": "call",
+      "value": "9497927797",
+      "desc_en": "Kerala Police Anti-Narcotic Special Cell alternate line.",
+      "desc_ml": "കേരള പോലീസ് ആന്റി-നാർക്കോട്ടിക് സ്പെഷ്യൽ സെൽ ഇതര ലൈൻ.",
+      "hours": null,
+      "verified": true
+    },
+    {
+      "id": "emergency-112",
+      "category": "emergency",
+      "label_en": "Emergency — 112",
+      "label_ml": "അടിയന്തിരം — 112",
+      "channel": "call",
+      "value": "112",
+      "desc_en": "National Emergency Number. Police, ambulance, fire — one call.",
+      "desc_ml": "ദേശീയ അടിയന്തര നമ്പർ. പോലീസ്, ആംബുലൻസ്, ഫയർ — ഒരൊറ്റ കോൾ.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "ambulance-108",
+      "category": "emergency",
+      "label_en": "Ambulance — 108",
+      "label_ml": "ആംബുലൻസ് — 108",
+      "channel": "call",
+      "value": "108",
+      "desc_en": "Free government ambulance. Call for overdose or medical emergency.",
+      "desc_ml": "സൗജന്യ സർക്കാർ ആംബുലൻസ്. ഓവർഡോസ് അല്ലെങ്കിൽ മെഡിക്കൽ അടിയന്തരത്തിൽ വിളിക്കൂ.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "police-100",
+      "category": "emergency",
+      "label_en": "Police — 100",
+      "label_ml": "പോലീസ് — 100",
+      "channel": "call",
+      "value": "100",
+      "desc_en": "Police emergency. For immediate danger to life.",
+      "desc_ml": "പോലീസ് അടിയന്തരം. ജീവന് ഉടനടി അപകടമുള്ളപ്പോൾ.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "deaddiction-14446",
+      "category": "deaddiction",
+      "label_en": "National De-addiction Helpline",
+      "label_ml": "ദേശീയ ഡി-അഡിക്ഷൻ ഹെൽപ്‌ലൈൻ",
+      "channel": "call",
+      "value": "14446",
+      "desc_en": "MoSJE national de-addiction helpline. Free, confidential, 24/7. Refer to a centre near you.",
+      "desc_ml": "MoSJE ദേശീയ ഡി-അഡിക്ഷൻ ഹെൽപ്‌ലൈൻ. സൗജന്യം, രഹസ്യം, 24/7. അടുത്ത സെന്ററിലേക്ക് റഫർ.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "vimukthi-14405",
+      "category": "deaddiction",
+      "label_en": "Vimukthi Counselling Helpline",
+      "label_ml": "വിമുക്തി കൗൺസലിംഗ് ഹെൽപ്‌ലൈൻ",
+      "channel": "call",
+      "value": "14405",
+      "desc_en": "Kerala Excise Dept free counselling for individuals and families. 8am–8pm.",
+      "desc_ml": "കേരള എക്‌സൈസ് ഡിപ്പാർട്ട്മെന്റ് സൗജന്യ കൗൺസലിംഗ്. വ്യക്തികൾക്കും കുടുംബങ്ങൾക്കും. രാ. 8 – വൈ. 8.",
+      "hours": "8am–8pm",
+      "verified": true
+    },
+    {
+      "id": "telemanas-14416",
+      "category": "mentalhealth",
+      "label_en": "Tele-MANAS Mental Health Helpline",
+      "label_ml": "ടെലി-MANAS മാനസിക ആരോഗ്യ ഹെൽപ്‌ലൈൻ",
+      "channel": "call",
+      "value": "14416",
+      "desc_en": "Free government mental health support. Anxiety, depression, substance-related distress.",
+      "desc_ml": "സൗജന്യ സർക്കാർ മാനസിക ആരോഗ്യ പിന്തുണ. ഉത്കണ്ഠ, വിഷാദം, പദാർഥ-സംബന്ധ ദുരിതം.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "childline-1098",
+      "category": "youth_women",
+      "label_en": "Childline",
+      "label_ml": "ചൈൽഡ്‌ലൈൻ",
+      "channel": "call",
+      "value": "1098",
+      "desc_en": "Free 24/7 helpline for children in distress — drug use, abuse, or any emergency involving a child.",
+      "desc_ml": "കുട്ടികൾക്ക് സൗജന്യ 24/7 ഹെൽപ്‌ലൈൻ. ഡ്രഗ് ഉപയോഗം, ദുരുപയോഗം, കുട്ടി ഉൾപ്പെടുന്ന ഏതൊരു അടിയന്തരത്തിലും.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "women-helpline-181",
+      "category": "youth_women",
+      "label_en": "Women Helpline",
+      "label_ml": "വനിതാ ഹെൽപ്‌ലൈൻ",
+      "channel": "call",
+      "value": "181",
+      "desc_en": "National women's helpline for distress including situations involving substance use or abuse.",
+      "desc_ml": "ദേശീയ വനിതാ ഹെൽപ്‌ലൈൻ. പദാർഥ ഉപയോഗം അല്ലെങ്കിൽ ദുരുപയോഗം ഉൾപ്പെടുന്ന സന്ദർഭങ്ങൾക്ക്.",
+      "hours": "24/7",
+      "verified": true
+    },
+    {
+      "id": "legal-aid-15100",
+      "category": "legal",
+      "label_en": "National Legal Services Authority",
+      "label_ml": "ദേശീയ നിയമ സേവന അതോറിറ്റി",
+      "channel": "call",
+      "value": "15100",
+      "desc_en": "Free legal aid for eligible persons including those facing drug-related charges. Connects you to your district Legal Services Authority.",
+      "desc_ml": "ഡ്രഗ്-സംബന്ധ കേസുകൾ ഉൾപ്പെടെ അർഹരായ വ്യക്തികൾക്ക് സൗജന്യ നിയമ സഹായം. ജില്ലാ Legal Services Authority-ലേക്ക് കണക്ട് ചെയ്യൂ.",
+      "hours": null,
+      "verified": true
+    }
+  ],
+  "districtDirectory": [
+    {
+      "district": "Thiruvananthapuram",
+      "district_ml": "തിരുവനന്തപുരം",
+      "police_control_room": "VERIFY_TVM_POLICE_CR",
+      "excise_office": "VERIFY_TVM_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Kollam",
+      "district_ml": "കൊല്ലം",
+      "police_control_room": "VERIFY_KOLLAM_POLICE_CR",
+      "excise_office": "VERIFY_KOLLAM_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Pathanamthitta",
+      "district_ml": "പത്തനംതിട്ട",
+      "police_control_room": "VERIFY_PATHANAMTHITTA_POLICE_CR",
+      "excise_office": "VERIFY_PATHANAMTHITTA_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Alappuzha",
+      "district_ml": "ആലപ്പുഴ",
+      "police_control_room": "VERIFY_ALAPPUZHA_POLICE_CR",
+      "excise_office": "VERIFY_ALAPPUZHA_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Kottayam",
+      "district_ml": "കോട്ടയം",
+      "police_control_room": "VERIFY_KOTTAYAM_POLICE_CR",
+      "excise_office": "VERIFY_KOTTAYAM_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Idukki",
+      "district_ml": "ഇടുക്കി",
+      "police_control_room": "VERIFY_IDUKKI_POLICE_CR",
+      "excise_office": "VERIFY_IDUKKI_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Ernakulam",
+      "district_ml": "എറണാകുളം",
+      "police_control_room": "VERIFY_ERNAKULAM_POLICE_CR",
+      "excise_office": "VERIFY_ERNAKULAM_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Thrissur",
+      "district_ml": "തൃശ്ശൂർ",
+      "police_control_room": "VERIFY_THRISSUR_POLICE_CR",
+      "excise_office": "VERIFY_THRISSUR_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Palakkad",
+      "district_ml": "പാലക്കാട്",
+      "police_control_room": "VERIFY_PALAKKAD_POLICE_CR",
+      "excise_office": "VERIFY_PALAKKAD_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Malappuram",
+      "district_ml": "മലപ്പുറം",
+      "police_control_room": "VERIFY_MALAPPURAM_POLICE_CR",
+      "excise_office": "VERIFY_MALAPPURAM_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Kozhikode",
+      "district_ml": "കോഴിക്കോട്",
+      "police_control_room": "VERIFY_KOZHIKODE_POLICE_CR",
+      "excise_office": "VERIFY_KOZHIKODE_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Wayanad",
+      "district_ml": "വയനാട്",
+      "police_control_room": "VERIFY_WAYANAD_POLICE_CR",
+      "excise_office": "VERIFY_WAYANAD_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Kannur",
+      "district_ml": "കണ്ണൂർ",
+      "police_control_room": "VERIFY_KANNUR_POLICE_CR",
+      "excise_office": "VERIFY_KANNUR_EXCISE",
+      "verified": false
+    },
+    {
+      "district": "Kasaragod",
+      "district_ml": "കാസർഗോഡ്",
+      "police_control_room": "VERIFY_KASARAGOD_POLICE_CR",
+      "excise_office": "VERIFY_KASARAGOD_EXCISE",
+      "verified": false
+    }
+  ],
+  "centres": [
+    {
+      "id": "tvm-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Thiruvananthapuram",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, തിരുവനന്തപുരം",
+      "district": "Thiruvananthapuram",
+      "type": ["detox", "counselling", "inpatient", "op"],
+      "cost": "free",
+      "phone": "VERIFY_TVM_CENTRE_NUMBER",
+      "lat": 8.5241,
+      "lng": 76.9366,
+      "address_en": "VERIFY_TVM_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_TVM_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "kol-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Kollam",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, കൊല്ലം",
+      "district": "Kollam",
+      "type": ["detox", "counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_KOLLAM_CENTRE_NUMBER",
+      "lat": 8.8932,
+      "lng": 76.6141,
+      "address_en": "VERIFY_KOLLAM_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_KOLLAM_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "pat-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Pathanamthitta",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, പത്തനംതിട്ട",
+      "district": "Pathanamthitta",
+      "type": ["counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_PATHANAMTHITTA_CENTRE_NUMBER",
+      "lat": 9.2648,
+      "lng": 76.7870,
+      "address_en": "VERIFY_PATHANAMTHITTA_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_PATHANAMTHITTA_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "alp-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Alappuzha",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, ആലപ്പുഴ",
+      "district": "Alappuzha",
+      "type": ["detox", "counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_ALAPPUZHA_CENTRE_NUMBER",
+      "lat": 9.4981,
+      "lng": 76.3388,
+      "address_en": "VERIFY_ALAPPUZHA_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_ALAPPUZHA_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "kty-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Kottayam",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, കോട്ടയം",
+      "district": "Kottayam",
+      "type": ["detox", "counselling", "inpatient", "op"],
+      "cost": "free",
+      "phone": "VERIFY_KOTTAYAM_CENTRE_NUMBER",
+      "lat": 9.5916,
+      "lng": 76.5222,
+      "address_en": "VERIFY_KOTTAYAM_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_KOTTAYAM_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "idk-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Idukki",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, ഇടുക്കി",
+      "district": "Idukki",
+      "type": ["counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_IDUKKI_CENTRE_NUMBER",
+      "lat": 9.9189,
+      "lng": 77.1025,
+      "address_en": "VERIFY_IDUKKI_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_IDUKKI_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "ekm-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Ernakulam",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, എറണാകുളം",
+      "district": "Ernakulam",
+      "type": ["detox", "counselling", "inpatient", "op"],
+      "cost": "free",
+      "phone": "VERIFY_ERNAKULAM_CENTRE_NUMBER",
+      "lat": 9.9312,
+      "lng": 76.2673,
+      "address_en": "VERIFY_ERNAKULAM_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_ERNAKULAM_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "tsr-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Thrissur",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, തൃശ്ശൂർ",
+      "district": "Thrissur",
+      "type": ["detox", "counselling", "inpatient", "op"],
+      "cost": "free",
+      "phone": "VERIFY_THRISSUR_CENTRE_NUMBER",
+      "lat": 10.5276,
+      "lng": 76.2144,
+      "address_en": "VERIFY_THRISSUR_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_THRISSUR_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "pkd-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Palakkad",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, പാലക്കാട്",
+      "district": "Palakkad",
+      "type": ["detox", "counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_PALAKKAD_CENTRE_NUMBER",
+      "lat": 10.7867,
+      "lng": 76.6548,
+      "address_en": "VERIFY_PALAKKAD_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_PALAKKAD_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "mpl-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Malappuram",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, മലപ്പുറം",
+      "district": "Malappuram",
+      "type": ["detox", "counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_MALAPPURAM_CENTRE_NUMBER",
+      "lat": 11.0730,
+      "lng": 76.0740,
+      "address_en": "VERIFY_MALAPPURAM_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_MALAPPURAM_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "kzd-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Kozhikode",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, കോഴിക്കോട്",
+      "district": "Kozhikode",
+      "type": ["detox", "counselling", "inpatient", "op"],
+      "cost": "free",
+      "phone": "VERIFY_KOZHIKODE_CENTRE_NUMBER",
+      "lat": 11.2588,
+      "lng": 75.7804,
+      "address_en": "VERIFY_KOZHIKODE_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_KOZHIKODE_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "wnd-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Wayanad",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, വയനാട്",
+      "district": "Wayanad",
+      "type": ["counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_WAYANAD_CENTRE_NUMBER",
+      "lat": 11.6854,
+      "lng": 76.1320,
+      "address_en": "VERIFY_WAYANAD_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_WAYANAD_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "kng-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Kannur",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, കണ്ണൂർ",
+      "district": "Kannur",
+      "type": ["detox", "counselling", "inpatient", "op"],
+      "cost": "free",
+      "phone": "VERIFY_KANNUR_CENTRE_NUMBER",
+      "lat": 11.8745,
+      "lng": 75.3704,
+      "address_en": "VERIFY_KANNUR_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_KANNUR_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "ksd-deaddiction",
+      "name_en": "Vimukthi De-addiction Centre, Kasaragod",
+      "name_ml": "വിമുക്തി ഡി-അഡിക്ഷൻ സെന്റർ, കാസർഗോഡ്",
+      "district": "Kasaragod",
+      "type": ["counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_KASARAGOD_CENTRE_NUMBER",
+      "lat": 12.4996,
+      "lng": 74.9869,
+      "address_en": "VERIFY_KASARAGOD_CENTRE_ADDRESS",
+      "address_ml": "VERIFY_KASARAGOD_CENTRE_ADDRESS_ML"
+    },
+    {
+      "id": "tvm-counselling",
+      "name_en": "Vimukthi Counselling Centre, Thiruvananthapuram",
+      "name_ml": "വിമുക്തി കൗൺസലിംഗ് സെന്റർ, തിരുവനന്തപുരം",
+      "district": "Thiruvananthapuram",
+      "type": ["counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_TVM_COUNSELLING_NUMBER",
+      "lat": 8.5041,
+      "lng": 76.9560,
+      "address_en": "VERIFY_TVM_COUNSELLING_ADDRESS",
+      "address_ml": "VERIFY_TVM_COUNSELLING_ADDRESS_ML"
+    },
+    {
+      "id": "ekm-counselling",
+      "name_en": "Vimukthi Counselling Centre, Ernakulam",
+      "name_ml": "വിമുക്തി കൗൺസലിംഗ് സെന്റർ, എറണാകുളം",
+      "district": "Ernakulam",
+      "type": ["counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_EKM_COUNSELLING_NUMBER",
+      "lat": 9.9670,
+      "lng": 76.2850,
+      "address_en": "VERIFY_EKM_COUNSELLING_ADDRESS",
+      "address_ml": "VERIFY_EKM_COUNSELLING_ADDRESS_ML"
+    },
+    {
+      "id": "kzd-counselling",
+      "name_en": "Vimukthi Counselling Centre, Kozhikode",
+      "name_ml": "വിമുക്തി കൗൺസലിംഗ് സെന്റർ, കോഴിക്കോട്",
+      "district": "Kozhikode",
+      "type": ["counselling", "op"],
+      "cost": "free",
+      "phone": "VERIFY_KZD_COUNSELLING_NUMBER",
+      "lat": 11.2450,
+      "lng": 75.7660,
+      "address_en": "VERIFY_KZD_COUNSELLING_ADDRESS",
+      "address_ml": "VERIFY_KZD_COUNSELLING_ADDRESS_ML"
+    }
+  ]
+}

@@ -1,0 +1,477 @@
+{
+  "appName": "lahariundo",
+  "tagline": "Kerala Drug Help — Confidential, Free, Official",
+  "leaveNow": "Leave now",
+  "language": "മലയാളം",
+  "noDataPromise": "This app does not see, store, or share anything you do here.",
+
+  "nav": {
+    "home": "Home",
+    "worried": "Worried about someone",
+    "getHelp": "Get Help",
+    "report": "Report",
+    "learn": "Learn",
+    "parents": "Parents & Teachers",
+    "screening": "Self-check",
+    "resources": "Resources",
+    "rights": "Your Rights",
+    "emergency": "Emergency",
+    "about": "About"
+  },
+
+  "contactBar": {
+    "title": "Official helplines — one tap",
+    "privacy": "Your call goes directly to the authorities. This app does not see or store it.",
+    "call": "Call",
+    "whatsapp": "WhatsApp"
+  },
+
+  "home": {
+    "heading": "How can we help you?",
+    "subheading": "Choose what fits your situation. Everything here is private — this app stores nothing.",
+    "cards": {
+      "worried": {
+        "title": "I'm worried about someone",
+        "desc": "Warning signs, how to talk to them, and where to get support"
+      },
+      "getHelp": {
+        "title": "I want to quit or get help",
+        "desc": "Free, confidential de-addiction centres and counselling near you"
+      },
+      "report": {
+        "title": "I want to report drug activity",
+        "desc": "Anonymous official channels — your info goes straight to police"
+      },
+      "learn": {
+        "title": "I'm a student — I want to learn",
+        "desc": "Facts about drugs, myths vs reality, shareable info"
+      },
+      "parents": {
+        "title": "I'm a parent or teacher",
+        "desc": "Warning signs, how to start the conversation, what to do next"
+      }
+    }
+  },
+
+  "worried": {
+    "heading": "You're not alone in worrying",
+    "intro": "Noticing something's wrong is the first — and hardest — step. Here's what to look for, and how to help.",
+    "signsHeading": "Warning signs to watch for",
+    "signs": {
+      "physical": {
+        "title": "Physical signs",
+        "items": [
+          "Sudden weight loss or gain",
+          "Red or glazed eyes, small or large pupils",
+          "Deteriorating personal hygiene",
+          "Unexplained marks or bruising on arms",
+          "Tremors, slurred speech, impaired coordination",
+          "Unusual smells on breath or clothes"
+        ]
+      },
+      "behavioural": {
+        "title": "Behavioural signs",
+        "items": [
+          "Withdrawal from family, friends, or activities they used to enjoy",
+          "Sudden change in friends or social circle",
+          "Unexplained mood swings — irritable, secretive, or unusually energetic",
+          "Loss of interest in studies or work",
+          "Lying or making excuses about whereabouts",
+          "Money missing; asking for money with no clear reason",
+          "Staying out very late or disappearing for days"
+        ]
+      },
+      "social": {
+        "title": "Social signs",
+        "items": [
+          "Dropping grades or missing school/work",
+          "Getting into fights or legal trouble",
+          "Associating with people who use drugs",
+          "Giving up hobbies, sports, or creative interests"
+        ]
+      }
+    },
+    "talkHeading": "How to start the conversation",
+    "talkSteps": [
+      "Choose a calm, private moment — not in the middle of a fight.",
+      "Use 'I' statements: 'I've noticed…' rather than 'You're always…'",
+      "Listen more than you speak. Don't lecture.",
+      "Express concern, not blame: your goal is connection, not confrontation.",
+      "Expect denial at first — that's normal. Keep the door open.",
+      "If they open up, ask what kind of support they want."
+    ],
+    "helpHeading": "Getting help",
+    "helpText": "You don't need to handle this alone. The Vimukthi helpline (14405) offers free, confidential guidance for families too — not just for the person struggling.",
+    "nextSteps": "What to do next",
+    "signsTapHint": "Tap signs you've noticed — a pattern matters more than any single one",
+    "signsSelected": "{{count}} selected",
+    "talkStepOf": "Step {{current}} of {{total}}"
+  },
+
+  "getHelp": {
+    "heading": "Help is here. You took the hardest step.",
+    "intro": "All Vimukthi centres are free, government-run, and confidential. You don't need a referral to call.",
+    "mapTab": "Map view",
+    "listTab": "Cards",
+    "findNearest": "Find nearest to me",
+    "locationNote": "Your location is used only in your browser to sort centres by distance. It is never sent anywhere.",
+    "locationDenied": "Location access was not granted. Browse the list below.",
+    "services": {
+      "detox": "Detox",
+      "counselling": "Counselling",
+      "op": "Outpatient",
+      "inpatient": "Inpatient"
+    },
+    "cost": {
+      "free": "Free",
+      "subsidised": "Subsidised",
+      "paid": "Paid"
+    },
+    "directions": "Get directions",
+    "callCentre": "Call centre",
+    "kilometre": "km away",
+    "routeLoading": "Calculating route…",
+    "routeByRoad": "Estimated by road",
+    "openInGoogleMaps": "Open in Google Maps",
+    "clearRoute": "Clear route",
+    "routeNeedLocation": "Allow location to show the route on the map.",
+    "counsellingNote": "Not ready to visit a centre? Call the free Vimukthi counselling line first:",
+    "rights": {
+      "heading": "Treatment can protect you legally",
+      "body": "Choosing voluntary de-addiction treatment may grant immunity from prosecution for personal-use offences under Section 64A of the NDPS Act.",
+      "link": "Learn about Section 64A →"
+    }
+  },
+
+  "report": {
+    "heading": "Report safely — your identity is protected",
+    "intro": "You can report suspected drug dealing or trafficking anonymously through official channels. This app does not receive, store, or forward any report. Your call or message goes directly to the authorities.",
+    "how": "How to report",
+    "channels": {
+      "manas_call": {
+        "title": "MANAS National Helpline — 1933",
+        "desc": "Free, 24/7. Report to the Narcotics Control Bureau (NCB) directly. You may remain anonymous."
+      },
+      "manas_web": {
+        "title": "NCB Web Portal — ncbmanas.gov.in",
+        "desc": "File an anonymous online report with the NCB. No phone needed."
+      },
+      "manas_email": {
+        "title": "NCB Email — info.ncbmanas@gov.in",
+        "desc": "Email a tip. Do not include your name if you wish to stay anonymous."
+      },
+      "umang": {
+        "title": "UMANG App — MANAS Service",
+        "desc": "Open the UMANG government services app and search 'MANAS' to file a report."
+      },
+      "wa_kerala": {
+        "title": "Kerala Police WhatsApp — 9995966666",
+        "desc": "Send details via WhatsApp to Kerala Police Anti-Narcotic Cell. You may remain anonymous."
+      },
+      "antinarcotics_cell": {
+        "title": "Anti-Narcotic Special Cell",
+        "desc": "Direct lines to Kerala Police Anti-Narcotic Special Cell."
+      },
+      "emergency": {
+        "title": "Emergency — 112",
+        "desc": "If there is immediate danger to life, call 112."
+      }
+    },
+    "safety": "Your safety first",
+    "safetyTips": [
+      "Never confront drug peddlers yourself.",
+      "Report from a safe location.",
+      "You do not have to give your name.",
+      "If you feel unsafe, leave first — then report."
+    ],
+    "privacy": "This app does not see or store your report. Tapping a button opens your phone's call or WhatsApp app directly."
+  },
+
+  "dataError": {
+    "message": "Could not load contact data. Check your connection and try again.",
+    "retry": "Try again",
+    "loading": "Loading contacts…"
+  },
+
+  "notFound": {
+    "heading": "Page not found",
+    "body": "This page does not exist. Use the menu above or go back to the home page.",
+    "home": "Back to home"
+  },
+
+  "learn": {
+    "heading": "What you should know",
+    "intro": "Short, factual, shareable. Kerala's drug threat is real — here's what's actually happening.",
+    "tabs": {
+      "facts": "Key facts",
+      "myths": "Myths vs facts",
+      "more": "Videos & help"
+    },
+    "mythsHint": "Tap a myth to reveal the fact",
+    "awareness": [
+      "Synthetic drugs sold in Kerala vary widely in potency — a single tablet can be dangerously strong with no warning.",
+      "Recovery is possible. Most people with addiction recover with the right support. Help is available and it works.",
+      "Early conversations save lives. Talking openly about drugs is not the same as encouraging them."
+    ],
+    "videos": {
+      "heading": "Awareness videos",
+      "slot1": "Operation Toofan — Kerala Police Awareness",
+      "slot2": "Vimukthi Mission — Help is Available"
+    },
+    "sections": {
+      "synthetic": {
+        "title": "Synthetic drugs — the real threat",
+        "content": "Synthetic drugs like MDMA ('ecstasy'), methamphetamine, and hybrid cannabis products are increasingly common in Kerala. Unlike plant-based drugs, synthetics are made in labs with no quality control — the same pill or powder can vary wildly in strength, making overdose much more likely."
+      },
+      "myths": {
+        "title": "Myths vs Facts",
+        "items": [
+          {
+            "myth": "\"It's just weed — it's natural and safe.\"",
+            "fact": "Hybrid cannabis strains used today are far more potent than a decade ago. 'Hybrid ganja' can cause psychosis, anxiety disorders, and addiction, especially in young people whose brains are still developing."
+          },
+          {
+            "myth": "\"Party drugs like MDMA are only dangerous if you take too much.\"",
+            "fact": "MDMA can cause life-threatening hyperthermia, seizures, and heart failure even on a first use. There is no 'safe dose' from an unverified source."
+          },
+          {
+            "myth": "\"Prescription drugs are safer because they're medical.\"",
+            "fact": "Misusing prescription opioids, benzodiazepines, or stimulants is just as dangerous as using street drugs. Addiction can develop quickly."
+          },
+          {
+            "myth": "\"Only weak people get addicted.\"",
+            "fact": "Addiction is a medical condition involving changes in brain chemistry. Anyone can become dependent — it is not a character flaw."
+          }
+        ]
+      },
+      "effects": {
+        "title": "What drugs actually do",
+        "content": "Drug use — especially in adolescence — can permanently alter brain development, memory, and emotional regulation. Short-term effects include impaired judgment, risky behaviour, and accidents. Long-term effects include mental health disorders, organ damage, relationship breakdown, and dependency."
+      },
+      "help": {
+        "title": "If you or a friend needs help",
+        "content": "You don't have to have a 'problem' to call the Vimukthi counselling line (14405). Curious, concerned, or just want to talk to someone — it's free and confidential."
+      }
+    }
+  },
+
+  "parents": {
+    "heading": "For parents and teachers",
+    "intro": "You know this person better than anyone. Trust your instincts — and know there is help available.",
+    "warningHeading": "Warning signs checklist",
+    "warningNote": "No single sign confirms drug use. A pattern of several signs, or a sudden change from baseline, is more meaningful.",
+    "talkHeading": "How to start the conversation",
+    "talkNote": "The goal is to keep the line of communication open, not to get a confession.",
+    "talkDo": "Do",
+    "talkDont": "Don't",
+    "doItems": [
+      "Find a calm, private moment (not mid-argument)",
+      "Express concern using 'I feel…' / 'I've noticed…'",
+      "Listen without interrupting",
+      "Stay curious — ask open questions",
+      "Acknowledge their feelings, even if you disagree",
+      "Make clear you love them regardless"
+    ],
+    "dontItems": [
+      "Don't accuse or lecture",
+      "Don't threaten consequences immediately",
+      "Don't search their room without a serious reason",
+      "Don't involve police as a first response for a teen who's experimenting",
+      "Don't react with panic — it shuts down conversation"
+    ],
+    "nextHeading": "What to do next",
+    "nextSteps": [
+      "Call Vimukthi (14405) — they advise families, not just users.",
+      "Speak to a school counsellor if it involves a student.",
+      "Consider family counselling — addiction affects the whole family.",
+      "Look for a local support group (Al-Anon / Nar-Anon) for yourself.",
+      "If you believe there is immediate danger, call 100."
+    ],
+    "teacherHeading": "For teachers specifically",
+    "teacherItems": [
+      "Talk to the school counsellor first — don't handle it alone.",
+      "Document what you've observed factually (dates, behaviours).",
+      "Approach the student privately with care, not accusation.",
+      "Coordinate with parents sensitively — protect the student's dignity.",
+      "Know your school's referral pathway for professional support."
+    ]
+  },
+
+  "screening": {
+    "heading": "Anonymous self-check",
+    "intro": "This is a brief, private self-reflection — not a medical test. Your answers are never saved and vanish the moment you leave this page.",
+    "disclaimer": "This is not a medical diagnosis. It is for personal reflection only. For any health concern, contact a qualified professional or call 14405.",
+    "start": "Begin self-check",
+    "next": "Next",
+    "prev": "Back",
+    "submit": "See result",
+    "restart": "Start again",
+    "yes": "Yes",
+    "no": "No",
+    "sometimes": "Sometimes",
+    "questions": [
+      "In the past year, have you used a substance (alcohol, drugs) more often or in larger amounts than you planned?",
+      "Have you tried to cut down or stop using a substance but found it difficult?",
+      "Has using substances taken up a lot of your time, or made it harder to keep up with work, studies, or responsibilities?",
+      "Have you continued using even though it was causing problems in your relationships or at home?",
+      "Have you noticed you need more of a substance to feel the same effect as before?",
+      "Have you felt strong urges or cravings to use a substance?",
+      "Have you felt down, anxious, or unwell when you stopped using or tried to cut back?"
+    ],
+    "results": {
+      "low": {
+        "label": "Low concern",
+        "message": "Based on your answers, you don't seem to be struggling with substance use right now. If things change, or if you have any questions, the Vimukthi helpline (14405) is always available — free and confidential."
+      },
+      "moderate": {
+        "label": "Worth reflecting on",
+        "message": "Some of your answers suggest it could be worth having a conversation with someone. This isn't an alarm — it's just a signal worth noticing. The Vimukthi counselling line (14405) is free, confidential, and available to anyone — you don't need to have a 'serious problem' to call."
+      },
+      "high": {
+        "label": "Consider reaching out",
+        "message": "Your answers suggest you might benefit from talking to a professional. Please know this doesn't mean anything is 'wrong' with you — dependency is a medical condition, not a personal failing. Help is free, close by, and confidential. Call 14405 or visit a Vimukthi centre near you."
+      }
+    },
+    "alwaysMessage": "Whatever your result — talking to someone is always a good idea. Call 14405 — free, confidential, no judgment."
+  },
+
+  "about": {
+    "heading": "About lahariundo",
+    "mission": "lahariundo is a free, non-commercial civic resource built to support Kerala's Operation Toofan anti-drug initiative. It is designed to be a calm, trustworthy front door that connects people to official help — without collecting, storing, or transmitting any personal data about anyone.",
+    "noData": {
+      "heading": "Our promise: zero data collection",
+      "items": [
+        "No user accounts. No login. No registration.",
+        "The self-screening tool runs 100% in your browser and forgets everything when you leave.",
+        "Your location (if you use 'Find nearest') is used only in your browser and is never sent to any server.",
+        "Tapping a helpline button opens your phone's call or WhatsApp app directly — this app never sees or records the contact.",
+        "No advertising. No tracking pixels. No analytics that identify you.",
+        "No backend server. The app is a static website with no database."
+      ]
+    },
+    "sources": {
+      "heading": "Sources & verification",
+      "text": "Centre and helpline information is drawn from publicly available Kerala Police and Vimukthi Mission (Kerala Excise Department) sources. All numbers and addresses should be verified against the official sites before use:",
+      "links": [
+        { "label": "Vimukthi Mission — keralaexcise.gov.in", "url": "https://keralaexcise.gov.in" },
+        { "label": "Kerala Police — keralapolice.gov.in", "url": "https://keralapolice.gov.in" }
+      ]
+    },
+    "builtBy": "Built as a civic student project. Not affiliated with or endorsed by Kerala Police or the Kerala Government.",
+    "verifyNote": "⚠️ All phone numbers in this app are placeholders marked VERIFY_*. They must be replaced with verified official numbers before this app is published. Wrong contact info in a help app is dangerous.",
+    "contribute": "Found an error? Contact us at: techsupport@ahimsa.global"
+  },
+
+  "resources": {
+    "heading": "Resource Hub",
+    "intro": "Every official channel for reporting, help, and rights — in one place.",
+    "searchPlaceholder": "Search resources…",
+    "categories": {
+      "all": "All",
+      "report": "Report",
+      "emergency": "Emergency",
+      "deaddiction": "De-addiction",
+      "mentalhealth": "Mental Health",
+      "youth_women": "Youth & Women",
+      "legal": "Legal Aid",
+      "local_office": "Local Offices"
+    },
+    "channels": {
+      "call": "Call",
+      "whatsapp": "WhatsApp",
+      "web": "Visit Website",
+      "email": "Email"
+    },
+    "verifiedBadge": "Verified",
+    "unverifiedBadge": "Unverified",
+    "unverifiedNote": "Verify locally before use",
+    "districtPending": "Contact numbers pending verification — check your district police website or call 100.",
+    "hoursLabel": "Hours",
+    "noResults": "No results for your search.",
+    "districtHeading": "Local Police & Excise Offices",
+    "districtNote": "Contact details for district offices must be verified locally — check your district police website or call 100 to be connected.",
+    "districtPolice": "Police Control Room",
+    "districtExcise": "Excise Office"
+  },
+
+  "rights": {
+    "heading": "Know Your Rights",
+    "intro": "Understanding Section 64A of the NDPS Act — how choosing treatment can protect you legally.",
+    "disclaimer": "NOT LEGAL ADVICE — This page contains general information about a law. It is not a substitute for advice from a qualified lawyer. Laws can change. Always consult a lawyer or the Legal Services Authority (15100) before making any decision.",
+    "disclaimerShort": "Not legal advice — tap to read full disclaimer",
+    "tabs": {
+      "s64a": "Section 64A",
+      "confidentiality": "Reporting",
+      "legalAid": "Legal aid"
+    },
+    "s64a": {
+      "heading": "Section 64A — Voluntary De-addiction & Immunity",
+      "what": "What it says",
+      "whatBody": "Under Section 64A of the Narcotic Drugs and Psychotropic Substances (NDPS) Act, 1985, a person who is an addict and has been charged with an offence under Section 27 (consumption of a narcotic drug or psychotropic substance) — or with possession of a small quantity for personal use — may voluntarily agree to undergo treatment and rehabilitation at a government-maintained hospital or a government-recognised de-addiction centre. If they do, the court may choose not to proceed with prosecution for that offence.",
+      "whatPoints": [
+        "Section 64A lets someone charged with personal-use offences (Section 27 or small-quantity possession) choose voluntary treatment instead.",
+        "Treatment must be at a government hospital or government-recognised de-addiction centre.",
+        "If treatment is completed, the court may choose not to proceed with prosecution for that offence."
+      ],
+      "conditionsHeading": "Conditions that apply",
+      "conditions": [
+        "The person must voluntarily agree to treatment — it cannot be forced.",
+        "Treatment must be at a government hospital or a government-recognised facility (not just any private clinic).",
+        "The person must successfully complete the treatment programme.",
+        "The immunity is at the court's discretion — the court 'may' grant it, not 'must'.",
+        "If the person fails to complete treatment or leaves the programme early, the immunity is withdrawn and the case proceeds normally."
+      ],
+      "limitationsHeading": "Important limitations",
+      "limitations": [
+        "Section 64A covers consumption offences (Section 27) and small-quantity personal possession only.",
+        "It does NOT apply to trafficking, supply, larger quantities, or commercial offences.",
+        "It does not automatically erase the case — it depends on the court's decision.",
+        "It applies to the specific offence at hand, not to prior or unrelated charges."
+      ]
+    },
+    "confidentiality": {
+      "heading": "Informant Confidentiality",
+      "body": "If you report drug activity to police or NCB, your identity as an informant is protected. Authorities are not required to disclose who made a report. You may report anonymously via 1933, WhatsApp 9995966666, or the NCB web portal at ncbmanas.gov.in."
+    },
+    "legalAid": {
+      "heading": "Free Legal Help is Available",
+      "body": "If you or someone you know is facing drug-related charges and cannot afford a lawyer, free legal aid is available through the Legal Services Authority. Call 15100 to be connected to your district Legal Services Authority (DLSA)."
+    },
+    "ctas": {
+      "getHelp": "Find de-addiction centres",
+      "deaddiction": "Call 14446 — National De-addiction",
+      "legalAid": "Call 15100 — Free Legal Aid"
+    }
+  },
+
+  "emergency": {
+    "heading": "Emergency",
+    "intro": "If someone is in immediate danger — call first, act second.",
+    "numbers": {
+      "heading": "Emergency Numbers",
+      "national": "National Emergency",
+      "ambulance": "Ambulance",
+      "police": "Police"
+    },
+    "overdose": {
+      "heading": "If someone may have overdosed",
+      "callFirst": "CALL 112 or 108 FIRST — then follow these steps while help is on the way.",
+      "steps": [
+        "Do not leave the person alone.",
+        "If unconscious but breathing, place them in the recovery position (on their side, chin forward) to prevent choking.",
+        "If they are not breathing and you know CPR, begin CPR and stay on the line with the emergency operator.",
+        "Do not give food, water, or any other substance.",
+        "Tell the ambulance operator what substance was taken if you know — this helps paramedics treat them faster. You will not get in trouble for calling."
+      ],
+      "recoveryHeading": "Recovery position",
+      "recoveryDesc": "Kneel beside the person. Extend their arm nearest to you. Pull the far knee up. Roll them gently toward you so they rest on their side. Tilt their head back slightly to keep the airway open. Stay with them."
+    },
+    "privacy": "This app does not log or store your call. Tapping a number opens your phone's dialler directly."
+  },
+
+  "footer": {
+    "privacy": "Zero data collected",
+    "official": "Routes to official channels only",
+    "free": "Free, always"
+  }
+}
