@@ -76,8 +76,8 @@ export function Learn() {
     <div className="w-10 h-10 tone-indigo border rounded-xl flex items-center justify-center shrink-0">
      <BookOpen size={20} className="text-indigo-600 dark:text-indigo-400" />
     </div>
-    <div>
-     <h1 className={`heading-text text-2xl font-extrabold text-primary ${isML ? 'ml-text' : ''}`}>
+    <div className="min-w-0 flex-1">
+     <h1 className={`heading-text text-xl sm:text-2xl font-extrabold text-primary break-words ${isML ? 'ml-text' : ''}`}>
       {t('learn.heading')}
      </h1>
      <p className={`text-secondary text-sm mt-0.5 leading-relaxed ${isML ? 'ml-text' : ''}`}>
@@ -92,7 +92,7 @@ export function Learn() {
     <section className="flex flex-col gap-4 fade-up">
      {Array.isArray(awareness) && awareness.length > 0 && (
       <>
-       <div className="grid grid-cols-3 gap-2">
+       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
         {awareness.map((_text, i) => {
          const Icon = AWARENESS_ICONS[i % AWARENESS_ICONS.length];
          const selected = activeFact === i;

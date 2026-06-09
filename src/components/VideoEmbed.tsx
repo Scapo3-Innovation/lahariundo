@@ -21,7 +21,7 @@ export function VideoEmbed({ videoId, title }: Props) {
     <p className="text-xs text-muted leading-relaxed">
      Video slot — add official Kerala Police / Vimukthi video ID before publishing
     </p>
-    <code className="mt-2 block text-[11px] font-mono text-muted bg-surface-2 rounded px-2 py-1 inline-block">
+    <code className="mt-2 block text-[11px] font-mono text-muted bg-surface-2 rounded px-2 py-1 break-all">
      {videoId}
     </code>
    </div>

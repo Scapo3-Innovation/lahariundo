@@ -44,9 +44,30 @@ export interface DistrictEntry {
   verified: boolean;
 }
 
+export interface ToofanSeizure {
+  id: string;
+  label_en: string;
+  label_ml: string;
+  value: number;
+  unit_en: string;
+  unit_ml: string;
+}
+
+export interface ToofanStats {
+  /** True while the figures are seeded placeholders, not real data. */
+  placeholder?: boolean;
+  as_of_date: string;
+  source_label_en: string;
+  source_label_ml: string;
+  cases: number;
+  arrests: number;
+  seizures: ToofanSeizure[];
+}
+
 export interface AppData {
   helplines: Helpline[];
   centres: Centre[];
   resources?: Resource[];
   districtDirectory?: DistrictEntry[];
+  toofanStats?: ToofanStats;
 }

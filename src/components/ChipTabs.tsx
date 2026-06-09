@@ -23,7 +23,7 @@ export function ChipTabs<T extends string>({ tabs, active, onChange, isML }: Chi
       key={tab.id}
       type="button"
       onClick={() => onChange(tab.id)}
-      className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-semibold border transition-all ${
+      className={`shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-semibold border transition-all min-h-[44px] ${
        selected
         ? 'bg-accent text-accent-text border-accent'
         : 'bg-surface text-secondary border-border hover:border-border-strong hover:text-primary'

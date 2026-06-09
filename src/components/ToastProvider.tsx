@@ -76,7 +76,7 @@ function StatusCard({ toast, onDismiss }: { toast: Toast; onDismiss: (id: string
     <p className="text-sm text-secondary leading-snug flex-1 pt-px">{toast.message}</p>
     <button
      onClick={() => onDismiss(toast.id)}
-     className="text-muted hover:text-secondary transition-colors ml-1 mt-px"
+     className="text-muted hover:text-secondary transition-colors ml-1 p-2 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0"
      aria-label="Dismiss"
     >
      <X size={14} />
@@ -118,7 +118,7 @@ function PhoneCard({ toast, onDismiss }: { toast: Toast; onDismiss: (id: string)
     </div>
     <button
      onClick={() => onDismiss(toast.id)}
-     className="text-teal-300 hover:text-white transition-colors"
+     className="text-teal-300 hover:text-white transition-colors p-2 min-w-[44px] min-h-[44px] flex items-center justify-center shrink-0"
      aria-label="Dismiss"
     >
      <X size={14} />
@@ -208,7 +208,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
    <div
     className={[
      'fixed z-[9999] flex gap-2 pointer-events-none',
-     'flex-col-reverse bottom-28 left-3 right-3',
+     'flex-col-reverse bottom-[var(--stack-bottom)] left-3 right-3',
      'sm:flex-col sm:bottom-auto sm:top-4 sm:right-4 sm:left-auto sm:w-80',
     ].join(' ')}
     aria-label="Notifications"

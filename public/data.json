@@ -557,5 +557,39 @@
       "address_en": "VERIFY_KZD_COUNSELLING_ADDRESS",
       "address_ml": "VERIFY_KZD_COUNSELLING_ADDRESS_ML"
     }
-  ]
+  ],
+  "toofanStats": {
+    "placeholder": true,
+    "as_of_date": "PLACEHOLDER_DATE",
+    "source_label_en": "PLACEHOLDER — replace with official Kerala Police / Excise figure & source",
+    "source_label_ml": "പ്ലേസ്‌ഹോൾഡർ — ഔദ്യോഗിക കേരള പോലീസ് / എക്‌സൈസ് കണക്ക് & ഉറവിടം നൽകുക",
+    "cases": 1000,
+    "arrests": 500,
+    "seizures": [
+      {
+        "id": "ganja",
+        "label_en": "Ganja seized",
+        "label_ml": "പിടിച്ചെടുത്ത കഞ്ചാവ്",
+        "value": 1200,
+        "unit_en": "kg",
+        "unit_ml": "കിലോ"
+      },
+      {
+        "id": "synthetic",
+        "label_en": "Synthetic drugs seized",
+        "label_ml": "പിടിച്ചെടുത്ത സിന്തറ്റിക് മയക്കുമരുന്ന്",
+        "value": 50,
+        "unit_en": "kg",
+        "unit_ml": "കിലോ"
+      },
+      {
+        "id": "cases-property",
+        "label_en": "Vehicles / property seized",
+        "label_ml": "പിടിച്ചെടുത്ത വാഹനങ്ങൾ / സ്വത്ത്",
+        "value": 80,
+        "unit_en": "units",
+        "unit_ml": "എണ്ണം"
+      }
+    ]
+  }
 }

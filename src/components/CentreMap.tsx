@@ -670,7 +670,7 @@ export function CentreMap({
          href={googleUrl}
          target="_blank"
          rel="noopener noreferrer"
-         className="btn-ghost py-1 px-2 text-[10px] ml-auto"
+         className="btn-ghost py-2 px-3 text-xs min-h-[44px]"
         >
          <ExternalLink size={11} />
          {t('getHelp.openInGoogleMaps')}
@@ -679,7 +679,7 @@ export function CentreMap({
        <button
          type="button"
          onClick={handleClearRoute}
-         className="btn-ghost py-1 px-2 text-[10px]"
+         className="btn-ghost py-2 px-3 text-xs min-h-[44px]"
          aria-label={t('getHelp.clearRoute')}
        >
          <X size={11} />

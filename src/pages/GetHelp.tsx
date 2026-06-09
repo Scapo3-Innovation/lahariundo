@@ -53,7 +53,7 @@ function CentreListSkeleton() {
 
 function MapSkeleton() {
   return (
-    <div className="h-[420px] sm:h-[480px] rounded-card overflow-hidden border border-border" aria-hidden="true">
+    <div className="h-[clamp(260px,52dvh,420px)] sm:h-[clamp(320px,55vh,480px)] rounded-card overflow-hidden border border-border" aria-hidden="true">
       <div className="skeleton w-full h-full" />
     </div>
   );
@@ -282,7 +282,7 @@ export function GetHelp() {
             <button
               onClick={() => findNearest()}
               disabled={locating}
-              className="btn-primary py-2 px-3 text-xs disabled:opacity-60"
+              className="btn-primary py-2.5 px-3 text-xs w-full sm:w-auto disabled:opacity-60"
             >
               {locating ? <Loader2 size={13} className="animate-spin" /> : <Navigation size={13} />}
               {locating ? (isML ? 'കണ്ടെത്തുന്നു…' : 'Locating…') : t('getHelp.findNearest')}
@@ -294,7 +294,7 @@ export function GetHelp() {
             />
           </div>
 
-          <div className="tab-toggle tab-toggle-compact shrink-0 self-start sm:self-auto">
+          <div className="tab-toggle w-full sm:tab-toggle-compact shrink-0 self-stretch sm:self-auto">
             <button
               onClick={showMap}
               className={`tab-toggle-btn ${tab === 'map' ? 'tab-toggle-btn-active' : ''}`}
@@ -387,14 +387,14 @@ export function GetHelp() {
           </div>
         </div>
 
-        <div className="cta-banner p-3 flex flex-wrap items-center justify-between gap-3">
-          <p className={`text-xs opacity-90 flex-1 min-w-[200px] ${isML ? 'ml-text' : ''}`}>
+        <div className="cta-banner p-3 flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-3">
+          <p className={`text-xs opacity-90 flex-1 min-w-0 ${isML ? 'ml-text' : ''}`}>
             {t('getHelp.counsellingNote')}
           </p>
           <PhoneLink
             phone="14405"
             label="Vimukthi Counselling"
-            className="btn-ghost bg-surface text-accent border-none py-1.5 px-3 text-xs shrink-0"
+            className="btn-ghost bg-surface text-accent border-none py-2.5 px-3 text-xs w-full sm:w-auto justify-center"
           >
             <Phone size={12} />
             14405

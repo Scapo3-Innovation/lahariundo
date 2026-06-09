@@ -94,7 +94,7 @@ export function CentreCard({ centre, distanceKm, selected, onClick, onDirections
         <PhoneLink
           phone={dialNumber}
           label={usesHelpline ? `Vimukthi Helpline — ${name}` : name}
-          className="btn-primary py-2 px-3 text-[11px] w-full justify-center"
+          className="btn-primary py-2.5 px-3 text-xs w-full justify-center"
         >
           <Phone size={12} />
           {usesHelpline ? VIMUKTHI_HELPLINE : t('getHelp.callCentre')}
@@ -103,7 +103,7 @@ export function CentreCard({ centre, distanceKm, selected, onClick, onDirections
           <button
             type="button"
             onClick={handleDirections}
-            className="btn-ghost py-2 px-2 text-[11px] justify-center"
+            className="btn-ghost py-2.5 px-2 text-xs justify-center min-h-[44px]"
             aria-label={`${t('getHelp.directions')}: ${name}`}
           >
             <ExternalLink size={12} />
@@ -114,7 +114,7 @@ export function CentreCard({ centre, distanceKm, selected, onClick, onDirections
               type="button"
               onClick={onClick}
               className={[
-                'btn-ghost py-2 px-2 text-[11px] justify-center',
+                'btn-ghost py-2.5 px-2 text-xs justify-center min-h-[44px]',
                 selected ? 'border-accent text-accent' : '',
               ].join(' ')}
               aria-label={`${isML ? 'ഭൂപടത്തിൽ കാണൂ' : 'View on map'}: ${name}`}

@@ -249,7 +249,7 @@ export function Resources() {
        key={cat}
        onClick={() => setActiveCategory(cat)}
        className={[
-        'px-2.5 py-1 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors',
+        'px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors min-h-[44px] inline-flex items-center',
         activeCategory === cat
          ? 'bg-teal-700 text-white'
          : 'bg-surface border border-border text-secondary hover:border-teal-400 hover:text-teal-700',

@@ -41,8 +41,8 @@ export function Parents() {
     <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center shrink-0">
      <Users size={20} className="text-emerald-700" />
     </div>
-    <div>
-     <h1 className={`heading-text text-2xl font-extrabold text-primary ${isML ? 'ml-text' : ''}`}>
+    <div className="min-w-0 flex-1">
+     <h1 className={`heading-text text-xl sm:text-2xl font-extrabold text-primary break-words ${isML ? 'ml-text' : ''}`}>
       {t('parents.heading')}
      </h1>
      <p className={`text-secondary text-sm mt-0.5 leading-relaxed ${isML ? 'ml-text' : ''}`}>
@@ -127,15 +127,15 @@ export function Parents() {
    </section>
 
    {/* Vimukthi CTA */}
-   <div className="bg-teal-700 rounded-card p-4 flex items-center justify-between">
-    <div>
-     <p className={`text-sm font-bold text-white ${isML ? 'ml-text' : ''}`}>Vimukthi Helpline</p>
-     <p className={`text-xs text-teal-200 ${isML ? 'ml-text' : ''}`}>Free guidance for families</p>
+   <div className="cta-banner p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+    <div className="min-w-0">
+     <p className={`text-sm font-bold ${isML ? 'ml-text' : ''}`}>Vimukthi Helpline</p>
+     <p className={`text-xs opacity-90 ${isML ? 'ml-text' : ''}`}>Free guidance for families</p>
     </div>
     <PhoneLink
      phone="14405"
      label="Vimukthi Counselling"
-     className="flex items-center gap-1.5 bg-surface text-teal-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors"
+     className="inline-flex items-center justify-center gap-1.5 bg-surface text-teal-700 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors w-full sm:w-auto min-h-[44px]"
     >
      <Phone size={13} /> 14405
     </PhoneLink>

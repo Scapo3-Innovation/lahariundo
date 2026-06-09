@@ -33,7 +33,7 @@ export function Emergency() {
        key={value}
        className={`${bgLight} rounded-card p-3 flex flex-col gap-2`}
       >
-       <div className="flex items-baseline gap-2">
+       <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
         <span className={`heading-text text-2xl font-extrabold tabular-nums ${textColor}`}>
          {value}
         </span>

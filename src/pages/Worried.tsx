@@ -54,8 +54,8 @@ export function Worried() {
     <div className="w-10 h-10 tone-rose border rounded-xl flex items-center justify-center shrink-0">
      <Heart size={20} className="text-rose-600 dark:text-rose-400" />
     </div>
-    <div>
-     <h1 className={`heading-text text-2xl font-extrabold text-primary ${isML ? 'ml-text' : ''}`}>
+    <div className="min-w-0 flex-1">
+     <h1 className={`heading-text text-xl sm:text-2xl font-extrabold text-primary break-words ${isML ? 'ml-text' : ''}`}>
       {t('worried.heading')}
      </h1>
      <p className={`text-secondary text-sm mt-0.5 leading-relaxed ${isML ? 'ml-text' : ''}`}>
@@ -66,7 +66,7 @@ export function Worried() {
 
    {/* Interactive warning signs */}
    <section>
-    <div className="flex items-end justify-between gap-3 mb-3">
+    <div className="flex items-end justify-between gap-3 mb-3 flex-wrap">
      <h2 className={`heading-text font-bold text-primary text-lg ${isML ? 'ml-text' : ''}`}>
       {t('worried.signsHeading')}
      </h2>

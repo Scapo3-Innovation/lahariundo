@@ -148,7 +148,7 @@ export function Screening() {
 
     <button
      onClick={restart}
-     className="flex items-center gap-1.5 text-sm text-muted hover:text-secondary transition-colors"
+     className="flex items-center gap-1.5 text-sm text-muted hover:text-secondary transition-colors min-h-[44px] px-2"
     >
      <RefreshCw size={12} />
      {t('screening.restart')}
@@ -189,7 +189,7 @@ export function Screening() {
       <button
        key={val}
        onClick={() => answer(val)}
-       className={`py-2.5 px-3 rounded-lg border-2 text-sm font-semibold transition-all ${
+       className={`py-3 px-3 rounded-lg border-2 text-sm font-semibold min-h-[44px] transition-all ${
         active ? s.selected : s.idle
        } ${isML ? 'ml-text' : ''}`}
       >
@@ -203,7 +203,7 @@ export function Screening() {
     <button
      onClick={() => setCurrent(Math.max(0, current - 1))}
      disabled={current === 0}
-     className="flex items-center gap-1 text-sm text-muted hover:text-secondary disabled:opacity-30 transition-colors"
+     className="flex items-center gap-1 text-sm text-muted hover:text-secondary disabled:opacity-30 transition-colors min-h-[44px] px-2"
     >
      <ChevronLeft size={14} />
      {t('screening.prev')}
@@ -220,7 +220,7 @@ export function Screening() {
      <button
       onClick={() => current < questions.length - 1 && setCurrent(current + 1)}
       disabled={currentAnswer === null}
-      className="flex items-center gap-1 text-sm text-teal-700 font-semibold hover:text-teal-900 disabled:opacity-30 transition-colors"
+      className="flex items-center gap-1 text-sm text-teal-700 font-semibold hover:text-teal-900 disabled:opacity-30 transition-colors min-h-[44px] px-2"
      >
       {t('screening.next')}
       <ChevronRight size={14} />

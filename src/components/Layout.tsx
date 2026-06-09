@@ -83,11 +83,11 @@ export function Layout({ children }: Props) {
     </nav>
    </header>
 
-   <main className="flex-1 w-full px-4 sm:px-6 py-5 pb-28 page-enter">
+   <main className="flex-1 w-full px-4 sm:px-6 py-5 pb-[var(--stack-bottom)] page-enter">
     {children}
    </main>
 
-   <footer className="bg-surface border-t border-border py-3 mb-[4.5rem]">
+   <footer className="bg-surface border-t border-border py-3 mb-[var(--stack-bottom)]">
     <div className="w-full px-6 flex flex-col items-center gap-2">
      <div className="flex items-center gap-2">
       <img src="/logo-opt.png" alt="" width={18} height={18} className="w-[18px] h-[18px] object-contain opacity-60" />

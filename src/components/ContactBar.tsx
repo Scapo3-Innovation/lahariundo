@@ -16,13 +16,13 @@ export function ContactBar() {
  if (helplines.length === 0) return null;
 
  return (
-  <div className="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-t border-border">
+  <div className="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-t border-border pb-[max(0.5rem,env(safe-area-inset-bottom))]">
    <div className="w-full px-4 sm:px-6 py-2.5">
-    <p className="text-[10px] text-muted text-center mb-2 flex items-center justify-center gap-1.5">
+    <p className="text-xs text-muted text-center mb-2 flex items-center justify-center gap-1.5">
      <ShieldCheck size={11} className="text-accent shrink-0" />
      <span className={isML ? 'ml-text' : ''}>{t('contactBar.privacy')}</span>
     </p>
-    <div className="flex gap-2 justify-center flex-wrap">
+    <div className="flex flex-col sm:flex-row gap-2 sm:justify-center sm:flex-wrap">
      {helplines.map((h) => {
       const label = isML ? h.label_ml : h.label_en;
 
@@ -33,7 +33,7 @@ export function ContactBar() {
          phone={h.value}
          label={label}
          className={[
-          'flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-[11px] font-bold whitespace-nowrap transition-colors',
+          'flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg text-xs font-bold min-h-[44px] transition-colors w-full sm:w-auto',
           h.emergency
            ? 'bg-red-600 text-white hover:bg-red-700'
            : 'bg-accent text-white hover:opacity-90',
@@ -52,7 +52,7 @@ export function ContactBar() {
          href={`https://wa.me/${h.value}`}
          target="_blank"
          rel="noopener noreferrer"
-         className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-green-600 text-white text-[11px] font-bold whitespace-nowrap hover:bg-green-700 transition-colors"
+         className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg bg-green-600 text-white text-xs font-bold min-h-[44px] w-full sm:w-auto hover:bg-green-700 transition-colors"
          aria-label={`${t('contactBar.whatsapp')}: ${label}`}
         >
          <MessageCircle size={12} />
