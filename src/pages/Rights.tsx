@@ -7,12 +7,19 @@ import {
 import { PhoneLink } from '../components/PhoneLink';
 import { ChipTabs } from '../components/ChipTabs';
 import { Accordion } from '../components/Accordion';
+import { useAppData } from '../context/DataContext';
+import { findContact } from '../utils/contacts';
+import { useContactTokens } from '../hooks/useContactTokens';
 
 type RightsTab = 's64a' | 'confidentiality' | 'legalAid';
 
 export function Rights() {
  const { t, i18n } = useTranslation();
  const isML = i18n.language === 'ml';
+ const { data } = useAppData();
+ const tokens = useContactTokens();
+ const legalAidContact = findContact(data, 'legal-aid-15100');
+ const deaddictionContact = findContact(data, 'deaddiction-14446');
  const [tab, setTab] = useState<RightsTab>('s64a');
 
  const whatPoints = t('rights.s64a.whatPoints', { returnObjects: true }) as string[];
@@ -48,7 +55,7 @@ export function Rights() {
     isML={isML}
    >
     <p className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
-     {t('rights.disclaimer')}
+     {t('rights.disclaimer', tokens)}
     </p>
    </Accordion>
 
@@ -127,7 +134,7 @@ export function Rights() {
       </h2>
      </div>
      <p className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
-      {t('rights.confidentiality.body')}
+      {t('rights.confidentiality.body', tokens)}
      </p>
     </section>
    )}
@@ -141,16 +148,18 @@ export function Rights() {
       </h2>
      </div>
      <p className={`text-sm leading-relaxed ${isML ? 'ml-text' : ''}`}>
-      {t('rights.legalAid.body')}
+      {t('rights.legalAid.body', tokens)}
      </p>
-     <PhoneLink
-      phone="15100"
-      label="Legal Services Authority"
-      className="inline-flex items-center gap-2 bg-surface text-teal-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors self-start"
-     >
-      <PhoneCall size={14} />
-      15100 — Free Legal Aid
-     </PhoneLink>
+     {legalAidContact && (
+      <PhoneLink
+       phone={legalAidContact.value}
+       label={isML ? legalAidContact.label_ml : legalAidContact.label_en}
+       className="inline-flex items-center gap-2 bg-surface text-teal-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors self-start"
+      >
+       <PhoneCall size={14} />
+       {t('rights.ctas.legalAid', tokens)}
+      </PhoneLink>
+     )}
     </section>
    )}
 
@@ -161,14 +170,16 @@ export function Rights() {
     >
      {t('rights.ctas.getHelp')}
     </Link>
-    <PhoneLink
-     phone="14446"
-     label="National De-addiction"
-     className="btn-ghost w-full py-3"
-    >
-     <PhoneCall size={14} />
-     {t('rights.ctas.deaddiction')}
-    </PhoneLink>
+    {deaddictionContact && (
+     <PhoneLink
+      phone={deaddictionContact.value}
+      label={isML ? deaddictionContact.label_ml : deaddictionContact.label_en}
+      className="btn-ghost w-full py-3"
+     >
+      <PhoneCall size={14} />
+      {t('rights.ctas.deaddiction', tokens)}
+     </PhoneLink>
+    )}
    </div>
   </div>
  );

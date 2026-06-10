@@ -1,8 +1,10 @@
-import { Phone, MapPin, ExternalLink, Navigation, Map } from 'lucide-react';
+import { Phone, MapPin, ExternalLink, Navigation, Map, Info } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { PhoneLink } from './PhoneLink';
-import { isPlaceholderPhone, resolveDialNumber, VIMUKTHI_HELPLINE } from '../utils/phone';
+import { isPlaceholderPhone, resolveDialNumber } from '../utils/phone';
 import { googleMapsDirectionsUrl } from '../utils/routing';
+import { useAppData } from '../context/DataContext';
+import { findContact } from '../utils/contacts';
 import type { Centre } from '../types';
 
 interface Props {
@@ -31,10 +33,12 @@ const COST_STYLES: Record<string, string> = {
 export function CentreCard({ centre, distanceKm, selected, onClick, onDirections, userLat, userLng }: Props) {
   const { t, i18n } = useTranslation();
   const isML = i18n.language === 'ml';
+  const { data } = useAppData();
 
   const name = isML ? centre.name_ml : centre.name_en;
   const address = isML ? centre.address_ml : centre.address_en;
-  const dialNumber = resolveDialNumber(centre.phone);
+  const fallbackNumber = findContact(data, 'vimukthi-14405')?.value ?? '';
+  const dialNumber = resolveDialNumber(centre.phone, fallbackNumber);
   const usesHelpline = isPlaceholderPhone(centre.phone);
 
   const handleDirections = () => {
@@ -97,8 +101,14 @@ export function CentreCard({ centre, distanceKm, selected, onClick, onDirections
           className="btn-primary py-2.5 px-3 text-xs w-full justify-center"
         >
           <Phone size={12} />
-          {usesHelpline ? VIMUKTHI_HELPLINE : t('getHelp.callCentre')}
+          {usesHelpline ? dialNumber : t('getHelp.callCentre')}
         </PhoneLink>
+        {usesHelpline && (
+          <p className={`text-[10px] text-muted leading-snug flex items-start gap-1 ${isML ? 'ml-text' : ''}`}>
+            <Info size={11} className="mt-0.5 shrink-0" />
+            {t('getHelp.usesHelplineNote', { vimukthi: dialNumber })}
+          </p>
+        )}
         <div className="grid grid-cols-2 gap-2">
           <button
             type="button"

@@ -5,6 +5,9 @@ import { Heart, Eye, Activity, Users, ChevronRight, Phone, Check } from 'lucide-
 import { PhoneLink } from '../components/PhoneLink';
 import { ChipTabs } from '../components/ChipTabs';
 import { StepWizard } from '../components/StepWizard';
+import { useAppData } from '../context/DataContext';
+import { findContact } from '../utils/contacts';
+import { useContactTokens } from '../hooks/useContactTokens';
 
 type SignCategory = 'physical' | 'behavioural' | 'social';
 
@@ -29,6 +32,9 @@ const SIGN_CONFIG: Record<SignCategory, { icon: React.ReactNode; tone: string; a
 export function Worried() {
  const { t, i18n } = useTranslation();
  const isML = i18n.language === 'ml';
+ const { data } = useAppData();
+ const tokens = useContactTokens();
+ const vimukthi = findContact(data, 'vimukthi-14405');
  const signCategories: SignCategory[] = ['physical', 'behavioural', 'social'];
  const talkSteps = t('worried.talkSteps', { returnObjects: true }) as string[];
 
@@ -143,16 +149,18 @@ export function Worried() {
     </h2>
     <div className="cta-banner mb-3">
      <p className={`text-sm leading-relaxed mb-3 ${isML ? 'ml-text' : ''}`}>
-      {t('worried.helpText')}
+      {t('worried.helpText', tokens)}
      </p>
-     <PhoneLink
-      phone="14405"
-      label="Vimukthi Counselling"
-      className="inline-flex items-center gap-2 bg-surface text-teal-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors"
-     >
-      <Phone size={14} />
-      Vimukthi — 14405
-     </PhoneLink>
+     {vimukthi && (
+      <PhoneLink
+       phone={vimukthi.value}
+       label={isML ? vimukthi.label_ml : vimukthi.label_en}
+       className="inline-flex items-center gap-2 bg-surface text-teal-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors"
+      >
+       <Phone size={14} />
+       Vimukthi — {vimukthi.value}
+      </PhoneLink>
+     )}
     </div>
     <Link
      to="/get-help"

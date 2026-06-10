@@ -9,6 +9,7 @@ import { DistrictSelector } from '../components/DistrictSelector';
 import { DataErrorBanner } from '../components/DataErrorBanner';
 import { useToast } from '../components/ToastProvider';
 import { useAppData } from '../context/DataContext';
+import { findContact } from '../utils/contacts';
 import { useOnlineStatus } from '../hooks/useOnlineStatus';
 import { getCurrentPosition, isGeolocationSupported } from '../utils/geolocation';
 import { googleMapsDirectionsUrl } from '../utils/routing';
@@ -83,6 +84,7 @@ export function GetHelp() {
   const { data, loading, error, retry } = useAppData();
   const online = useOnlineStatus();
   const centres = data?.centres ?? [];
+  const vimukthi = findContact(data, 'vimukthi-14405');
 
   const [tab, setTab] = useState<'list' | 'map'>('map');
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -420,14 +422,16 @@ export function GetHelp() {
           <p className={`text-xs opacity-90 flex-1 min-w-0 ${isML ? 'ml-text' : ''}`}>
             {t('getHelp.counsellingNote')}
           </p>
-          <PhoneLink
-            phone="14405"
-            label="Vimukthi Counselling"
-            className="btn-ghost bg-surface text-accent border-none py-2.5 px-3 text-xs w-full sm:w-auto justify-center"
-          >
-            <Phone size={12} />
-            14405
-          </PhoneLink>
+          {vimukthi && (
+            <PhoneLink
+              phone={vimukthi.value}
+              label={isML ? vimukthi.label_ml : vimukthi.label_en}
+              className="btn-ghost bg-surface text-accent border-none py-2.5 px-3 text-xs w-full sm:w-auto justify-center"
+            >
+              <Phone size={12} />
+              {vimukthi.value}
+            </PhoneLink>
+          )}
         </div>
       </div>
     </div>

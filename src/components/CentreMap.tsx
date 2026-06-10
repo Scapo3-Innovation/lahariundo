@@ -4,7 +4,9 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ExternalLink, Loader2, Route, X } from 'lucide-react';
 import type { Centre } from '../types';
-import { resolveDialNumber } from '../utils/phone';
+import { isPlaceholderPhone, resolveDialNumber } from '../utils/phone';
+import { useAppData } from '../context/DataContext';
+import { findContact } from '../utils/contacts';
 import {
   fetchDrivingRoute,
   formatRouteDistance,
@@ -86,12 +88,24 @@ function fitRouteOnMap(
   });
 }
 
-function buildPopupHTML(c: Centre, lang: string): string {
+function buildPopupHTML(c: Centre, lang: string, fallback: string): string {
  const name = lang === 'ml' ? c.name_ml : c.name_en;
  const address = lang === 'ml' ? c.address_ml : c.address_en;
- const dialNumber = resolveDialNumber(c.phone);
+ const dialNumber = resolveDialNumber(c.phone, fallback);
+ const usesHelpline = isPlaceholderPhone(c.phone);
 
- const callHtml = `<a href="tel:${dialNumber}" style="display:inline-flex;align-items:center;gap:4px;background:#0f766e;color:#fff;padding:5px 10px;border-radius:8px;text-decoration:none;font-weight:700;font-size:12px;">📞 ${dialNumber}</a>`;
+ const callHtml = dialNumber
+  ? `<a href="tel:${dialNumber}" style="display:inline-flex;align-items:center;gap:4px;background:#0f766e;color:#fff;padding:5px 10px;border-radius:8px;text-decoration:none;font-weight:700;font-size:12px;">📞 ${dialNumber}</a>`
+  : '';
+ // Transparency: when the centre's own number isn't verified yet, the call
+ // connects to the Vimukthi central line — say so plainly.
+ const helplineNote = usesHelpline && dialNumber
+  ? `<div style="font-size:10px;color:#64748b;line-height:1.35;margin-top:6px;">${
+      lang === 'ml'
+        ? `പ്രാദേശിക നമ്പർ സ്ഥിരീകരിക്കും വരെ ഈ കോൾ വിമുക്തി കേന്ദ്ര ലൈനിലേക്ക് (${dialNumber}) ബന്ധിപ്പിക്കും.`
+        : `Until the local number is verified, this call connects to the Vimukthi central line (${dialNumber}).`
+    }</div>`
+  : '';
  const dirLabel = lang === 'ml' ? 'ദിശ' : 'Directions';
 
  const serviceLabelEn: Record<string, string> = { detox: 'Detox', counselling: 'Counselling', op: 'Outpatient', inpatient: 'Inpatient' };
@@ -116,6 +130,7 @@ function buildPopupHTML(c: Centre, lang: string): string {
   <button type="button" data-directions data-centre-id="${c.id}"
     style="display:inline-flex;align-items:center;gap:4px;background:#f1f5f9;color:#475569;padding:5px 10px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:12px;font-family:inherit;">${dirLabel}</button>
  </div>
+ ${helplineNote}
 </div>`;
 }
 
@@ -169,6 +184,10 @@ export function CentreMap({
 }: Props) {
   const { t } = useTranslation();
   const isML = language === 'ml';
+  const { data } = useAppData();
+  const fallbackNumber = findContact(data, 'vimukthi-14405')?.value ?? '';
+  const fallbackNumberRef = useRef(fallbackNumber);
+  useEffect(() => { fallbackNumberRef.current = fallbackNumber; }, [fallbackNumber]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -393,7 +412,7 @@ export function CentreMap({
         popupRef.current?.remove();
         popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '300px', offset: 12 })
           .setLngLat(coords)
-          .setHTML(buildPopupHTML(centre, languageRef.current))
+          .setHTML(buildPopupHTML(centre, languageRef.current, fallbackNumberRef.current))
           .addTo(map);
 
         onSelectCentreRef.current?.(id);
@@ -592,7 +611,7 @@ export function CentreMap({
      popupRef.current?.remove();
      popupRef.current = new maplibregl.Popup({ closeButton: true, maxWidth: '300px', offset: 12 })
       .setLngLat([centre.lng, centre.lat])
-      .setHTML(buildPopupHTML(centre, languageRef.current))
+      .setHTML(buildPopupHTML(centre, languageRef.current, fallbackNumberRef.current))
       .addTo(mapRef.current);
     }, reduced ? 0 : 600);
    }
@@ -615,7 +634,7 @@ export function CentreMap({
   }
   if (!popupRef.current || !selectedId) return;
   const centre = centres.find(c => c.id === selectedId);
-  if (centre) popupRef.current.setHTML(buildPopupHTML(centre, language));
+  if (centre) popupRef.current.setHTML(buildPopupHTML(centre, language, fallbackNumberRef.current));
  }, [language, selectedId, centres, mapReady]);
 
  const routeCentre = activeRoute
