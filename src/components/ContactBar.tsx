@@ -1,70 +1,86 @@
-import { Phone, MessageCircle, ShieldCheck } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Phone, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { PhoneLink } from './PhoneLink';
+import { HelplineActions } from './HelplineActions';
 import { useAppData } from '../context/DataContext';
 import { isPlaceholderValue } from '../utils/verify';
 
 export function ContactBar() {
  const { t, i18n } = useTranslation();
- const { data } = useAppData();
  const isML = i18n.language === 'ml';
+ const { data } = useAppData();
+ const [open, setOpen] = useState(false);
+ const panelRef = useRef<HTMLDivElement>(null);
 
  const helplines = (data?.helplines ?? []).filter(
   (h) => !isPlaceholderValue(h.value),
  );
 
+ useEffect(() => {
+  if (!open) return;
+  const onKey = (e: KeyboardEvent) => {
+   if (e.key === 'Escape') setOpen(false);
+  };
+  document.addEventListener('keydown', onKey);
+  return () => document.removeEventListener('keydown', onKey);
+ }, [open]);
+
  if (helplines.length === 0) return null;
 
  return (
-  <div className="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-sm border-t border-border pb-[max(0.5rem,env(safe-area-inset-bottom))]">
-   <div className="w-full px-4 sm:px-6 py-2.5">
-    <p className="text-xs text-muted text-center mb-2 flex items-center justify-center gap-1.5">
-     <ShieldCheck size={11} className="text-accent shrink-0" />
-     <span className={isML ? 'ml-text' : ''}>{t('contactBar.privacy')}</span>
-    </p>
-    <div className="flex flex-col sm:flex-row gap-2 sm:justify-center sm:flex-wrap">
-     {helplines.map((h) => {
-      const label = isML ? h.label_ml : h.label_en;
+  <div
+   className="fixed z-50 flex flex-col items-end gap-2"
+   style={{
+    bottom: 'max(1rem, env(safe-area-inset-bottom))',
+    right: 'max(1rem, env(safe-area-inset-right))',
+   }}
+  >
+   {open && (
+    <>
+     <button
+      type="button"
+      className="fixed inset-0 z-[-1] bg-black/20 backdrop-blur-[1px]"
+      aria-label="Close helplines"
+      onClick={() => setOpen(false)}
+     />
+     <div
+      ref={panelRef}
+      className="w-[min(20rem,calc(100vw-2rem))] bg-surface rounded-card border border-border shadow-elevated p-4 fade-up"
+      role="dialog"
+      aria-label={t('contactBar.title')}
+     >
+      <div className="flex items-center justify-between gap-2 mb-3">
+       <p className={`text-sm font-bold text-primary ${isML ? 'ml-text' : ''}`}>
+        {t('contactBar.title')}
+       </p>
+       <button
+        type="button"
+        onClick={() => setOpen(false)}
+        className="icon-btn shrink-0"
+        aria-label="Close"
+       >
+        <X size={16} />
+       </button>
+      </div>
+      <HelplineActions layout="stack" onAction={() => setOpen(false)} />
+     </div>
+    </>
+   )}
 
-      if (h.type === 'call') {
-       return (
-        <PhoneLink
-         key={h.id}
-         phone={h.value}
-         label={label}
-         className={[
-          'flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg text-xs font-bold min-h-[44px] transition-colors w-full sm:w-auto',
-          h.emergency
-           ? 'bg-red-600 text-white hover:bg-red-700'
-           : 'bg-accent text-white hover:opacity-90',
-         ].join(' ')}
-        >
-         <Phone size={12} />
-         <span className={isML ? 'ml-text' : ''}>{label}</span>
-        </PhoneLink>
-       );
-      }
-
-      if (h.type === 'whatsapp') {
-       return (
-        <a
-         key={h.id}
-         href={`https://wa.me/${h.value}`}
-         target="_blank"
-         rel="noopener noreferrer"
-         className="flex items-center justify-center gap-1.5 px-3.5 py-2.5 rounded-lg bg-green-600 text-white text-xs font-bold min-h-[44px] w-full sm:w-auto hover:bg-green-700 transition-colors"
-         aria-label={`${t('contactBar.whatsapp')}: ${label}`}
-        >
-         <MessageCircle size={12} />
-         <span className={isML ? 'ml-text' : ''}>{label}</span>
-        </a>
-       );
-      }
-
-      return null;
-     })}
-    </div>
-   </div>
+   <button
+    type="button"
+    onClick={() => setOpen((v) => !v)}
+    className={[
+     'w-14 h-14 rounded-full shadow-elevated flex items-center justify-center transition-all',
+     open
+      ? 'bg-surface border border-border text-secondary'
+      : 'bg-red-600 text-white hover:bg-red-700',
+    ].join(' ')}
+    aria-label={open ? 'Close helplines' : t('contactBar.title')}
+    aria-expanded={open}
+   >
+    {open ? <X size={22} /> : <Phone size={22} />}
+   </button>
   </div>
  );
 }

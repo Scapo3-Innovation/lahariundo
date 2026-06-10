@@ -26,7 +26,7 @@
   --shadow-toast: 0 8px 32px rgba(0, 0, 0, 0.12);
   --radius-card: 12px;
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
-  --stack-bottom: max(7.5rem, calc(5.75rem + var(--safe-area-bottom)));
+  --stack-bottom: max(5rem, calc(3.5rem + var(--safe-area-bottom)));
 }
 
 /* ── Dark theme ────────────────────────────────────────────── */
@@ -126,6 +126,10 @@ html.theme-reveal-active .theme-toggle-icon {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cta-beat {
+    animation: none;
+  }
+
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none !important;
@@ -341,7 +345,68 @@ body {
 }
 .tab-toggle-compact .tab-toggle-btn {
   flex: 0 0 auto;
-  padding: 0.5rem 1rem;
+  min-height: 2.25rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+/* Get Help toolbar — equal-width controls */
+.gethelp-toolbar-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+  width: 10.5rem;
+  height: 2.25rem;
+  min-height: 2.25rem;
+  max-height: 2.25rem;
+  border-radius: 0.625rem;
+  overflow: hidden;
+}
+.gethelp-toolbar-slot.btn-primary {
+  min-height: 2.25rem;
+  max-height: 2.25rem;
+  padding: 0 0.625rem;
+  gap: 0.375rem;
+}
+.gethelp-toolbar-slot.btn-primary svg {
+  flex-shrink: 0;
+}
+.gethelp-toolbar-slot.btn-primary span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gethelp-toolbar-slot.tab-toggle {
+  min-height: 2.25rem;
+  max-height: 2.25rem;
+  gap: 0;
+}
+.gethelp-toolbar-slot .tab-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  min-height: 0;
+  height: 100%;
+  padding: 0 0.5rem;
+  line-height: 1;
+}
+.gethelp-toolbar-slot .tab-toggle-btn svg {
+  flex-shrink: 0;
+}
+.gethelp-toolbar-slot .tab-toggle-btn span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .gethelp-toolbar-slot {
+    width: 11.5rem;
+  }
 }
 
 /* ── Inputs ────────────────────────────────────────────────── */
@@ -513,6 +578,20 @@ body {
 @keyframes accordionOpen {
   from { opacity: 0; transform: translateY(-6px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ctaBeat {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 45%, transparent);
+  }
+  50% {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 8px transparent;
+  }
+}
+.cta-beat {
+  animation: ctaBeat 2s ease-in-out infinite;
 }
 
 @keyframes shimmer {

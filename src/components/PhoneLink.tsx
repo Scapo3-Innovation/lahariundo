@@ -5,6 +5,7 @@ interface Props {
  phone: string;
  label: string;
  className?: string;
+ onAction?: () => void;
  children: ReactNode;
 }
 
@@ -13,7 +14,7 @@ const isMobile = () =>
 
 const isVerified = (phone: string) => !phone.startsWith('VERIFY_');
 
-export function PhoneLink({ phone, label, className, children }: Props) {
+export function PhoneLink({ phone, label, className, onAction, children }: Props) {
  const { showPhone } = useToast();
 
  if (!isVerified(phone)) {
@@ -34,7 +35,7 @@ export function PhoneLink({ phone, label, className, children }: Props) {
    e.preventDefault();
    showPhone(phone, label);
   }
-  // on mobile: let tel: proceed normally
+  onAction?.();
  };
 
  return (

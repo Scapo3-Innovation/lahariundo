@@ -1,15 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { MapPin, LayoutGrid, Navigation, Phone, Loader2, Scale, WifiOff, Info } from 'lucide-react';
+import { MapPin, LayoutGrid, Navigation, Loader2, Scale, WifiOff } from 'lucide-react';
 import { CentreCard } from '../components/CentreCard';
-import { PageHeader } from '../components/PageHeader';
-import { PhoneLink } from '../components/PhoneLink';
 import { DistrictSelector } from '../components/DistrictSelector';
 import { DataErrorBanner } from '../components/DataErrorBanner';
 import { useToast } from '../components/ToastProvider';
 import { useAppData } from '../context/DataContext';
-import { findContact } from '../utils/contacts';
 import { useOnlineStatus } from '../hooks/useOnlineStatus';
 import { getCurrentPosition, isGeolocationSupported } from '../utils/geolocation';
 import { googleMapsDirectionsUrl } from '../utils/routing';
@@ -84,7 +81,6 @@ export function GetHelp() {
   const { data, loading, error, retry } = useAppData();
   const online = useOnlineStatus();
   const centres = data?.centres ?? [];
-  const vimukthi = findContact(data, 'vimukthi-14405');
 
   const [tab, setTab] = useState<'list' | 'map'>('map');
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -262,67 +258,77 @@ export function GetHelp() {
 
   return (
     <div>
-      <PageHeader
-        icon={<MapPin size={18} />}
-        title={t('getHelp.heading')}
-        subtitle={t('getHelp.intro')}
-        isML={isML}
-      />
+      <header className="mb-4">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <div className="w-8 h-8 rounded-lg bg-surface-2 border border-border flex items-center justify-center shrink-0 text-secondary">
+              <MapPin size={15} />
+            </div>
+            <div className="min-w-0">
+              <h1 className={`text-sm sm:text-base font-bold text-primary leading-snug ${isML ? 'ml-text' : ''}`}>
+                {t('getHelp.heading')}
+              </h1>
+              <p className={`text-[10px] sm:text-[11px] text-secondary leading-snug mt-0.5 ${isML ? 'ml-text' : ''}`}>
+                {t('getHelp.intro')}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-1.5 shrink-0">
+            <DistrictSelector
+              onSelect={handleDistrictSelect}
+              selectedId={selectedDistrict}
+              toolbar
+            />
+
+            <button
+              type="button"
+              onClick={() => findNearest()}
+              disabled={locating}
+              className="gethelp-toolbar-slot btn-primary text-[11px] font-semibold disabled:opacity-60"
+            >
+              {locating ? <Loader2 size={12} className="animate-spin" /> : <Navigation size={12} />}
+              <span>
+                {locating ? (isML ? 'കണ്ടെത്തുന്നു…' : 'Locating…') : t('getHelp.findNearestShort')}
+              </span>
+            </button>
+
+            <div className="gethelp-toolbar-slot tab-toggle">
+              <button
+                type="button"
+                onClick={showMap}
+                className={`tab-toggle-btn flex-1 text-[11px] ${tab === 'map' ? 'tab-toggle-btn-active' : ''}`}
+                aria-pressed={tab === 'map'}
+              >
+                <MapPin size={12} />
+                <span>{t('getHelp.mapTabShort')}</span>
+              </button>
+              <button
+                type="button"
+                onClick={showList}
+                className={`tab-toggle-btn flex-1 text-[11px] ${tab === 'list' ? 'tab-toggle-btn-active' : ''}`}
+                aria-pressed={tab === 'list'}
+              >
+                <LayoutGrid size={12} />
+                <span>{t('getHelp.listTab')}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {locationNote && (
+          <p className={`mt-1.5 text-[10px] text-accent flex items-center gap-1 ${isML ? 'ml-text' : ''}`}>
+            <Navigation size={9} />
+            {locationNote}
+          </p>
+        )}
+      </header>
 
       {error && (
         <div className="mb-4">
           <DataErrorBanner onRetry={retry} />
         </div>
       )}
-
-      {/* Toolbar: location controls + view toggle */}
-      <div className="card p-3 mb-4 flex flex-col gap-2.5">
-        {/* Row 1 — location: find-nearest + district */}
-        <div className="flex flex-col sm:flex-row gap-2">
-          <button
-            onClick={() => findNearest()}
-            disabled={locating}
-            className="btn-primary py-2.5 px-4 text-xs whitespace-nowrap shrink-0 disabled:opacity-60"
-          >
-            {locating ? <Loader2 size={14} className="animate-spin" /> : <Navigation size={14} />}
-            {locating ? (isML ? 'കണ്ടെത്തുന്നു…' : 'Locating…') : t('getHelp.findNearest')}
-          </button>
-          <DistrictSelector
-            onSelect={handleDistrictSelect}
-            selectedId={selectedDistrict}
-            className="flex-1 min-w-0"
-          />
-        </div>
-
-        {/* Row 2 — view toggle: full-width segmented control */}
-        <div className="tab-toggle">
-          <button
-            onClick={showMap}
-            className={`tab-toggle-btn ${tab === 'map' ? 'tab-toggle-btn-active' : ''}`}
-          >
-            <MapPin size={14} />
-            {t('getHelp.mapTab')}
-          </button>
-          <button
-            onClick={showList}
-            className={`tab-toggle-btn ${tab === 'list' ? 'tab-toggle-btn-active' : ''}`}
-          >
-            <LayoutGrid size={14} />
-            {t('getHelp.listTab')}
-          </button>
-        </div>
-
-        {locationNote && (
-          <p className={`text-[11px] text-accent flex items-center gap-1 ${isML ? 'ml-text' : ''}`}>
-            <Navigation size={10} />
-            {locationNote}
-          </p>
-        )}
-        <p className={`text-[11px] text-muted flex items-start gap-1.5 ${isML ? 'ml-text' : ''}`}>
-          <Info size={11} className="mt-0.5 shrink-0" />
-          {t('getHelp.directionsNotice')}
-        </p>
-      </div>
 
       {/* Primary content: map + list. The map needs network tiles, so when
           offline we show a graceful message instead of a broken map; the
@@ -416,22 +422,6 @@ export function GetHelp() {
               {t('getHelp.rights.link')} →
             </Link>
           </div>
-        </div>
-
-        <div className="cta-banner p-3 flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-3">
-          <p className={`text-xs opacity-90 flex-1 min-w-0 ${isML ? 'ml-text' : ''}`}>
-            {t('getHelp.counsellingNote')}
-          </p>
-          {vimukthi && (
-            <PhoneLink
-              phone={vimukthi.value}
-              label={isML ? vimukthi.label_ml : vimukthi.label_en}
-              className="btn-ghost bg-surface text-accent border-none py-2.5 px-3 text-xs w-full sm:w-auto justify-center"
-            >
-              <Phone size={12} />
-              {vimukthi.value}
-            </PhoneLink>
-          )}
         </div>
       </div>
     </div>

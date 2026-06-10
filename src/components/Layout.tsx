@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { ContactBar } from './ContactBar';
 import { LanguageToggle } from './LanguageToggle';
 import { ThemeToggle } from './ThemeToggle';
-import { LeaveQuickly } from './LeaveQuickly';
 import { OfflineIndicator } from './OfflineIndicator';
 import type { ReactNode } from 'react';
 
@@ -20,9 +19,7 @@ export function Layout({ children }: Props) {
   { to: '/',         label: t('nav.home') },
   { to: '/guide',    label: t('nav.guide') },
   { to: '/get-help', label: t('nav.getHelp') },
-  { to: '/report',   label: t('nav.report') },
   { to: '/worried',  label: t('nav.worried') },
-  { to: '/recovery', label: t('nav.recovery') },
   { to: '/resources', label: t('nav.resources') },
   { to: '/screening', label: t('nav.screening') },
   { to: '/effects',  label: t('nav.effects') },
@@ -61,7 +58,6 @@ export function Layout({ children }: Props) {
 
      <div className="flex justify-end items-center gap-2">
       <LanguageToggle />
-      <LeaveQuickly />
      </div>
     </div>
 
@@ -91,11 +87,11 @@ export function Layout({ children }: Props) {
     </nav>
    </header>
 
-   <main className="flex-1 w-full px-4 sm:px-6 py-5 pb-[var(--stack-bottom)] page-enter">
+   <main className="flex-1 w-full px-4 sm:px-6 py-5 pb-6 page-enter">
     {children}
    </main>
 
-   <footer className="bg-surface border-t border-border py-3 mb-[var(--stack-bottom)]">
+   <footer className="bg-surface border-t border-border py-3">
     <div className="w-full px-6 flex flex-col items-center gap-2">
      <div className="flex items-center gap-2">
       <img src="/logo-opt.png" alt="" width={18} height={18} className="w-[18px] h-[18px] object-contain opacity-60" />

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { MapPin } from 'lucide-react';
+import { MapPin, ChevronDown } from 'lucide-react';
 
 interface District {
  id: string;
@@ -30,10 +30,12 @@ interface Props {
   onSelect: (lat: number, lng: number, name: string, id: string) => void;
   selectedId?: string;
   className?: string;
+  compact?: boolean;
+  toolbar?: boolean;
 }
 
-export function DistrictSelector({ onSelect, selectedId, className = '' }: Props) {
-  const { i18n } = useTranslation();
+export function DistrictSelector({ onSelect, selectedId, className = '', compact, toolbar }: Props) {
+  const { t, i18n } = useTranslation();
   const isML = i18n.language === 'ml';
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -41,20 +43,51 @@ export function DistrictSelector({ onSelect, selectedId, className = '' }: Props
     if (d) onSelect(d.lat, d.lng, isML ? d.ml : d.en, d.id);
   };
 
+  if (toolbar) {
+    return (
+      <div className={`gethelp-toolbar-slot border border-border bg-surface ${className}`}>
+        <MapPin size={12} className="text-muted shrink-0 ml-2" aria-hidden />
+        <select
+          value={selectedId ?? ''}
+          onChange={handleChange}
+          className={[
+            'flex-1 min-w-0 h-full border-0 bg-transparent text-[11px] font-semibold',
+            'text-primary appearance-none cursor-pointer truncate',
+            'focus:outline-none focus:ring-0',
+            isML ? 'ml-text' : '',
+          ].join(' ')}
+          aria-label="Select your district"
+        >
+          <option value="" disabled>
+            {t('getHelp.districtPlaceholder')}
+          </option>
+          {DISTRICTS.map((d) => (
+            <option key={d.id} value={d.id}>
+              {isML ? d.ml : d.en}
+            </option>
+          ))}
+        </select>
+        <ChevronDown size={12} className="text-muted shrink-0 mr-2 pointer-events-none" aria-hidden />
+      </div>
+    );
+  }
+
  return (
   <div className={`relative ${className}`}>
    <MapPin
-    size={14}
-    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none"
+    size={compact ? 12 : 14}
+    className={`absolute top-1/2 -translate-y-1/2 text-muted pointer-events-none ${compact ? 'left-2' : 'left-3'}`}
    />
    <select
     value={selectedId ?? ''}
     onChange={handleChange}
     className={[
-          'input-field pl-8 appearance-none cursor-pointer',
-          'hover:border-border-strong focus:border-accent',
-     'transition-colors',
+     'input-field appearance-none cursor-pointer w-full h-full',
+     'hover:border-border-strong focus:border-accent transition-colors',
      isML ? 'ml-text' : '',
+     compact
+      ? 'text-[11px] py-1.5 min-h-8 pl-7 pr-7'
+      : 'pl-8',
     ].join(' ')}
     aria-label="Select your district"
    >
@@ -67,14 +100,11 @@ export function DistrictSelector({ onSelect, selectedId, className = '' }: Props
      </option>
     ))}
    </select>
-   {/* Custom chevron */}
-   <svg
-    className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted"
-    width="14" height="14" viewBox="0 0 24 24" fill="none"
-    stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-   >
-    <polyline points="6 9 12 15 18 9" />
-   </svg>
+   <ChevronDown
+    size={compact ? 12 : 14}
+    className={`absolute top-1/2 -translate-y-1/2 pointer-events-none text-muted ${compact ? 'right-2' : 'right-3'}`}
+    aria-hidden
+   />
   </div>
  );
 }

@@ -1,12 +1,12 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSearchParams } from 'react-router-dom';
 import {
  BookMarked, Phone, MessageCircle, Globe, Mail,
- Search, CheckCircle, AlertTriangle, ShieldAlert, Building2,
+ Search, CheckCircle, AlertTriangle, ShieldAlert, Building2, ShieldCheck,
 } from 'lucide-react';
 import { PhoneLink } from '../components/PhoneLink';
 import { DataErrorBanner } from '../components/DataErrorBanner';
-import { PageHeader } from '../components/PageHeader';
 import { useAppData } from '../context/DataContext';
 import { useContactTokens } from '../hooks/useContactTokens';
 import { isPlaceholderValue } from '../utils/verify';
@@ -17,6 +17,10 @@ type Category = Resource['category'] | 'all';
 const CATEGORY_ORDER: Category[] = [
  'all', 'report', 'emergency', 'deaddiction', 'mentalhealth', 'youth_women', 'legal', 'local_office',
 ];
+
+function parseCategory(param: string | null): Category {
+ return param && CATEGORY_ORDER.includes(param as Category) ? (param as Category) : 'all';
+}
 
 const ACTION = 'btn-action';
 
@@ -196,11 +200,24 @@ export function Resources() {
  const isML = i18n.language === 'ml';
  const { data, loading, error, retry } = useAppData();
  const tokens = useContactTokens();
+ const [searchParams, setSearchParams] = useSearchParams();
 
  const resources = data?.resources ?? [];
  const districts = data?.districtDirectory ?? [];
- const [query, setQuery]      = useState('');
- const [activeCategory, setActiveCategory] = useState<Category>('all');
+ const [query, setQuery] = useState('');
+ const [activeCategory, setActiveCategory] = useState<Category>(() => parseCategory(searchParams.get('category')));
+
+ useEffect(() => {
+  setActiveCategory(parseCategory(searchParams.get('category')));
+ }, [searchParams]);
+
+ const selectCategory = (cat: Category) => {
+  setActiveCategory(cat);
+  const next = new URLSearchParams(searchParams);
+  if (cat === 'all') next.delete('category');
+  else next.set('category', cat);
+  setSearchParams(next, { replace: true });
+ };
 
  const filtered = useMemo(() => {
   const q = query.toLowerCase();
@@ -219,12 +236,27 @@ export function Resources() {
 
  return (
   <div className="flex flex-col gap-5">
-   <PageHeader
-    icon={<BookMarked size={18} className="text-indigo-600" />}
-    title={t('resources.heading')}
-    subtitle={t('resources.intro')}
-    isML={isML}
-   />
+   <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+    <div className="flex items-start gap-3 min-w-0 flex-1">
+     <div className="w-10 h-10 rounded-lg bg-surface-2 border border-border flex items-center justify-center shrink-0 text-secondary">
+      <BookMarked size={18} className="text-indigo-600" />
+     </div>
+     <div className="min-w-0 flex-1">
+      <h1 className={`text-xl sm:text-2xl font-bold text-primary leading-tight break-words ${isML ? 'ml-text' : ''}`}>
+       {t('resources.heading')}
+      </h1>
+      <p className={`text-secondary text-sm mt-1 leading-relaxed break-words ${isML ? 'ml-text' : ''}`}>
+       {t('resources.intro')}
+      </p>
+     </div>
+    </div>
+    <div className="bg-surface-2 border border-border rounded-card px-3.5 py-2.5 flex items-center gap-2 shrink-0 w-full lg:w-auto lg:max-w-xs">
+     <ShieldCheck size={14} className="text-muted shrink-0" />
+     <p className={`text-xs text-secondary leading-snug ${isML ? 'ml-text' : ''}`}>
+      {t('resources.privacyNote')}
+     </p>
+    </div>
+   </div>
 
    {error && <DataErrorBanner onRetry={retry} />}
 
@@ -234,25 +266,25 @@ export function Resources() {
     </p>
    )}
 
-   <div className="relative">
-    <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-    <input
-     type="search"
-     value={query}
-     onChange={(e) => setQuery(e.target.value)}
-     placeholder={t('resources.searchPlaceholder')}
-     className={`input-field pl-9 ${isML ? 'ml-text' : ''}`}
-    />
-   </div>
-
-   <div className="overflow-x-auto -mx-1 px-1 scrollbar-none">
-    <div className="flex gap-1.5 min-w-max">
+   <div className="flex w-full flex-nowrap items-center gap-2">
+    <div className="relative flex-1 min-w-0">
+     <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+     <input
+      type="search"
+      value={query}
+      onChange={(e) => setQuery(e.target.value)}
+      placeholder={t('resources.searchPlaceholder')}
+      className={`input-field w-full pl-9 h-11 ${isML ? 'ml-text' : ''}`}
+     />
+    </div>
+    <div className="flex shrink-0 flex-nowrap items-center gap-1.5 overflow-x-auto scrollbar-none">
      {CATEGORY_ORDER.map((cat) => (
       <button
        key={cat}
-       onClick={() => setActiveCategory(cat)}
+       type="button"
+       onClick={() => selectCategory(cat)}
        className={[
-        'px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors min-h-[44px] inline-flex items-center',
+        'shrink-0 px-3 py-2 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors min-h-[44px] inline-flex items-center',
         activeCategory === cat
          ? 'bg-teal-700 text-white'
          : 'bg-surface border border-border text-secondary hover:border-teal-400 hover:text-teal-700',

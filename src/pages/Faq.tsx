@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { HelpCircle, AlertTriangle, ArrowRight } from 'lucide-react';
+import { HelpCircle, ArrowRight } from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
 import { Accordion } from '../components/Accordion';
 import { ContactAction } from '../components/ContactAction';
@@ -12,9 +12,9 @@ interface QA { q: string; a: string }
 // Per-question follow-ups: internal link and/or data.json contacts (by index).
 const EXTRAS: Record<number, { linkKey?: string; route?: string; contactIds?: string[] }> = {
   0: { linkKey: 'rights', route: '/rights' },
-  1: { linkKey: 'report', route: '/report' },
+  1: { linkKey: 'report', route: '/resources?category=report' },
   2: { contactIds: ['vimukthi-14405'] },
-  3: { linkKey: 'recovery', route: '/recovery' },
+  3: { linkKey: 'getHelp', route: '/get-help' },
   5: { linkKey: 'parents', route: '/parents', contactIds: ['childline-1098'] },
 };
 
@@ -33,13 +33,6 @@ export function Faq() {
         subtitle={t('faq.intro')}
         isML={isML}
       />
-
-      <div className="tone-amber border rounded-card p-3 flex items-start gap-2">
-        <AlertTriangle size={13} className="text-amber-600 mt-0.5 shrink-0" />
-        <p className={`text-xs text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
-          {t('faq.disclaimer')}
-        </p>
-      </div>
 
       <div className="flex flex-col gap-2">
         {Array.isArray(items) && items.map((item, i) => {

@@ -1,7 +1,6 @@
 {
   "appName": "lahariundo",
   "tagline": "Kerala Drug Help — Confidential, Free, Official",
-  "leaveNow": "Leave now",
   "language": "മലയാളം",
   "noDataPromise": "This app does not see, store, or share anything you do here.",
 
@@ -13,7 +12,7 @@
     "learn": "Learn",
     "parents": "Parents & Teachers",
     "screening": "Self-check",
-    "resources": "Resources",
+    "resources": "Report Hub",
     "rights": "Your Rights",
     "emergency": "Emergency",
     "about": "About",
@@ -133,15 +132,34 @@
     "nextSteps": "What to do next",
     "signsTapHint": "Tap signs you've noticed — a pattern matters more than any single one",
     "signsSelected": "{{count}} selected",
-    "talkStepOf": "Step {{current}} of {{total}}"
+    "talkStepOf": "Tip {{current}} of {{total}}",
+    "chatMenuQuestion": "What would you like help with?",
+    "chatMenu": {
+      "signs": "Warning signs to watch for",
+      "talk": "How to start a conversation",
+      "help": "Where to get help"
+    },
+    "chatCategoryQuestion": "Which type of signs have you noticed?",
+    "chatSignsPrompt": "Tap any signs you've noticed below. A pattern matters more than any single one.",
+    "chatSignsContinue": "Continue ({{count}} selected)",
+    "chatSignsContinueNone": "Continue",
+    "chatSignsContinueUser": "I've noticed {{count}} sign(s)",
+    "chatSignsContinueUserNone": "I'm still looking",
+    "chatSignsSummary": "{{count}} sign(s) noted. One sign alone doesn't confirm anything — but a pattern is worth paying attention to. What would you like next?",
+    "chatMoreSigns": "Check more signs",
+    "chatTalkNext": "Next tip",
+    "chatTalkDone": "Get help contacts"
   },
 
   "getHelp": {
     "heading": "Help is here. You took the hardest step.",
     "intro": "All Vimukthi centres are free, government-run, and confidential. You don't need a referral to call.",
     "mapTab": "Map view",
+    "mapTabShort": "Map",
     "listTab": "Cards",
     "findNearest": "Find nearest to me",
+    "findNearestShort": "Nearest",
+    "districtPlaceholder": "District…",
     "locationNote": "Your location is used only in your browser to sort centres by distance. It is never sent anywhere.",
     "locationDenied": "Location access was not granted. Browse the list below.",
     "services": {
@@ -332,6 +350,9 @@
     "intro": "This is a brief, private self-reflection — not a medical test. Your answers are never saved and vanish the moment you leave this page.",
     "disclaimer": "This is not a medical diagnosis. It is for personal reflection only. For any health concern, contact a qualified professional or call {{vimukthi}}.",
     "start": "Begin self-check",
+    "startPrompt": "When you're ready, tap Begin self-check below.",
+    "pickAnswer": "Choose your answer",
+    "seeResultPrompt": "All done — tap to see your result",
     "next": "Next",
     "prev": "Back",
     "submit": "See result",
@@ -378,12 +399,11 @@
         { "title": "Emergency & overdose", "desc": "One-tap emergency numbers and clear overdose first-aid steps." },
         { "title": "Know your rights", "desc": "Plain-language Section 64A, informant confidentiality, and free legal aid." },
         { "title": "Anonymous self-check", "desc": "A private reflection tool that runs entirely in your browser." },
-        { "title": "Recovery roadmap", "desc": "A calm, step-by-step picture of what getting help actually looks like." },
         { "title": "How drugs affect the body", "desc": "Factual, non-graphic health information you explore by body part." },
         { "title": "Learn & myth-busting", "desc": "Key facts, myths vs reality, and awareness videos." },
         { "title": "Parents & teachers toolkit", "desc": "Warning signs and how to start a supportive conversation." },
         { "title": "FAQ", "desc": "Honest answers to the questions people are most afraid to ask." },
-        { "title": "Resource hub", "desc": "A searchable directory of every helpline and district office." },
+        { "title": "Report hub", "desc": "A searchable directory of every helpline and district office." },
         { "title": "Worried about someone", "desc": "Spot the signs and learn how to reach out without confrontation." },
         { "title": "Make a pledge card", "desc": "Create and share a drug-free pledge image — nothing is ever saved." },
         { "title": "Operation Toofan snapshot", "desc": "Progress figures shown clearly with their date and official source." },
@@ -428,9 +448,10 @@
   },
 
   "resources": {
-    "heading": "Resource Hub",
+    "heading": "Report Hub",
     "intro": "Every official channel for reporting, help, and rights — in one place.",
-    "searchPlaceholder": "Search resources…",
+    "privacyNote": "Anonymous · direct to authorities · nothing stored here",
+    "searchPlaceholder": "Search report hub…",
     "categories": {
       "all": "All",
       "report": "Report",
@@ -544,6 +565,8 @@
   "guide": {
     "heading": "What do I do?",
     "intro": "Answer a couple of simple questions and we'll point you to the right next step. Nothing you tap here is saved or sent anywhere.",
+    "chatHint": "Tap an option to reply",
+    "chatPrivate": "Private · nothing is saved",
     "startOver": "Start over",
     "back": "Back",
     "stepsHeading": "Your next steps",
@@ -807,7 +830,7 @@
       },
       {
         "q": "How long does recovery take?",
-        "a": "There's no fixed timeline — it depends on the person and the substance. Recovery is a series of steps, not a single event, and setbacks are a normal part of it. The recovery roadmap explains the stages."
+        "a": "There's no fixed timeline — it depends on the person and the substance. Recovery is a series of steps, not a single event, and setbacks are a normal part of it. Free, confidential help is available whenever you're ready."
       },
       {
         "q": "How do I help a friend who's using?",
@@ -825,7 +848,7 @@
     "links": {
       "rights": "Read about Section 64A →",
       "report": "See reporting options →",
-      "recovery": "See the recovery roadmap →",
+      "getHelp": "Find centres near you →",
       "parents": "Parents & teachers guide →"
     }
   },

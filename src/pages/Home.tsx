@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
  Heart, HelpCircle, Megaphone, BookOpen, Users,
- ArrowRight, ClipboardList, Compass, Sprout, HeartPulse, HandHeart,
+ ArrowRight, ClipboardList, Compass, HeartPulse, HandHeart,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { ToofanStats } from '../components/ToofanStats';
+import { HelplineActions } from '../components/HelplineActions';
 
 interface CardDef {
  to: string;
@@ -18,13 +19,12 @@ const CARDS: CardDef[] = [
  { to: '/guide',   icon: <Compass size={18} />,  titleKey: 'home.cards.guide.title',   descKey: 'home.cards.guide.desc' },
  { to: '/worried', icon: <Heart size={18} />,   titleKey: 'home.cards.worried.title', descKey: 'home.cards.worried.desc' },
  { to: '/get-help', icon: <HelpCircle size={18} />, titleKey: 'home.cards.getHelp.title', descKey: 'home.cards.getHelp.desc' },
- { to: '/report',  icon: <Megaphone size={18} />, titleKey: 'home.cards.report.title',  descKey: 'home.cards.report.desc' },
+ { to: '/resources?category=report', icon: <Megaphone size={18} />, titleKey: 'home.cards.report.title', descKey: 'home.cards.report.desc' },
  { to: '/learn',  icon: <BookOpen size={18} />,  titleKey: 'home.cards.learn.title',  descKey: 'home.cards.learn.desc' },
  { to: '/parents', icon: <Users size={18} />,   titleKey: 'home.cards.parents.title', descKey: 'home.cards.parents.desc' },
 ];
 
 const MORE: CardDef[] = [
- { to: '/recovery', icon: <Sprout size={18} />,    titleKey: 'home.more.recovery.title', descKey: 'home.more.recovery.desc' },
  { to: '/effects',  icon: <HeartPulse size={18} />, titleKey: 'home.more.effects.title',  descKey: 'home.more.effects.desc' },
  { to: '/faq',      icon: <HelpCircle size={18} />, titleKey: 'home.more.faq.title',      descKey: 'home.more.faq.desc' },
  { to: '/pledge',   icon: <HandHeart size={18} />,  titleKey: 'home.more.pledge.title',   descKey: 'home.more.pledge.desc' },
@@ -73,6 +73,18 @@ export function Home() {
      {t('home.subheading')}
     </p>
    </div>
+
+   {/* Official helplines — inline, not fixed footer */}
+   <section
+    className="fade-up card p-4 mb-5"
+    style={{ animationDelay: '40ms' }}
+    aria-label={t('contactBar.title')}
+   >
+    <h2 className={`text-sm font-bold text-primary mb-3 ${isML ? 'ml-text' : ''}`}>
+     {t('contactBar.title')}
+    </h2>
+    <HelplineActions />
+   </section>
 
    {/* Primary actions — card grid (2 cols on phones, 3 on larger) */}
    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-2">

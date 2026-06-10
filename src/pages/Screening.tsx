@@ -1,240 +1,395 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import {
- ClipboardList, RefreshCw, Phone, AlertCircle,
- ChevronRight, ChevronLeft, CheckCircle2,
+  ClipboardList, RefreshCw, Phone, AlertCircle,
+  ChevronLeft, ChevronRight, CheckCircle2,
 } from 'lucide-react';
 import { PhoneLink } from '../components/PhoneLink';
-import { PageHeader } from '../components/PageHeader';
 import { useAppData } from '../context/DataContext';
 import { findContact } from '../utils/contacts';
 import { useContactTokens } from '../hooks/useContactTokens';
 
 type Answer = 'yes' | 'sometimes' | 'no' | null;
+type ResultKey = 'low' | 'moderate' | 'high';
 
 function scoreAnswer(a: Answer): number {
- if (a === 'yes')    return 2;
- if (a === 'sometimes') return 1;
- return 0;
+  if (a === 'yes') return 2;
+  if (a === 'sometimes') return 1;
+  return 0;
 }
 
-function getResultKey(total: number, max: number): 'low' | 'moderate' | 'high' {
- const r = total / max;
- if (r < 0.3) return 'low';
- if (r < 0.6) return 'moderate';
- return 'high';
+function getResultKey(total: number, max: number): ResultKey {
+  const r = total / max;
+  if (r < 0.3) return 'low';
+  if (r < 0.6) return 'moderate';
+  return 'high';
 }
 
 const RESULT_CONFIG = {
- low: {
-  bar: 'bg-emerald-500',
-  card: 'tone-emerald border',
-  text: 'text-emerald-800',
-  icon: <CheckCircle2 size={18} className="text-emerald-600" />,
- },
- moderate: {
-  bar: 'bg-amber-500',
-  card: 'tone-amber border',
-  text: 'text-amber-800',
-  icon: <AlertCircle size={18} className="text-amber-600" />,
- },
- high: {
-  bar: 'bg-teal-600',
-  card: 'tone-teal border',
-  text: 'text-teal-800',
-  icon: <Phone size={18} className="text-teal-600" />,
- },
+  low: {
+    card: 'tone-emerald border',
+    icon: <CheckCircle2 size={18} className="text-emerald-600" />,
+  },
+  moderate: {
+    card: 'tone-amber border',
+    icon: <AlertCircle size={18} className="text-amber-600" />,
+  },
+  high: {
+    card: 'tone-teal border',
+    icon: <Phone size={18} className="text-teal-600" />,
+  },
 };
 
-const ANSWER_STYLES = {
- yes:    { selected: 'border-rose-400 bg-rose-50 text-rose-700', idle: 'border-border text-secondary hover:border-rose-300 hover:bg-rose-50' },
- sometimes: { selected: 'border-amber-400 bg-amber-50 text-amber-700', idle: 'border-border text-secondary hover:border-amber-300 hover:bg-amber-50' },
- no:    { selected: 'border-emerald-400 bg-emerald-50 text-emerald-700', idle: 'border-border text-secondary hover:border-emerald-300 hover:bg-emerald-50' },
-};
+type ChatItem =
+  | { kind: 'intro'; id: string }
+  | { kind: 'action'; id: string }
+  | { kind: 'question'; id: string; index: number; text: string }
+  | { kind: 'user'; id: string; text: string }
+  | { kind: 'result'; id: string; resultKey: ResultKey };
+
+function buildChatItems(
+  started: boolean,
+  submitted: boolean,
+  current: number,
+  answers: Answer[],
+  questions: string[],
+  resultKey: ResultKey,
+  t: (key: string) => string,
+): ChatItem[] {
+  const items: ChatItem[] = [{ kind: 'intro', id: 'intro' }];
+
+  if (!started) {
+    items.push({ kind: 'action', id: 'action' });
+    return items;
+  }
+
+  const lastQuestion = submitted ? questions.length - 1 : current;
+
+  for (let i = 0; i <= lastQuestion; i++) {
+    items.push({ kind: 'question', id: `q-${i}`, index: i, text: questions[i] });
+    if (answers[i] !== null) {
+      items.push({ kind: 'user', id: `u-${i}`, text: t(`screening.${answers[i]}`) });
+    }
+  }
+
+  if (submitted) {
+    items.push({ kind: 'result', id: 'result', resultKey });
+  }
+
+  return items;
+}
+
+function AssistantAvatar() {
+  return (
+    <div
+      className="shrink-0 w-7 h-7 rounded-full bg-accent-soft border border-border flex items-center justify-center"
+      aria-hidden="true"
+    >
+      <ClipboardList size={14} className="text-violet-600" />
+    </div>
+  );
+}
 
 export function Screening() {
- const { t, i18n } = useTranslation();
- const isML = i18n.language === 'ml';
- const { data } = useAppData();
- const tokens = useContactTokens();
- const vimukthi = findContact(data, 'vimukthi-14405');
+  const { t, i18n } = useTranslation();
+  const isML = i18n.language === 'ml';
+  const { data } = useAppData();
+  const tokens = useContactTokens();
+  const vimukthi = findContact(data, 'vimukthi-14405');
+  const bottomRef = useRef<HTMLDivElement>(null);
 
- const questions = t('screening.questions', { returnObjects: true }) as string[];
- const [started,  setStarted]  = useState(false);
- const [current,  setCurrent]  = useState(0);
- const [answers,  setAnswers]  = useState<Answer[]>(Array(questions.length).fill(null));
- const [submitted, setSubmitted] = useState(false);
+  const questions = t('screening.questions', { returnObjects: true }) as string[];
+  const [started, setStarted] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [answers, setAnswers] = useState<Answer[]>(Array(questions.length).fill(null));
+  const [submitted, setSubmitted] = useState(false);
 
- const answer = (val: Answer) => {
-  const updated = [...answers];
-  updated[current] = val;
-  setAnswers(updated);
-  if (current < questions.length - 1) setCurrent(current + 1);
- };
+  const total = answers.reduce((s, a) => s + scoreAnswer(a), 0);
+  const max = questions.length * 2;
+  const resultKey = getResultKey(total, max);
+  const cfg = RESULT_CONFIG[resultKey];
 
- const restart = () => {
-  setAnswers(Array(questions.length).fill(null));
-  setCurrent(0);
-  setSubmitted(false);
-  setStarted(false);
- };
-
- const total   = answers.reduce((s, a) => s + scoreAnswer(a), 0);
- const max    = questions.length * 2;
- const resultKey = getResultKey(total, max);
- const cfg    = RESULT_CONFIG[resultKey];
-
- if (!started) {
-  return (
-   <div className="fade-up">
-    <PageHeader
-     icon={<ClipboardList size={18} className="text-violet-600" />}
-     title={t('screening.heading')}
-     subtitle={t('screening.intro')}
-     isML={isML}
-    />
-
-    <div className="flex items-start gap-2 tone-amber border rounded-card p-3 mb-5">
-     <AlertCircle size={14} className="text-amber-600 mt-0.5 shrink-0" />
-     <p className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
-      {t('screening.disclaimer', tokens)}
-     </p>
-    </div>
-
-    <button
-     onClick={() => setStarted(true)}
-     className="btn-primary w-full sm:w-auto"
-    >
-     {t('screening.start')}
-    </button>
-   </div>
+  const chatItems = useMemo(
+    () => buildChatItems(started, submitted, current, answers, questions, resultKey, t),
+    [started, submitted, current, answers, questions, resultKey, t, i18n.language],
   );
- }
 
- if (submitted) {
+  const progress = submitted
+    ? 100
+    : started
+      ? ((current + (answers[current] !== null && current === questions.length - 1 ? 1 : 0)) / questions.length) * 100
+      : 0;
+
+  const answer = (val: Answer) => {
+    const updated = [...answers];
+    updated[current] = val;
+    for (let i = current + 1; i < updated.length; i++) updated[i] = null;
+    setAnswers(updated);
+    if (current < questions.length - 1) setCurrent(current + 1);
+  };
+
+  const back = () => setCurrent((c) => Math.max(0, c - 1));
+
+  const restart = () => {
+    setAnswers(Array(questions.length).fill(null));
+    setCurrent(0);
+    setSubmitted(false);
+    setStarted(false);
+  };
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }, [started, submitted, current, answers]);
+
+  const showAnswerChips = started && !submitted;
+  const showSubmitChip = showAnswerChips && current === questions.length - 1 && answers[current] !== null;
+  const showBeginChip = !started;
+
   return (
-   <div className="fade-up">
-    <h1 className={`heading-text text-xl sm:text-2xl font-extrabold text-primary mb-4 ${isML ? 'ml-text' : ''}`}>
-     {t(`screening.results.${resultKey}.label`)}
-    </h1>
+    <div className="flex flex-col gap-3">
+      <div className="rounded-card border border-border bg-surface overflow-hidden flex flex-col min-h-[min(72dvh,640px)] max-h-[min(78dvh,720px)]">
+        {/* Chat header */}
+        <div className="shrink-0 flex items-center justify-between gap-3 px-4 py-3 border-b border-border bg-surface-2">
+          <div className="flex items-center gap-2.5 min-w-0 flex-1">
+            <AssistantAvatar />
+            <div className="min-w-0 flex-1">
+              <p className={`heading-text text-sm font-bold text-primary truncate ${isML ? 'ml-text' : ''}`}>
+                {t('screening.heading')}
+              </p>
+              <p className={`text-[11px] text-muted truncate ${isML ? 'ml-text' : ''}`}>
+                {t('appName')} · {t('guide.chatPrivate')}
+              </p>
+              {started && (
+                <div className="flex items-center gap-2 mt-1.5">
+                  <span className="text-[10px] font-bold text-muted tabular-nums shrink-0">
+                    {submitted ? questions.length : current + 1}/{questions.length}
+                  </span>
+                  <div className="flex-1 h-1 bg-surface-3 rounded-full overflow-hidden min-w-[4rem]">
+                    <div
+                      className="h-full bg-accent rounded-full transition-all duration-400"
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-1 shrink-0">
+            {started && !submitted && (
+              <button
+                type="button"
+                onClick={back}
+                disabled={current === 0}
+                className="btn-ghost py-1.5 px-2.5 text-xs disabled:opacity-40"
+                aria-label={t('screening.prev')}
+              >
+                <ChevronLeft size={14} />
+                <span className={isML ? 'ml-text' : ''}>{t('screening.prev')}</span>
+              </button>
+            )}
+            {started && (
+              <button
+                type="button"
+                onClick={restart}
+                className="btn-ghost py-1.5 px-2.5 text-xs"
+              >
+                <RefreshCw size={13} />
+                <span className={isML ? 'ml-text' : ''}>{t('screening.restart')}</span>
+              </button>
+            )}
+          </div>
+        </div>
 
-    <div className={`rounded-card border p-4 mb-4 ${cfg.card}`}>
-     <div className="flex items-start gap-2.5">
-      {cfg.icon}
-      <p className={`text-sm leading-relaxed text-secondary ${isML ? 'ml-text' : ''}`}>
-       {t(`screening.results.${resultKey}.message`, tokens)}
-      </p>
-     </div>
+        {/* Messages */}
+        <div
+          className="flex-1 overflow-y-auto px-3 sm:px-4 py-4 flex flex-col gap-3"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions"
+        >
+          {chatItems.map((item) => {
+            if (item.kind === 'intro') {
+              return (
+                <div key={item.id} className="flex items-start gap-2 fade-up">
+                  <AssistantAvatar />
+                  <div className="max-w-[88%] rounded-2xl rounded-tl-md bg-surface-2 border border-border px-3.5 py-2.5">
+                    <p className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
+                      {t('screening.intro')}
+                    </p>
+                  </div>
+                </div>
+              );
+            }
+
+            if (item.kind === 'action') {
+              return (
+                <div key={item.id} className="flex items-start gap-2 fade-up">
+                  <AssistantAvatar />
+                  <div className="max-w-[88%] rounded-2xl rounded-tl-md bg-surface-2 border border-border px-3.5 py-2.5">
+                    <p className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
+                      {t('screening.startPrompt')}
+                    </p>
+                  </div>
+                </div>
+              );
+            }
+
+            if (item.kind === 'user') {
+              return (
+                <div key={item.id} className="flex justify-end fade-up">
+                  <div className="max-w-[88%] rounded-2xl rounded-tr-md bg-accent text-accent-text px-3.5 py-2.5 shadow-sm">
+                    <p className={`text-sm font-semibold leading-relaxed ${isML ? 'ml-text' : ''}`}>
+                      {item.text}
+                    </p>
+                  </div>
+                </div>
+              );
+            }
+
+            if (item.kind === 'question') {
+              return (
+                <div key={item.id} className="flex items-start gap-2 fade-up">
+                  <AssistantAvatar />
+                  <div className="max-w-[88%] rounded-2xl rounded-tl-md bg-surface-2 border border-border px-3.5 py-2.5">
+                    <p className={`text-[10px] font-bold text-muted mb-1 tabular-nums ${isML ? 'ml-text' : ''}`}>
+                      {item.index + 1}/{questions.length}
+                    </p>
+                    <p className={`text-sm font-semibold text-primary leading-relaxed ${isML ? 'ml-text' : ''}`}>
+                      {item.text}
+                    </p>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <ChatResult
+                key={item.id}
+                resultKey={item.resultKey}
+                cfg={cfg}
+                isML={isML}
+                tokens={tokens}
+                vimukthi={vimukthi}
+              />
+            );
+          })}
+          <div ref={bottomRef} aria-hidden="true" />
+        </div>
+
+        {/* Quick replies */}
+        {(showBeginChip || showAnswerChips) && (
+          <div className="shrink-0 border-t border-border bg-surface px-3 sm:px-4 py-3 flex flex-col items-center text-center">
+            <p className={`ui-label mb-2 ${isML ? 'ml-text' : ''}`}>
+              {showBeginChip
+                ? t('guide.chatHint')
+                : showSubmitChip
+                  ? t('screening.seeResultPrompt')
+                  : `${t('screening.pickAnswer')} · ${current + 1}/${questions.length}`}
+            </p>
+            <div className="flex flex-wrap justify-center gap-2">
+              {showBeginChip && (
+                <button
+                  type="button"
+                  onClick={() => setStarted(true)}
+                  className={`rounded-full border border-accent bg-accent text-accent-text px-4 py-2 text-sm font-semibold hover:opacity-90 transition-opacity ${isML ? 'ml-text' : ''}`}
+                >
+                  {t('screening.start')}
+                </button>
+              )}
+              {showAnswerChips && !showSubmitChip && (
+                (['yes', 'sometimes', 'no'] as const).map((val) => (
+                  <button
+                    key={val}
+                    type="button"
+                    onClick={() => answer(val)}
+                    className={`rounded-full border px-3.5 py-2 text-sm font-semibold transition-colors min-h-[44px] ${
+                      answers[current] === val
+                        ? 'border-accent bg-accent text-accent-text'
+                        : 'border-border-strong bg-surface-2 text-primary hover:border-accent hover:bg-accent-soft'
+                    } ${isML ? 'ml-text' : ''}`}
+                  >
+                    {t(`screening.${val}`)}
+                  </button>
+                ))
+              )}
+              {showSubmitChip && (
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(true)}
+                  className={`rounded-full border border-accent bg-accent text-accent-text px-4 py-2 text-sm font-semibold hover:opacity-90 transition-opacity ${isML ? 'ml-text' : ''}`}
+                >
+                  {t('screening.submit')}
+                </button>
+              )}
+            </div>
+            {showBeginChip && (
+              <p className={`text-[10px] text-muted mt-2 leading-relaxed max-w-md ${isML ? 'ml-text' : ''}`}>
+                {t('screening.disclaimer', tokens)}
+              </p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
-
-    <div className="cta-banner mb-3">
-     <p className={`text-sm mb-2.5 font-semibold ${isML ? 'ml-text' : ''}`}>
-      {t('screening.alwaysMessage', tokens)}
-     </p>
-     {vimukthi && (
-      <PhoneLink
-       phone={vimukthi.value}
-       label={isML ? vimukthi.label_ml : vimukthi.label_en}
-       className="btn-action bg-surface text-teal-700 hover:bg-teal-50"
-      >
-       <Phone size={12} />
-       {vimukthi.value} — Vimukthi
-      </PhoneLink>
-     )}
-    </div>
-
-    <Link
-     to="/get-help"
-     className="card-hover flex items-center justify-between p-3 mb-4 group"
-    >
-     <span className={`text-sm font-semibold text-teal-700 ${isML ? 'ml-text' : ''}`}>
-      {t('nav.getHelp')}
-     </span>
-     <ChevronRight size={16} className="text-muted group-hover:text-teal-500 transition-colors" />
-    </Link>
-
-    <button
-     onClick={restart}
-     className="flex items-center gap-1.5 text-sm text-muted hover:text-secondary transition-colors min-h-[44px] px-2"
-    >
-     <RefreshCw size={12} />
-     {t('screening.restart')}
-    </button>
-   </div>
   );
- }
+}
 
- const currentAnswer = answers[current];
- const progress   = (current / questions.length) * 100;
+function ChatResult({
+  resultKey, cfg, isML, tokens, vimukthi,
+}: {
+  resultKey: ResultKey;
+  cfg: (typeof RESULT_CONFIG)[ResultKey];
+  isML: boolean;
+  tokens: ReturnType<typeof useContactTokens>;
+  vimukthi: ReturnType<typeof findContact>;
+}) {
+  const { t } = useTranslation();
 
- return (
-  <div className="fade-up">
-   <div className="flex items-center gap-2.5 mb-4">
-    <span className="text-xs font-bold text-muted tabular-nums">
-     {current + 1}/{questions.length}
-    </span>
-    <div className="flex-1 h-1.5 bg-surface-2 rounded-full overflow-hidden">
-     <div
-      className="h-full bg-teal-600 rounded-full transition-all duration-400"
-      style={{ width: `${progress}%` }}
-     />
+  return (
+    <div className="flex items-start gap-2 fade-up">
+      <AssistantAvatar />
+      <div className="min-w-0 max-w-[92%] flex flex-col gap-2.5">
+        <div className={`rounded-2xl rounded-tl-md border px-3.5 py-3 ${cfg.card}`}>
+          <div className="flex items-start gap-2.5">
+            {cfg.icon}
+            <div>
+              <p className={`text-sm font-bold text-primary mb-1 ${isML ? 'ml-text' : ''}`}>
+                {t(`screening.results.${resultKey}.label`)}
+              </p>
+              <p className={`text-sm leading-relaxed text-secondary ${isML ? 'ml-text' : ''}`}>
+                {t(`screening.results.${resultKey}.message`, tokens)}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-2xl rounded-tl-md bg-surface-2 border border-border px-3.5 py-3">
+          <p className={`text-sm font-semibold text-primary mb-2.5 ${isML ? 'ml-text' : ''}`}>
+            {t('screening.alwaysMessage', tokens)}
+          </p>
+          {vimukthi && (
+            <PhoneLink
+              phone={vimukthi.value}
+              label={isML ? vimukthi.label_ml : vimukthi.label_en}
+              className="btn-action bg-accent text-accent-text hover:opacity-90"
+            >
+              <Phone size={12} />
+              {vimukthi.value} — Vimukthi
+            </PhoneLink>
+          )}
+        </div>
+
+        <Link
+          to="/get-help"
+          className="rounded-2xl rounded-tl-md border border-border bg-surface px-3.5 py-3 flex items-center justify-between gap-3 hover:border-accent hover:bg-accent-soft transition-colors group"
+        >
+          <span className={`text-sm font-semibold text-accent ${isML ? 'ml-text' : ''}`}>
+            {t('nav.getHelp')}
+          </span>
+          <ChevronRight size={16} className="shrink-0 text-muted group-hover:text-accent transition-colors" />
+        </Link>
+      </div>
     </div>
-    <ClipboardList size={13} className="text-muted" />
-   </div>
-
-   <div className="compact-card mb-4 min-h-[5rem] flex items-center">
-    <p className={`text-sm sm:text-base text-primary leading-relaxed font-medium ${isML ? 'ml-text' : ''}`}>
-     {questions[current]}
-    </p>
-   </div>
-
-   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-5">
-    {(['yes', 'sometimes', 'no'] as const).map((val) => {
-     const s = ANSWER_STYLES[val];
-     const active = currentAnswer === val;
-     return (
-      <button
-       key={val}
-       onClick={() => answer(val)}
-       className={`py-3 px-3 rounded-lg border-2 text-sm font-semibold min-h-[44px] transition-all ${
-        active ? s.selected : s.idle
-       } ${isML ? 'ml-text' : ''}`}
-      >
-       {t(`screening.${val}`)}
-      </button>
-     );
-    })}
-   </div>
-
-   <div className="flex justify-between items-center">
-    <button
-     onClick={() => setCurrent(Math.max(0, current - 1))}
-     disabled={current === 0}
-     className="flex items-center gap-1 text-sm text-muted hover:text-secondary disabled:opacity-30 transition-colors min-h-[44px] px-2"
-    >
-     <ChevronLeft size={14} />
-     {t('screening.prev')}
-    </button>
-
-    {current === questions.length - 1 && currentAnswer !== null ? (
-     <button
-      onClick={() => setSubmitted(true)}
-      className="btn-primary"
-     >
-      {t('screening.submit')}
-     </button>
-    ) : (
-     <button
-      onClick={() => current < questions.length - 1 && setCurrent(current + 1)}
-      disabled={currentAnswer === null}
-      className="flex items-center gap-1 text-sm text-teal-700 font-semibold hover:text-teal-900 disabled:opacity-30 transition-colors min-h-[44px] px-2"
-     >
-      {t('screening.next')}
-      <ChevronRight size={14} />
-     </button>
-    )}
-   </div>
-  </div>
- );
+  );
 }
