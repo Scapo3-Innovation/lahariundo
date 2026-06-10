@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { ToofanStats } from '../components/ToofanStats';
+import { ToofanNews } from '../components/ToofanNews';
 
 interface CardDef {
  to: string;
@@ -81,7 +82,8 @@ export function Home() {
    </div>
 
    {/* Operation Toofan snapshot — kept high so it's visible without scrolling the whole page */}
-   <ToofanStats className="mb-6" />
+   <ToofanStats className="mb-3" />
+   <ToofanNews className="mb-6" />
 
    {/* More tools — card grid */}
    <h2 className={`ui-label mb-2.5 ${isML ? 'ml-text' : ''}`}>{t('home.moreHeading')}</h2>

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Info, ExternalLink, AlertTriangle, Sparkles, Check, Globe, Cpu } from 'lucide-react';
 import { ToofanStats } from '../components/ToofanStats';
+import { ToofanNews } from '../components/ToofanNews';
 
 interface Feature { title: string; desc: string }
 interface Spec { label: string; value: string }
@@ -127,8 +128,9 @@ export function About() {
     </ul>
    </section>
 
-   {/* Operation Toofan progress snapshot */}
+   {/* Operation Toofan progress snapshot (manual, dated) + latest news */}
    <ToofanStats />
+   <ToofanNews />
 
    {/* Sources */}
    <div className="bg-surface rounded-card border border-border p-5">

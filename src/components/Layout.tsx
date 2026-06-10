@@ -4,6 +4,7 @@ import { ContactBar } from './ContactBar';
 import { LanguageToggle } from './LanguageToggle';
 import { ThemeToggle } from './ThemeToggle';
 import { OfflineIndicator } from './OfflineIndicator';
+import { NewsTicker } from './NewsTicker';
 import type { ReactNode } from 'react';
 
 interface Props {
@@ -90,6 +91,9 @@ export function Layout({ children }: Props) {
    </main>
 
    <footer className="bg-surface border-t border-border py-3">
+    <div className="w-full px-4 sm:px-6 mb-1">
+     <NewsTicker />
+    </div>
     <div className="w-full px-6 flex flex-col items-center gap-2">
      <div className="flex items-center gap-2">
       <img src="/logo-opt.png" alt="" width={18} height={18} className="w-[18px] h-[18px] object-contain opacity-60" />

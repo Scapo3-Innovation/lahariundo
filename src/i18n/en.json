@@ -443,10 +443,11 @@
     },
     "thirdParty": {
       "heading": "Third-party requests — full transparency",
-      "intro": "The app has no backend, but a few features load resources from outside services. Here is exactly when that happens:",
+      "intro": "The app stores nothing about you and has no database. A few features do load resources from outside services — here is exactly when that happens:",
       "items": [
         "Map tiles load from OpenFreeMap when you open the centre map — like any website, this reveals your IP address to them.",
         "Driving routes and directions are requested from OSRM and Google Maps only when you tap 'Get directions'.",
+        "The footer news ticker fetches public news headlines through our own news endpoint, which stores nothing and does not log you; tapping a headline opens that news website.",
         "Fonts are bundled with the app — no request is ever made to Google Fonts.",
         "None of these set advertising cookies or send data that identifies you."
       ]
@@ -882,6 +883,21 @@
   "pledge": {
     "heading": "Make your pledge",
     "intro": "Create a drug-free pledge badge or card to share. Your name is used only to draw the image — it is never saved or sent anywhere.",
+    "heroSubtitle": "Create your official drug-free badge in seconds — share it on WhatsApp, Instagram, or your profile.",
+    "pillFree": "Free",
+    "pillPrivate": "Private",
+    "pillShareable": "Shareable badge",
+    "stepName": "Add your name",
+    "stepPledge": "Pick your pledge & level",
+    "stepShare": "Share with the world",
+    "readyHeading": "Your badge is ready!",
+    "readyBody": "Tap share — friends see your pledge and can scan the QR to join.",
+    "shareCaptionLabel": "Suggested caption (copy & paste with your image)",
+    "shareCaptionTemplate": "{{name}} took the drug-free pledge: \"{{message}}\" — {{badgeId}} · {{hashtag}}",
+    "copyCaption": "Copy caption",
+    "copied": "Caption copied",
+    "anonymousName": "A friend",
+    "hashtag": "#DrugFreeKerala #LahariUndo",
     "nameLabel": "Your name (optional)",
     "namePlaceholder": "e.g. Gokul Suresh",
     "messageLabel": "Choose your pledge",
@@ -920,6 +936,14 @@
     "privacy": "Your name never leaves your device. The card is drawn entirely in your browser and is never stored or sent.",
     "cardTag": "DRUG-FREE PLEDGE",
     "cardBrand": "LahariUndo · Kerala Drug Help"
+  },
+
+  "news": {
+    "latest": "Latest news",
+    "toofanHeading": "Latest from Operation Toofan",
+    "pause": "Pause news ticker",
+    "play": "Play news ticker",
+    "openArticle": "Opens the news website in a new tab"
   },
 
   "footer": {
