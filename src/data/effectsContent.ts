@@ -4,11 +4,11 @@
 // Source: National Institute on Drug Abuse (NIDA) and public health authorities.
 // Factual and non-graphic — no usage or dosing information.
 
-export type SubstanceId = 'cannabis' | 'stimulants' | 'opioids';
+export type SubstanceId = 'cannabis' | 'stimulants' | 'opioids' | 'smoking';
 export type OrganId = 'brain' | 'lungs' | 'heart' | 'liver' | 'stomach' | 'kidneys';
 
 export const ORGANS: OrganId[] = ['brain', 'lungs', 'heart', 'liver', 'stomach', 'kidneys'];
-export const SUBSTANCES: SubstanceId[] = ['cannabis', 'stimulants', 'opioids'];
+export const SUBSTANCES: SubstanceId[] = ['cannabis', 'stimulants', 'opioids', 'smoking'];
 
 export interface Bilingual { en: string; ml: string }
 
@@ -181,6 +181,61 @@ export const EFFECTS: Record<SubstanceId, SubstanceContent> = {
     pregnancy: {
       en: 'Using during pregnancy can cause dependence in the newborn (withdrawal after birth), which needs medical care.',
       ml: 'ഗർഭകാലത്ത് ഉപയോഗിക്കുന്നത് നവജാത ശിശുവിൽ ആശ്രയത്വം (ജനനശേഷം പിൻവലിക്കൽ) ഉണ്ടാക്കാം, വൈദ്യ പരിചരണം ആവശ്യമാണ്.',
+    },
+  },
+
+  smoking: {
+    affected: ['lungs', 'heart', 'brain', 'stomach'],
+    organs: {
+      lungs: {
+        severity: 'danger',
+        text: {
+          en: 'The primary target. Damages airways and lung tissue, causing chronic cough, bronchitis, emphysema and COPD. Smoking is the leading cause of lung cancer. Even light smoking raises the risk.',
+          ml: 'പ്രധാന ലക്ഷ്യം. ശ്വാസനാളങ്ങളും ശ്വാസകോശ ടിഷ്യൂയും കേടാക്കി സ്ഥിരമായ ചുമ, ബ്രോങ്കൈറ്റിസ്, എംഫിസിമ, COPD എന്നിവ ഉണ്ടാക്കുന്നു. ശ്വാസകോശ കാൻസറിന്റെ പ്രധാന കാരണം പുകവലിയാണ്. ചെറിയ പുകവലിയും അപകടം വർധിപ്പിക്കുന്നു.',
+        },
+      },
+      heart: {
+        text: {
+          en: 'Raises heart rate and blood pressure, damages blood vessels and increases the risk of heart attack, stroke and peripheral artery disease.',
+          ml: 'ഹൃദയമിടിപ്പും രക്തസമ്മർദവും ഉയർത്തുന്നു; രക്തനാളങ്ങൾ കേടാക്കി ഹൃദയാഘാതം, പക്ഷാഘാതം, പെരിഫറൽ ആർട്ടറി രോഗം എന്നിവയുടെ സാധ്യത കൂട്ടുന്നു.',
+        },
+      },
+      brain: {
+        text: {
+          en: 'Nicotine is highly addictive and affects mood and concentration. Long-term smoking is linked to higher risk of stroke and cognitive decline.',
+          ml: 'നിക്കോട്ടിൻ വളരെ ആസക്തി ഉണ്ടാക്കുന്നു; മനോഭാവവും ശ്രദ്ധയും ബാധിക്കുന്നു. ദീർഘകാല പുകവലി പക്ഷാഘാതത്തിന്റെയും വൈജ്ഞാനിക തളർച്ചയുടെയും സാധ്യത കൂട്ടുന്നു.',
+        },
+      },
+      stomach: {
+        text: {
+          en: 'Increases the risk of stomach ulcers, acid reflux and some cancers of the digestive tract.',
+          ml: 'വയറ് പുല്പയും ആസിഡ് റിഫ്ലക്സും ജീർണ്ണനാഴി കാൻസറുകളുടെയും സാധ്യത വർധിപ്പിക്കുന്നു.',
+        },
+      },
+      liver: {
+        text: {
+          en: 'Not a primary target, though heavy smoking can add to overall health strain.',
+          ml: 'പ്രധാന ലക്ഷ്യമല്ല, പക്ഷേ കനത്ത പുകവലി മൊത്തം ആരോഗ്യ സമ്മർദം കൂട്ടാം.',
+        },
+      },
+      kidneys: {
+        text: {
+          en: 'Linked to higher risk of kidney disease over time, especially with other health conditions.',
+          ml: 'കാലക്രമേണ വൃക്ക രോഗത്തിന്റെ സാധ്യതയുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു, പ്രത്യേകിച്ച് മറ്റ് ആരോഗ്യ പ്രശ്നങ്ങളോടെ.',
+        },
+      },
+    },
+    bodyWarning: {
+      en: 'Second-hand smoke harms people nearby — especially children, pregnant women and people with asthma.',
+      ml: 'പുകവലി മറ്റുള്ളവരെയും ബാധിക്കുന്നു — പ്രത്യേകിച്ച് കുട്ടികളെയും ഗർഭിണികളെയും ആസ്തമയുള്ളവരെയും.',
+    },
+    note: {
+      en: 'Nicotine is highly addictive. Quitting is difficult but possible — free counselling and support are available through Vimukthi and government helplines.',
+      ml: 'നിക്കോട്ടിൻ വളരെ ആസക്തി ഉണ്ടാക്കുന്നു. നിർത്തൽ ബുദ്ധിമുട്ടാണ്, പക്ഷേ സാധ്യമാണ് — വിമുക്തിയും സർക്കാർ ഹെൽപ്‌ലൈനുകളിലൂടെ സൗജന്യ കൗൺസലിംഗ് ലഭ്യമാണ്.',
+    },
+    pregnancy: {
+      en: 'Smoking during pregnancy raises the risk of miscarriage, premature birth, low birth weight and sudden infant death.',
+      ml: 'ഗർഭകാല പുകവലി ഗർഭപാതം, മാസം തികയാത്ത പ്രസവം, കുറഞ്ഞ ജനന ഭാരം, ശിശു മരണം എന്നിവയുടെ സാധ്യത കൂട്ടുന്നു.',
     },
   },
 };

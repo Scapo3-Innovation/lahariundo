@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
  Heart, HelpCircle, Megaphone, MessageSquareQuote,
- ArrowRight, ClipboardList, Compass, HeartPulse, HandHeart,
+ ClipboardList, Compass, HeartPulse, HandHeart,
 } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { ToofanStats } from '../components/ToofanStats';
@@ -20,6 +20,7 @@ const CARDS: CardDef[] = [
  { to: '/get-help', icon: <HelpCircle size={18} />, titleKey: 'home.cards.getHelp.title', descKey: 'home.cards.getHelp.desc' },
  { to: '/resources?category=report', icon: <Megaphone size={18} />, titleKey: 'home.cards.report.title', descKey: 'home.cards.report.desc' },
  { to: '/experiences', icon: <MessageSquareQuote size={18} />, titleKey: 'home.cards.experiences.title', descKey: 'home.cards.experiences.desc' },
+ { to: '/screening', icon: <ClipboardList size={18} />, titleKey: 'home.cards.screening.title', descKey: 'home.cards.screening.desc' },
 ];
 
 const MORE: CardDef[] = [
@@ -73,31 +74,11 @@ export function Home() {
    </div>
 
    {/* Primary actions — card grid (2 cols on phones, 3 on larger) */}
-   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-2">
+   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
     {CARDS.map((card, i) => (
      <Tile key={card.to} card={card} delay={(i + 1) * 50} isML={isML} />
     ))}
    </div>
-
-   {/* Self-check — highlighted full-width */}
-   <Link
-    to="/screening"
-    style={{ animationDelay: '360ms' }}
-    className="fade-up card-hover flex items-center gap-3 p-3.5 tone-violet border group mb-6"
-   >
-    <div className="w-9 h-9 rounded-lg bg-surface-2 border border-border flex items-center justify-center shrink-0">
-     <ClipboardList size={17} className="text-secondary" />
-    </div>
-    <div className="flex-1 min-w-0">
-     <p className={`text-sm font-bold text-primary ${isML ? 'ml-text' : ''}`}>
-      {t('nav.screening')}
-     </p>
-     <p className={`text-xs text-secondary mt-0.5 line-clamp-1 ${isML ? 'ml-text' : ''}`}>
-      {t('screening.intro').slice(0, 72)}…
-     </p>
-    </div>
-    <ArrowRight size={16} className="shrink-0 text-muted group-hover:text-accent transition-colors" />
-   </Link>
 
    {/* Operation Toofan snapshot — kept high so it's visible without scrolling the whole page */}
    <ToofanStats className="mb-6" />

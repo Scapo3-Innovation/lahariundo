@@ -52,6 +52,10 @@
       "experiences": {
         "title": "Share your story",
         "desc": "Read inspiring recovery stories — share yours, named or anonymous"
+      },
+      "screening": {
+        "title": "Anonymous self-check",
+        "desc": "A brief private reflection — not a medical test. Nothing is saved"
       }
     },
     "moreHeading": "More tools",
@@ -764,8 +768,11 @@
     "substances": {
       "cannabis": "Cannabis / Ganja",
       "stimulants": "Stimulants (MDMA, meth)",
-      "opioids": "Opioids"
+      "opioids": "Opioids",
+      "smoking": "Smoking (tobacco)"
     },
+    "selectOrgan": "Select an organ to read more",
+    "detailHeading": "Health effects",
     "parts": {
       "brain": "Brain",
       "heart": "Heart",
@@ -874,25 +881,33 @@
 
   "pledge": {
     "heading": "Make your pledge",
-    "intro": "Create a drug-free pledge card to share. Your name is used only to draw the card — it is never saved or sent anywhere.",
+    "intro": "Create a drug-free pledge badge or card to share. Your name is used only to draw the image — it is never saved or sent anywhere.",
     "nameLabel": "Your name (optional)",
-    "namePlaceholder": "e.g. Ananya",
+    "namePlaceholder": "e.g. Gokul Suresh",
     "messageLabel": "Choose your pledge",
     "messages": [
-      "I pledge to stay drug-free.",
-      "I choose a healthy, drug-free life.",
+      "I choose a healthy life.\nI stand against drugs.",
+      "Today I pledge to live free from drugs\nand inspire others to do the same.",
       "I stand for a drug-free Kerala.",
       "I support my friends in staying drug-free."
     ],
+    "achievementLevels": [
+      "Advocate",
+      "Champion",
+      "Ambassador",
+      "Guardian"
+    ],
+    "ambassadorTitle": "Drug-Free Ambassador",
     "previewHeading": "Your card",
     "formatBadge": "Badge",
-    "formatStory": "Story",
+    "formatCard": "Card",
     "badgeHint": "Share as a badge",
     "livePreview": "Live preview",
     "sharePrimary": "Share my pledge",
     "shareTipsHeading": "Where to share",
-    "shareTipWa": "WhatsApp status or group — use the square badge format",
-    "shareTipIg": "Instagram story — use the story format",
+    "shareTipWa": "WhatsApp status or group — use the circular badge format",
+    "shareTipIg": "Instagram story — use the pledge card format",
+    "shareTipQr": "QR code on each card links back to LahariUndo for verification",
     "shareTipBadge": "Profile photo frame — download the badge and crop to a circle",
     "datePrefix": "Pledged",
     "cardStamp": "PLEDGED",

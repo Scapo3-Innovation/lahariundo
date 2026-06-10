@@ -186,8 +186,20 @@ export function AnatomyFigure({
             ))}
             {isAffected && (
               <g aria-hidden="true">
-                <circle cx={g.badge.x} cy={g.badge.y} r="6.5" fill={isEmergency ? '#dc2626' : 'var(--color-accent)'} />
-                <text x={g.badge.x} y={g.badge.y + 3.4} textAnchor="middle" fontSize="9" fontWeight="700" fill="#fff">!</text>
+                <circle
+                 cx={g.badge.x}
+                 cy={g.badge.y}
+                 r="5"
+                 fill="none"
+                 stroke={isEmergency ? '#dc2626' : 'var(--color-accent)'}
+                 strokeWidth="2"
+                />
+                <circle
+                 cx={g.badge.x}
+                 cy={g.badge.y}
+                 r="2"
+                 fill={isEmergency ? '#dc2626' : 'var(--color-accent)'}
+                />
               </g>
             )}
           </g>

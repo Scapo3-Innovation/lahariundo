@@ -33,7 +33,9 @@ export default defineConfig({
         globIgnores: ['**/logo-wordmark.png', '**/og-image.png'],
         // SPA fallback so deep links (/faq, /recovery, …) resolve offline.
         navigateFallback: '/index.html',
-        navigateFallbackDenylist: [/^\/data\.json$/],
+        // Never serve the SPA shell for data.json or the news API — and the SW
+        // does not cache /api at all, so news is network-only (hidden offline).
+        navigateFallbackDenylist: [/^\/data\.json$/, /^\/api\//],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         // Fonts are self-hosted and bundled, so they're already covered by the
