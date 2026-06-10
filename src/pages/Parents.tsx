@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Users, Check, X, ChevronRight, Phone, GraduationCap } from 'lucide-react';
 import { PhoneLink } from '../components/PhoneLink';
+import { useAppData } from '../context/DataContext';
+import { findContact } from '../utils/contacts';
+import { useContactTokens } from '../hooks/useContactTokens';
 
 const WARNING_SIGNS = [
  'Sudden changes in mood, behaviour, or friends',
@@ -27,10 +30,13 @@ const WARNING_SIGNS_ML = [
 export function Parents() {
  const { t, i18n } = useTranslation();
  const isML = i18n.language === 'ml';
+ const { data } = useAppData();
+ const tokens = useContactTokens();
+ const vimukthi = findContact(data, 'vimukthi-14405');
 
  const doItems   = t('parents.doItems',  { returnObjects: true }) as string[];
  const dontItems  = t('parents.dontItems', { returnObjects: true }) as string[];
- const nextSteps  = t('parents.nextSteps', { returnObjects: true }) as string[];
+ const nextSteps  = t('parents.nextSteps', { returnObjects: true, ...tokens }) as string[];
  const teacherItems = t('parents.teacherItems', { returnObjects: true }) as string[];
  const warningSigns = isML ? WARNING_SIGNS_ML : WARNING_SIGNS;
 
@@ -132,13 +138,15 @@ export function Parents() {
      <p className={`text-sm font-bold ${isML ? 'ml-text' : ''}`}>Vimukthi Helpline</p>
      <p className={`text-xs opacity-90 ${isML ? 'ml-text' : ''}`}>Free guidance for families</p>
     </div>
-    <PhoneLink
-     phone="14405"
-     label="Vimukthi Counselling"
-     className="inline-flex items-center justify-center gap-1.5 bg-surface text-teal-700 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors w-full sm:w-auto min-h-[44px]"
-    >
-     <Phone size={13} /> 14405
-    </PhoneLink>
+    {vimukthi && (
+     <PhoneLink
+      phone={vimukthi.value}
+      label={isML ? vimukthi.label_ml : vimukthi.label_en}
+      className="inline-flex items-center justify-center gap-1.5 bg-surface text-teal-700 px-4 py-2.5 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors w-full sm:w-auto min-h-[44px]"
+     >
+      <Phone size={13} /> {vimukthi.value}
+     </PhoneLink>
+    )}
    </div>
 
    {/* For teachers */}

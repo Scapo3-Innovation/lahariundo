@@ -7,6 +7,9 @@ import {
 } from 'lucide-react';
 import { PhoneLink } from '../components/PhoneLink';
 import { PageHeader } from '../components/PageHeader';
+import { useAppData } from '../context/DataContext';
+import { findContact } from '../utils/contacts';
+import { useContactTokens } from '../hooks/useContactTokens';
 
 type Answer = 'yes' | 'sometimes' | 'no' | null;
 
@@ -53,6 +56,9 @@ const ANSWER_STYLES = {
 export function Screening() {
  const { t, i18n } = useTranslation();
  const isML = i18n.language === 'ml';
+ const { data } = useAppData();
+ const tokens = useContactTokens();
+ const vimukthi = findContact(data, 'vimukthi-14405');
 
  const questions = t('screening.questions', { returnObjects: true }) as string[];
  const [started,  setStarted]  = useState(false);
@@ -92,7 +98,7 @@ export function Screening() {
     <div className="flex items-start gap-2 tone-amber border rounded-card p-3 mb-5">
      <AlertCircle size={14} className="text-amber-600 mt-0.5 shrink-0" />
      <p className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
-      {t('screening.disclaimer')}
+      {t('screening.disclaimer', tokens)}
      </p>
     </div>
 
@@ -117,23 +123,25 @@ export function Screening() {
      <div className="flex items-start gap-2.5">
       {cfg.icon}
       <p className={`text-sm leading-relaxed text-secondary ${isML ? 'ml-text' : ''}`}>
-       {t(`screening.results.${resultKey}.message`)}
+       {t(`screening.results.${resultKey}.message`, tokens)}
       </p>
      </div>
     </div>
 
     <div className="cta-banner mb-3">
      <p className={`text-sm mb-2.5 font-semibold ${isML ? 'ml-text' : ''}`}>
-      {t('screening.alwaysMessage')}
+      {t('screening.alwaysMessage', tokens)}
      </p>
-     <PhoneLink
-      phone="14405"
-      label="Vimukthi Counselling"
-      className="btn-action bg-surface text-teal-700 hover:bg-teal-50"
-     >
-      <Phone size={12} />
-      14405 — Vimukthi
-     </PhoneLink>
+     {vimukthi && (
+      <PhoneLink
+       phone={vimukthi.value}
+       label={isML ? vimukthi.label_ml : vimukthi.label_en}
+       className="btn-action bg-surface text-teal-700 hover:bg-teal-50"
+      >
+       <Phone size={12} />
+       {vimukthi.value} — Vimukthi
+      </PhoneLink>
+     )}
     </div>
 
     <Link

@@ -8,6 +8,7 @@ import { PageHeader } from '../components/PageHeader';
 import { ContactAction } from '../components/ContactAction';
 import { useAppData } from '../context/DataContext';
 import { findContacts } from '../utils/contacts';
+import { useContactTokens } from '../hooks/useContactTokens';
 
 // ── Decision tree ──────────────────────────────────────────────────────────
 // Structure + contact ids live here; all copy/digits come from i18n + data.json.
@@ -177,7 +178,8 @@ function ResultView({
   contacts: ReturnType<typeof findContacts>;
 }) {
   const { t } = useTranslation();
-  const steps = t(`guide.r.${nodeId}.steps`, { returnObjects: true }) as string[];
+  const tokens = useContactTokens();
+  const steps = t(`guide.r.${nodeId}.steps`, { returnObjects: true, ...tokens }) as string[];
 
   return (
     <section className="flex flex-col gap-4 fade-up">

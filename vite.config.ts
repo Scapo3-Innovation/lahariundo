@@ -36,24 +36,8 @@ export default defineConfig({
         navigateFallbackDenylist: [/^\/data\.json$/],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
-        runtimeCaching: [
-          {
-            // Google Fonts stylesheets — needed for Malayalam glyphs offline.
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'StaleWhileRevalidate',
-            options: { cacheName: 'google-fonts-stylesheets' },
-          },
-          {
-            // Google Fonts webfont files.
-            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-webfonts',
-              expiration: { maxEntries: 20, maxAgeSeconds: 60 * 60 * 24 * 365 },
-              cacheableResponse: { statuses: [0, 200] },
-            },
-          },
-        ],
+        // Fonts are self-hosted and bundled, so they're already covered by the
+        // precache (woff2 in globPatterns) — no third-party font runtime caching.
       },
     }),
   ],

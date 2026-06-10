@@ -8,6 +8,7 @@ import { PhoneLink } from '../components/PhoneLink';
 import { DataErrorBanner } from '../components/DataErrorBanner';
 import { PageHeader } from '../components/PageHeader';
 import { useAppData } from '../context/DataContext';
+import { useContactTokens } from '../hooks/useContactTokens';
 import { isPlaceholderValue } from '../utils/verify';
 import type { Resource, DistrictEntry } from '../types';
 
@@ -128,6 +129,7 @@ function ResourceCard({ item, isML }: { item: Resource; isML: boolean }) {
 
 function DistrictCard({ entry, isML }: { entry: DistrictEntry; isML: boolean }) {
  const { t } = useTranslation();
+ const tokens = useContactTokens();
  const name = isML ? entry.district_ml : entry.district;
  const police = isPlaceholderValue(entry.police_control_room)
   ? null
@@ -182,7 +184,7 @@ function DistrictCard({ entry, isML }: { entry: DistrictEntry; isML: boolean }) 
     </div>
    ) : (
     <p className={`text-xs text-muted ${isML ? 'ml-text' : ''}`}>
-     {t('resources.districtPending')}
+     {t('resources.districtPending', tokens)}
     </p>
    )}
   </div>
@@ -193,6 +195,7 @@ export function Resources() {
  const { t, i18n } = useTranslation();
  const isML = i18n.language === 'ml';
  const { data, loading, error, retry } = useAppData();
+ const tokens = useContactTokens();
 
  const resources = data?.resources ?? [];
  const districts = data?.districtDirectory ?? [];
@@ -284,7 +287,7 @@ export function Resources() {
      <div className="tone-amber border rounded-card p-2.5 mb-2.5 flex items-start gap-2">
       <AlertTriangle size={13} className="text-amber-600 mt-0.5 shrink-0" />
       <p className={`text-xs text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
-       {t('resources.districtNote')}
+       {t('resources.districtNote', tokens)}
       </p>
      </div>
      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2.5">

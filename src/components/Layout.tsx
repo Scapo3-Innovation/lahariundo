@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ContactBar } from './ContactBar';
 import { LanguageToggle } from './LanguageToggle';
 import { ThemeToggle } from './ThemeToggle';
+import { LeaveQuickly } from './LeaveQuickly';
 import { OfflineIndicator } from './OfflineIndicator';
 import type { ReactNode } from 'react';
 
@@ -37,7 +38,7 @@ export function Layout({ children }: Props) {
  return (
   <div className="min-h-screen flex flex-col bg-page text-primary">
    <header className="sticky top-0 z-40 bg-surface border-b border-border">
-    <div className="w-full px-4 sm:px-6 py-3 grid grid-cols-[2.25rem_1fr_2.25rem] items-center gap-3">
+    <div className="w-full px-4 sm:px-6 py-3 grid grid-cols-[2.25rem_1fr_auto] items-center gap-3">
      <ThemeToggle />
 
      <Link
@@ -58,8 +59,9 @@ export function Layout({ children }: Props) {
       </span>
      </Link>
 
-     <div className="flex justify-end">
+     <div className="flex justify-end items-center gap-2">
       <LanguageToggle />
+      <LeaveQuickly />
      </div>
     </div>
 

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ShieldCheck, Info, ExternalLink, AlertTriangle, Sparkles, Check } from 'lucide-react';
+import { ShieldCheck, Info, ExternalLink, AlertTriangle, Sparkles, Check, Globe } from 'lucide-react';
 import { ToofanStats } from '../components/ToofanStats';
 
 interface Feature { title: string; desc: string }
@@ -9,6 +9,7 @@ export function About() {
  const isML = i18n.language === 'ml';
 
  const noDataItems = t('about.noData.items', { returnObjects: true }) as string[];
+ const thirdPartyItems = t('about.thirdParty.items', { returnObjects: true }) as string[];
  const features = t('about.features.items', { returnObjects: true }) as Feature[];
  const sourceLinks = t('about.sources.links', { returnObjects: true }) as Array<{ label: string; url: string }>;
 
@@ -77,6 +78,27 @@ export function About() {
      ))}
     </ul>
    </div>
+
+   {/* Third-party requests — honest disclosure */}
+   <section className="card p-5">
+    <div className="flex items-center gap-2 mb-1">
+     <Globe size={16} className="text-secondary shrink-0" />
+     <h2 className={`heading-text font-bold text-primary text-base ${isML ? 'ml-text' : ''}`}>
+      {t('about.thirdParty.heading')}
+     </h2>
+    </div>
+    <p className={`text-secondary text-sm mb-3 leading-relaxed ${isML ? 'ml-text' : ''}`}>
+     {t('about.thirdParty.intro')}
+    </p>
+    <ul className="space-y-2">
+     {thirdPartyItems.map((item, i) => (
+      <li key={i} className="flex items-start gap-2.5">
+       <Info size={13} className="text-muted mt-0.5 shrink-0" />
+       <span className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>{item}</span>
+      </li>
+     ))}
+    </ul>
+   </section>
 
    {/* Operation Toofan progress snapshot */}
    <ToofanStats />

@@ -129,7 +129,7 @@
       "If they open up, ask what kind of support they want."
     ],
     "helpHeading": "Getting help",
-    "helpText": "You don't need to handle this alone. The Vimukthi helpline (14405) offers free, confidential guidance for families too — not just for the person struggling.",
+    "helpText": "You don't need to handle this alone. The Vimukthi helpline ({{vimukthi}}) offers free, confidential guidance for families too — not just for the person struggling.",
     "nextSteps": "What to do next",
     "signsTapHint": "Tap signs you've noticed — a pattern matters more than any single one",
     "signsSelected": "{{count}} selected",
@@ -164,6 +164,8 @@
     "clearRoute": "Clear route",
     "routeNeedLocation": "Allow location to show the route on the map.",
     "counsellingNote": "Not ready to visit a centre? Call the free Vimukthi counselling line first:",
+    "usesHelplineNote": "Until this centre's own number is verified, this call connects to the Vimukthi central line ({{vimukthi}}).",
+    "directionsNotice": "Tapping “Get directions” opens an external map (OpenFreeMap / OSRM or Google Maps) and shares your location with that service.",
     "rights": {
       "heading": "Treatment can protect you legally",
       "body": "Choosing voluntary de-addiction treatment may grant immunity from prosecution for personal-use offences under Section 64A of the NDPS Act.",
@@ -177,15 +179,15 @@
     "how": "How to report",
     "channels": {
       "manas_call": {
-        "title": "MANAS National Helpline — 1933",
+        "title": "MANAS National Helpline — {{manas}}",
         "desc": "Free, 24/7. Report to the Narcotics Control Bureau (NCB) directly. You may remain anonymous."
       },
       "manas_web": {
-        "title": "NCB Web Portal — ncbmanas.gov.in",
+        "title": "NCB Web Portal — {{ncbWeb}}",
         "desc": "File an anonymous online report with the NCB. No phone needed."
       },
       "manas_email": {
-        "title": "NCB Email — info.ncbmanas@gov.in",
+        "title": "NCB Email — {{ncbEmail}}",
         "desc": "Email a tip. Do not include your name if you wish to stay anonymous."
       },
       "umang": {
@@ -193,7 +195,7 @@
         "desc": "Open the UMANG government services app and search 'MANAS' to file a report."
       },
       "wa_kerala": {
-        "title": "Kerala Police WhatsApp — 9995966666",
+        "title": "Kerala Police WhatsApp — {{keralaWa}}",
         "desc": "Send details via WhatsApp to Kerala Police Anti-Narcotic Cell. You may remain anonymous."
       },
       "antinarcotics_cell": {
@@ -201,8 +203,8 @@
         "desc": "Direct lines to Kerala Police Anti-Narcotic Special Cell."
       },
       "emergency": {
-        "title": "Emergency — 112",
-        "desc": "If there is immediate danger to life, call 112."
+        "title": "Emergency — {{emergency}}",
+        "desc": "If there is immediate danger to life, call {{emergency}}."
       }
     },
     "safety": "Your safety first",
@@ -278,7 +280,7 @@
       },
       "help": {
         "title": "If you or a friend needs help",
-        "content": "You don't have to have a 'problem' to call the Vimukthi counselling line (14405). Curious, concerned, or just want to talk to someone — it's free and confidential."
+        "content": "You don't have to have a 'problem' to call the Vimukthi counselling line ({{vimukthi}}). Curious, concerned, or just want to talk to someone — it's free and confidential."
       }
     }
   },
@@ -309,11 +311,11 @@
     ],
     "nextHeading": "What to do next",
     "nextSteps": [
-      "Call Vimukthi (14405) — they advise families, not just users.",
+      "Call Vimukthi ({{vimukthi}}) — they advise families, not just users.",
       "Speak to a school counsellor if it involves a student.",
       "Consider family counselling — addiction affects the whole family.",
       "Look for a local support group (Al-Anon / Nar-Anon) for yourself.",
-      "If you believe there is immediate danger, call 100."
+      "If you believe there is immediate danger, call {{police}}."
     ],
     "teacherHeading": "For teachers specifically",
     "teacherItems": [
@@ -328,7 +330,7 @@
   "screening": {
     "heading": "Anonymous self-check",
     "intro": "This is a brief, private self-reflection — not a medical test. Your answers are never saved and vanish the moment you leave this page.",
-    "disclaimer": "This is not a medical diagnosis. It is for personal reflection only. For any health concern, contact a qualified professional or call 14405.",
+    "disclaimer": "This is not a medical diagnosis. It is for personal reflection only. For any health concern, contact a qualified professional or call {{vimukthi}}.",
     "start": "Begin self-check",
     "next": "Next",
     "prev": "Back",
@@ -349,18 +351,18 @@
     "results": {
       "low": {
         "label": "Low concern",
-        "message": "Based on your answers, you don't seem to be struggling with substance use right now. If things change, or if you have any questions, the Vimukthi helpline (14405) is always available — free and confidential."
+        "message": "Based on your answers, you don't seem to be struggling with substance use right now. If things change, or if you have any questions, the Vimukthi helpline ({{vimukthi}}) is always available — free and confidential."
       },
       "moderate": {
         "label": "Worth reflecting on",
-        "message": "Some of your answers suggest it could be worth having a conversation with someone. This isn't an alarm — it's just a signal worth noticing. The Vimukthi counselling line (14405) is free, confidential, and available to anyone — you don't need to have a 'serious problem' to call."
+        "message": "Some of your answers suggest it could be worth having a conversation with someone. This isn't an alarm — it's just a signal worth noticing. The Vimukthi counselling line ({{vimukthi}}) is free, confidential, and available to anyone — you don't need to have a 'serious problem' to call."
       },
       "high": {
         "label": "Consider reaching out",
-        "message": "Your answers suggest you might benefit from talking to a professional. Please know this doesn't mean anything is 'wrong' with you — dependency is a medical condition, not a personal failing. Help is free, close by, and confidential. Call 14405 or visit a Vimukthi centre near you."
+        "message": "Your answers suggest you might benefit from talking to a professional. Please know this doesn't mean anything is 'wrong' with you — dependency is a medical condition, not a personal failing. Help is free, close by, and confidential. Call {{vimukthi}} or visit a Vimukthi centre near you."
       }
     },
-    "alwaysMessage": "Whatever your result — talking to someone is always a good idea. Call 14405 — free, confidential, no judgment."
+    "alwaysMessage": "Whatever your result — talking to someone is always a good idea. Call {{vimukthi}} — free, confidential, no judgment."
   },
 
   "about": {
@@ -395,10 +397,21 @@
       "items": [
         "No user accounts. No login. No registration.",
         "The self-screening tool runs 100% in your browser and forgets everything when you leave.",
-        "Your location (if you use 'Find nearest') is used only in your browser and is never sent to any server.",
+        "Your location (if you tap 'Find nearest') is used in your browser to sort centres by distance, and is only sent to an external map service if you tap 'Get directions'.",
         "Tapping a helpline button opens your phone's call or WhatsApp app directly — this app never sees or records the contact.",
         "No advertising. No tracking pixels. No analytics that identify you.",
         "No backend server. The app is a static website with no database."
+      ]
+    },
+    "thirdParty": {
+      "heading": "Third-party requests — full transparency",
+      "intro": "The app has no backend, but a few features load resources from outside services. Here is exactly when that happens:",
+      "items": [
+        "Map tiles load from OpenFreeMap when you open the centre map — like any website, this reveals your IP address to them.",
+        "Driving routes and directions are requested from OSRM and Google Maps only when you tap 'Get directions' — that is the only time your location leaves your device.",
+        "Awareness videos load from YouTube only if you press play on a video.",
+        "Fonts are bundled with the app, so no request is ever made to Google Fonts.",
+        "None of these set advertising cookies or send any data that identifies you."
       ]
     },
     "sources": {
@@ -437,11 +450,11 @@
     "verifiedBadge": "Verified",
     "unverifiedBadge": "Unverified",
     "unverifiedNote": "Verify locally before use",
-    "districtPending": "Contact numbers pending verification — check your district police website or call 100.",
+    "districtPending": "Contact numbers pending verification — check your district police website or call {{police}}.",
     "hoursLabel": "Hours",
     "noResults": "No results for your search.",
     "districtHeading": "Local Police & Excise Offices",
-    "districtNote": "Contact details for district offices must be verified locally — check your district police website or call 100 to be connected.",
+    "districtNote": "Contact details for district offices must be verified locally — check your district police website or call {{police}} to be connected.",
     "districtPolice": "Police Control Room",
     "districtExcise": "Excise Office"
   },
@@ -449,7 +462,7 @@
   "rights": {
     "heading": "Know Your Rights",
     "intro": "Understanding Section 64A of the NDPS Act — how choosing treatment can protect you legally.",
-    "disclaimer": "NOT LEGAL ADVICE — This page contains general information about a law. It is not a substitute for advice from a qualified lawyer. Laws can change. Always consult a lawyer or the Legal Services Authority (15100) before making any decision.",
+    "disclaimer": "NOT LEGAL ADVICE — This page contains general information about a law. It is not a substitute for advice from a qualified lawyer. Laws can change. Always consult a lawyer or the Legal Services Authority ({{legalAid}}) before making any decision.",
     "disclaimerShort": "Not legal advice — tap to read full disclaimer",
     "tabs": {
       "s64a": "Section 64A",
@@ -483,16 +496,16 @@
     },
     "confidentiality": {
       "heading": "Informant Confidentiality",
-      "body": "If you report drug activity to police or NCB, your identity as an informant is protected. Authorities are not required to disclose who made a report. You may report anonymously via 1933, WhatsApp 9995966666, or the NCB web portal at ncbmanas.gov.in."
+      "body": "If you report drug activity to police or NCB, your identity as an informant is protected. Authorities are not required to disclose who made a report. You may report anonymously via {{manas}}, WhatsApp {{keralaWa}}, or the NCB web portal at {{ncbWeb}}."
     },
     "legalAid": {
       "heading": "Free Legal Help is Available",
-      "body": "If you or someone you know is facing drug-related charges and cannot afford a lawyer, free legal aid is available through the Legal Services Authority. Call 15100 to be connected to your district Legal Services Authority (DLSA)."
+      "body": "If you or someone you know is facing drug-related charges and cannot afford a lawyer, free legal aid is available through the Legal Services Authority. Call {{legalAid}} to be connected to your district Legal Services Authority (DLSA)."
     },
     "ctas": {
       "getHelp": "Find de-addiction centres",
-      "deaddiction": "Call 14446 — National De-addiction",
-      "legalAid": "Call 15100 — Free Legal Aid"
+      "deaddiction": "Call {{deaddiction}} — National De-addiction",
+      "legalAid": "Call {{legalAid}} — Free Legal Aid"
     }
   },
 
@@ -507,7 +520,7 @@
     },
     "overdose": {
       "heading": "If someone may have overdosed",
-      "callFirst": "CALL 112 or 108 FIRST — then follow these steps while help is on the way.",
+      "callFirst": "CALL {{emergency}} or {{ambulance}} FIRST — then follow these steps while help is on the way.",
       "steps": [
         "Do not leave the person alone.",
         "If unconscious but breathing, place them in the recovery position (on their side, chin forward) to prevent choking.",
@@ -666,7 +679,7 @@
       "overdose": {
         "title": "This may be an emergency — act now",
         "steps": [
-          "Call 112 or 108 immediately — don't wait.",
+          "Call {{emergency}} or {{ambulance}} immediately — don't wait.",
           "Do not leave the person alone.",
           "If unconscious but breathing, place them on their side (recovery position).",
           "You will not get in trouble for calling for help."

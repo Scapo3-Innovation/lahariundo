@@ -8,6 +8,9 @@ import { PhoneLink } from '../components/PhoneLink';
 import { VideoEmbed } from '../components/VideoEmbed';
 import { ChipTabs } from '../components/ChipTabs';
 import { Accordion } from '../components/Accordion';
+import { useAppData } from '../context/DataContext';
+import { findContact } from '../utils/contacts';
+import { useContactTokens } from '../hooks/useContactTokens';
 
 interface MythFact { myth: string; fact: string; }
 
@@ -58,6 +61,9 @@ const VIDEO_SLOTS = [
 export function Learn() {
  const { t, i18n } = useTranslation();
  const isML = i18n.language === 'ml';
+ const { data } = useAppData();
+ const tokens = useContactTokens();
+ const vimukthi = findContact(data, 'vimukthi-14405');
  const [tab, setTab] = useState<LearnTab>('facts');
  const [activeFact, setActiveFact] = useState(0);
 
@@ -183,16 +189,18 @@ export function Learn() {
        </h2>
       </div>
       <p className={`text-sm leading-relaxed ${isML ? 'ml-text' : ''}`}>
-       {t('learn.sections.help.content')}
+       {t('learn.sections.help.content', tokens)}
       </p>
-      <PhoneLink
-       phone="14405"
-       label="Vimukthi Counselling"
-       className="inline-flex items-center gap-2 bg-surface text-teal-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors self-start"
-      >
-       <Phone size={14} />
-       14405 — Vimukthi
-      </PhoneLink>
+      {vimukthi && (
+       <PhoneLink
+        phone={vimukthi.value}
+        label={isML ? vimukthi.label_ml : vimukthi.label_en}
+        className="inline-flex items-center gap-2 bg-surface text-teal-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-teal-50 transition-colors self-start"
+       >
+        <Phone size={14} />
+        {vimukthi.value} — Vimukthi
+       </PhoneLink>
+      )}
      </div>
     </section>
    )}

@@ -1,7 +1,7 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { MapPin, LayoutGrid, Navigation, Phone, Loader2, Scale, WifiOff } from 'lucide-react';
+import { MapPin, LayoutGrid, Navigation, Phone, Loader2, Scale, WifiOff, Info } from 'lucide-react';
 import { CentreCard } from '../components/CentreCard';
 import { PageHeader } from '../components/PageHeader';
 import { PhoneLink } from '../components/PhoneLink';
@@ -97,7 +97,6 @@ export function GetHelp() {
   const [selectedDistrict, setSelectedDistrict] = useState<string | undefined>();
 
   const [MapComponent, setMapComponent] = useState<MapComponentType | null>(null);
-  const autoLocateDone = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -174,11 +173,8 @@ export function GetHelp() {
       });
   }, [isML, showStatus, ensureMapLoaded, handleGeolocate, handleGeolocateError]);
 
-  useEffect(() => {
-    if (autoLocateDone.current) return;
-    autoLocateDone.current = true;
-    findNearest({ auto: true });
-  }, [findNearest]);
+  // Geolocation is opt-in: it runs only when the user taps "Find nearest"
+  // (or requests directions). Nothing is requested automatically on load.
 
   const handleDistrictSelect = useCallback((lat: number, lng: number, name: string, id: string) => {
     setUserLat(lat);
@@ -322,6 +318,10 @@ export function GetHelp() {
             {locationNote}
           </p>
         )}
+        <p className={`text-[11px] text-muted flex items-start gap-1.5 ${isML ? 'ml-text' : ''}`}>
+          <Info size={11} className="mt-0.5 shrink-0" />
+          {t('getHelp.directionsNotice')}
+        </p>
       </div>
 
       {/* Primary content: map + list. The map needs network tiles, so when

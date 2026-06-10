@@ -1,5 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+// Self-hosted fonts (bundled with the app) — no request to Google Fonts,
+// so the user's IP is never sent there on page load.
+import '@fontsource/jetbrains-mono/400.css';
+import '@fontsource/jetbrains-mono/500.css';
+import '@fontsource/jetbrains-mono/600.css';
+import '@fontsource/jetbrains-mono/700.css';
+import '@fontsource/noto-sans-malayalam/400.css';
+import '@fontsource/noto-sans-malayalam/500.css';
+import '@fontsource/noto-sans-malayalam/600.css';
+import '@fontsource/noto-sans-malayalam/700.css';
 import './index.css';
 import './i18n';
 import App from './App.tsx';
