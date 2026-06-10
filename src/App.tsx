@@ -6,13 +6,11 @@ import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { Worried } from './pages/Worried';
 import { GetHelp } from './pages/GetHelp';
-import { Learn } from './pages/Learn';
-import { Parents } from './pages/Parents';
+import { Experiences } from './pages/Experiences';
 import { Screening } from './pages/Screening';
 import { About } from './pages/About';
 import { Resources } from './pages/Resources';
 import { Rights } from './pages/Rights';
-import { Emergency } from './pages/Emergency';
 import { Guide } from './pages/Guide';
 import { Effects } from './pages/Effects';
 import { Faq } from './pages/Faq';
@@ -31,12 +29,13 @@ function App() {
       <Route path="/worried" element={<Worried />} />
       <Route path="/get-help" element={<GetHelp />} />
       <Route path="/report" element={<Navigate to="/resources?category=report" replace />} />
-      <Route path="/learn" element={<Learn />} />
-      <Route path="/parents" element={<Parents />} />
+      <Route path="/learn" element={<Navigate to="/experiences" replace />} />
+      <Route path="/experiences" element={<Experiences />} />
+      <Route path="/parents" element={<Navigate to="/worried" replace />} />
       <Route path="/screening" element={<Screening />} />
       <Route path="/resources" element={<Resources />} />
       <Route path="/rights" element={<Rights />} />
-      <Route path="/emergency" element={<Emergency />} />
+      <Route path="/emergency" element={<Navigate to="/resources?category=emergency" replace />} />
       <Route path="/guide" element={<Guide />} />
       <Route path="/effects" element={<Effects />} />
       <Route path="/faq" element={<Faq />} />

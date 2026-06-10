@@ -24,12 +24,10 @@ export function Layout({ children }: Props) {
   { to: '/screening', label: t('nav.screening') },
   { to: '/effects',  label: t('nav.effects') },
   { to: '/faq',      label: t('nav.faq') },
-  { to: '/learn',    label: t('nav.learn') },
+  { to: '/experiences', label: t('nav.experiences') },
   { to: '/rights',   label: t('nav.rights') },
-  { to: '/parents',  label: t('nav.parents') },
   { to: '/pledge',   label: t('nav.pledge') },
   { to: '/about',    label: t('nav.about') },
-  { to: '/emergency', label: t('nav.emergency') },
  ];
 
  return (
@@ -62,12 +60,12 @@ export function Layout({ children }: Props) {
     </div>
 
     <nav
-     className="w-full px-4 sm:px-6 pb-2.5 overflow-x-auto scrollbar-none"
+     className="w-full px-2 sm:px-4 pb-2.5"
      aria-label="Main navigation"
     >
-     <div className="flex gap-1 min-w-max">
+     <div className="nav-bar-full">
       {navLinks.map(({ to, label }) => {
-       const active = location.pathname === to;
+       const active = location.pathname === to || (to !== '/' && location.pathname.startsWith(to));
        return (
         <Link
          key={to}

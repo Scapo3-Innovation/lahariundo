@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { ShieldCheck, Info, ExternalLink, AlertTriangle, Sparkles, Check, Globe } from 'lucide-react';
+import { ShieldCheck, Info, ExternalLink, AlertTriangle, Sparkles, Check, Globe, Cpu } from 'lucide-react';
 import { ToofanStats } from '../components/ToofanStats';
 
 interface Feature { title: string; desc: string }
+interface Spec { label: string; value: string }
 
 export function About() {
  const { t, i18n } = useTranslation();
@@ -11,6 +12,7 @@ export function About() {
  const noDataItems = t('about.noData.items', { returnObjects: true }) as string[];
  const thirdPartyItems = t('about.thirdParty.items', { returnObjects: true }) as string[];
  const features = t('about.features.items', { returnObjects: true }) as Feature[];
+ const specs = t('about.specs.items', { returnObjects: true }) as Spec[];
  const sourceLinks = t('about.sources.links', { returnObjects: true }) as Array<{ label: string; url: string }>;
 
  return (
@@ -59,6 +61,31 @@ export function About() {
       </div>
      ))}
     </div>
+   </section>
+
+   {/* Technical specs */}
+   <section className="card p-5">
+    <div className="flex items-center gap-2 mb-1">
+     <Cpu size={16} className="text-secondary shrink-0" />
+     <h2 className={`heading-text font-bold text-primary text-base ${isML ? 'ml-text' : ''}`}>
+      {t('about.specs.heading')}
+     </h2>
+    </div>
+    <p className={`text-secondary text-sm mb-4 leading-relaxed ${isML ? 'ml-text' : ''}`}>
+     {t('about.specs.intro')}
+    </p>
+    <dl className="flex flex-col gap-2.5">
+     {Array.isArray(specs) && specs.map((s, i) => (
+      <div key={i} className="compact-card grid grid-cols-1 sm:grid-cols-[7rem_1fr] gap-1 sm:gap-3 items-start">
+       <dt className={`text-xs font-bold text-muted uppercase tracking-wide ${isML ? 'ml-text' : ''}`}>
+        {s.label}
+       </dt>
+       <dd className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
+        {s.value}
+       </dd>
+      </div>
+     ))}
+    </dl>
    </section>
 
    {/* Data promise */}

@@ -71,14 +71,14 @@ const NODES: Record<string, Node> = {
 
   found_public: { kind: 'result', contactIds: ['manas-call', 'kerala-wa-antinarcotics'] },
   found_home: { kind: 'result', contactIds: ['vimukthi-14405'], link: { route: '/worried', key: 'worried' } },
-  using_minor: { kind: 'result', contactIds: ['childline-1098', 'vimukthi-14405'], link: { route: '/parents', key: 'parents' } },
+  using_minor: { kind: 'result', contactIds: ['childline-1098', 'vimukthi-14405'], link: { route: '/worried', key: 'worried' } },
   using_adult: { kind: 'result', contactIds: ['vimukthi-14405'], link: { route: '/worried', key: 'worried' } },
   quit_talk: { kind: 'result', contactIds: ['vimukthi-14405'] },
   quit_centre: { kind: 'result', contactIds: ['deaddiction-14446'], link: { route: '/get-help', key: 'getHelp' } },
   quit_legal: { kind: 'result', contactIds: ['legal-aid-15100'], link: { route: '/rights', key: 'rights' } },
   report_call: { kind: 'result', contactIds: ['manas-call', 'antinarcotics-cell-1', 'antinarcotics-cell-2'] },
   report_online: { kind: 'result', contactIds: ['kerala-wa-antinarcotics', 'manas-web', 'manas-email'] },
-  overdose: { kind: 'result', contactIds: ['emergency-112', 'ambulance-108'], link: { route: '/emergency', key: 'emergency' } },
+  overdose: { kind: 'result', contactIds: ['emergency-112', 'ambulance-108'] },
 };
 
 type ChatItem =

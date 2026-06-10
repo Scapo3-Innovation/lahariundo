@@ -95,7 +95,7 @@ function buildPopupHTML(c: Centre, lang: string, fallback: string): string {
  const usesHelpline = isPlaceholderPhone(c.phone);
 
  const callHtml = dialNumber
-  ? `<a href="tel:${dialNumber}" style="display:inline-flex;align-items:center;gap:4px;background:#0f766e;color:#fff;padding:5px 10px;border-radius:8px;text-decoration:none;font-weight:700;font-size:12px;">📞 ${dialNumber}</a>`
+  ? `<a href="tel:${dialNumber}" style="display:inline-flex;align-items:center;gap:4px;background:#0f766e;color:#fff;padding:5px 10px;border-radius:8px;text-decoration:none;font-weight:700;font-size:12px;">${lang === 'ml' ? 'വിളിക്കൂ' : 'Call'} ${dialNumber}</a>`
   : '';
  // Transparency: when the centre's own number isn't verified yet, the call
  // connects to the Vimukthi central line — say so plainly.

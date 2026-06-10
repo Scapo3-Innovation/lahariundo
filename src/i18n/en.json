@@ -9,12 +9,10 @@
     "worried": "Worried about someone",
     "getHelp": "Get Help",
     "report": "Report",
-    "learn": "Learn",
-    "parents": "Parents & Teachers",
+    "experiences": "Stories",
     "screening": "Self-check",
     "resources": "Report Hub",
     "rights": "Your Rights",
-    "emergency": "Emergency",
     "about": "About",
     "guide": "What do I do?",
     "recovery": "Recovery",
@@ -22,6 +20,7 @@
     "faq": "FAQ",
     "pledge": "Pledge"
   },
+
 
   "contactBar": {
     "title": "Official helplines — one tap",
@@ -50,13 +49,9 @@
         "title": "I want to report drug activity",
         "desc": "Anonymous official channels — your info goes straight to police"
       },
-      "learn": {
-        "title": "I'm a student — I want to learn",
-        "desc": "Facts about drugs, myths vs reality, shareable info"
-      },
-      "parents": {
-        "title": "I'm a parent or teacher",
-        "desc": "Warning signs, how to start the conversation, what to do next"
+      "experiences": {
+        "title": "Share your story",
+        "desc": "Read inspiring recovery stories — share yours, named or anonymous"
       }
     },
     "moreHeading": "More tools",
@@ -247,60 +242,46 @@
     "home": "Back to home"
   },
 
-  "learn": {
-    "heading": "What you should know",
-    "intro": "Short, factual, shareable. Kerala's drug threat is real — here's what's actually happening.",
-    "tabs": {
-      "facts": "Key facts",
-      "myths": "Myths vs facts",
-      "more": "Videos & help"
-    },
-    "mythsHint": "Tap a myth to reveal the fact",
-    "awareness": [
-      "Synthetic drugs sold in Kerala vary widely in potency — a single tablet can be dangerously strong with no warning.",
-      "Recovery is possible. Most people with addiction recover with the right support. Help is available and it works.",
-      "Early conversations save lives. Talking openly about drugs is not the same as encouraging them."
-    ],
-    "videos": {
-      "heading": "Awareness videos",
-      "slot1": "Operation Toofan — Kerala Police Awareness",
-      "slot2": "Vimukthi Mission — Help is Available"
-    },
-    "sections": {
-      "synthetic": {
-        "title": "Synthetic drugs — the real threat",
-        "content": "Synthetic drugs like MDMA ('ecstasy'), methamphetamine, and hybrid cannabis products are increasingly common in Kerala. Unlike plant-based drugs, synthetics are made in labs with no quality control — the same pill or powder can vary wildly in strength, making overdose much more likely."
+  "experiences": {
+    "heading": "Stories of hope",
+    "intro": "Real experiences from people who found a way forward. Yours could inspire someone too.",
+    "privacyNote": "Stories you write are saved only on this device — nothing is sent anywhere. Curated stories below are shared to inspire everyone.",
+    "curatedHeading": "Inspiring stories",
+    "yoursHeading": "Your stories on this device",
+    "yoursBadge": "Yours",
+    "shareHeading": "Your story matters",
+    "shareIntro": "What helped you? What do you wish someone had told you? Share it here — in your own words.",
+    "identityLabel": "How should we show your name?",
+    "namedOption": "Use my first name",
+    "anonymousOption": "Stay anonymous",
+    "anonymousHint": "Your story will appear as Anonymous — no name shown.",
+    "namedHint": "Your first name will appear above your story.",
+    "nameLabel": "Your first name",
+    "namePlaceholder": "First name only",
+    "anonymous": "Share anonymously",
+    "anonymousLabel": "Anonymous",
+    "storyLabel": "Your story",
+    "storyPlaceholder": "What happened, what helped, what you'd tell someone in the same place…",
+    "submit": "Save my story",
+    "saved": "Story saved on this device.",
+    "tooShort": "Please write at least a few sentences.",
+    "delete": "Remove story",
+    "stories": [
+      {
+        "name": "Arun",
+        "anonymous": false,
+        "text": "I thought I had to handle it alone. Calling Vimukthi was the hardest and best thing I did. Counselling was free, no one judged me, and my family didn't even need to know at first."
       },
-      "myths": {
-        "title": "Myths vs Facts",
-        "items": [
-          {
-            "myth": "\"It's just weed — it's natural and safe.\"",
-            "fact": "Hybrid cannabis strains used today are far more potent than a decade ago. 'Hybrid ganja' can cause psychosis, anxiety disorders, and addiction, especially in young people whose brains are still developing."
-          },
-          {
-            "myth": "\"Party drugs like MDMA are only dangerous if you take too much.\"",
-            "fact": "MDMA can cause life-threatening hyperthermia, seizures, and heart failure even on a first use. There is no 'safe dose' from an unverified source."
-          },
-          {
-            "myth": "\"Prescription drugs are safer because they're medical.\"",
-            "fact": "Misusing prescription opioids, benzodiazepines, or stimulants is just as dangerous as using street drugs. Addiction can develop quickly."
-          },
-          {
-            "myth": "\"Only weak people get addicted.\"",
-            "fact": "Addiction is a medical condition involving changes in brain chemistry. Anyone can become dependent — it is not a character flaw."
-          }
-        ]
+      {
+        "anonymous": true,
+        "text": "A friend noticed I was slipping before I did. They didn't lecture — just said they were worried. That one conversation made it possible for me to ask for help."
       },
-      "effects": {
-        "title": "What drugs actually do",
-        "content": "Drug use — especially in adolescence — can permanently alter brain development, memory, and emotional regulation. Short-term effects include impaired judgment, risky behaviour, and accidents. Long-term effects include mental health disorders, organ damage, relationship breakdown, and dependency."
-      },
-      "help": {
-        "title": "If you or a friend needs help",
-        "content": "You don't have to have a 'problem' to call the Vimukthi counselling line ({{vimukthi}}). Curious, concerned, or just want to talk to someone — it's free and confidential."
+      {
+        "name": "Priya",
+        "anonymous": false,
+        "text": "Recovery isn't a straight line. I had setbacks. But every time I reached out again, someone was still there. That mattered more than being perfect."
       }
-    }
+    ]
   },
 
   "parents": {
@@ -342,7 +323,26 @@
       "Approach the student privately with care, not accusation.",
       "Coordinate with parents sensitively — protect the student's dignity.",
       "Know your school's referral pathway for professional support."
-    ]
+    ],
+    "wizard": {
+      "intro": "Start",
+      "signs": "Signs",
+      "talk": "Talk",
+      "next": "Next steps",
+      "help": "Get help",
+      "stepOf": "Step {{current}} of {{total}}"
+    },
+    "roleQuestion": "I am a…",
+    "roleParent": "Parent or guardian",
+    "roleTeacher": "Teacher",
+    "signsTapHint": "Tap signs you've noticed — a pattern matters more than any single one",
+    "signsSelected": "{{count}} selected",
+    "tipOf": "Tip {{current}} of {{total}}",
+    "nextTip": "Next tip",
+    "continue": "Continue",
+    "restart": "Start over",
+    "helplineSub": "Free guidance for families",
+    "ctaGetHelp": "Find de-addiction centres"
   },
 
   "screening": {
@@ -388,39 +388,53 @@
 
   "about": {
     "heading": "About lahariundo",
-    "mission": "lahariundo is a free, non-commercial civic resource built to support Kerala's Operation Toofan anti-drug initiative. It is designed to be a calm, trustworthy front door that connects people to official help — without collecting, storing, or transmitting any personal data about anyone.",
+    "mission": "lahariundo is a free, non-commercial civic resource for Kerala's Operation Toofan anti-drug initiative. It connects people to official help through simple, mobile-friendly tools — with no accounts, no tracking, and no personal data stored on any server.",
     "features": {
-      "heading": "Everything this app can do",
-      "intro": "All of it is free, private, and works without an account — most of it works offline too.",
+      "heading": "What you can do here",
+      "intro": "Every feature is free, private, and works without signing in. Tap what fits your situation.",
       "items": [
-        { "title": "Guided “What do I do?”", "desc": "Answer a few simple questions and get clear next steps for any situation." },
-        { "title": "Find help near you", "desc": "Locate free government de-addiction centres on a map or by district." },
-        { "title": "Report anonymously", "desc": "Official Police & NCB channels — call, WhatsApp, web portal, or email." },
-        { "title": "Emergency & overdose", "desc": "One-tap emergency numbers and clear overdose first-aid steps." },
-        { "title": "Know your rights", "desc": "Plain-language Section 64A, informant confidentiality, and free legal aid." },
-        { "title": "Anonymous self-check", "desc": "A private reflection tool that runs entirely in your browser." },
-        { "title": "How drugs affect the body", "desc": "Factual, non-graphic health information you explore by body part." },
-        { "title": "Learn & myth-busting", "desc": "Key facts, myths vs reality, and awareness videos." },
-        { "title": "Parents & teachers toolkit", "desc": "Warning signs and how to start a supportive conversation." },
-        { "title": "FAQ", "desc": "Honest answers to the questions people are most afraid to ask." },
-        { "title": "Report hub", "desc": "A searchable directory of every helpline and district office." },
-        { "title": "Worried about someone", "desc": "Spot the signs and learn how to reach out without confrontation." },
-        { "title": "Make a pledge card", "desc": "Create and share a drug-free pledge image — nothing is ever saved." },
-        { "title": "Operation Toofan snapshot", "desc": "Progress figures shown clearly with their date and official source." },
-        { "title": "Bilingual & accessible", "desc": "Full Malayalam/English, light & dark themes, keyboard friendly." },
-        { "title": "Works offline (installable)", "desc": "Add it to your home screen — the core pages keep working with no internet." },
-        { "title": "Quick helpline bar", "desc": "Key official helplines are one tap away on every screen." }
+        { "title": "What do I do?", "desc": "Chat-style guide — answer a few questions and get clear next steps for your situation." },
+        { "title": "Worried about someone", "desc": "Spot warning signs, learn how to talk without confrontation, and find support." },
+        { "title": "Get Help", "desc": "Find free government de-addiction centres on a map or browse by district." },
+        { "title": "Report Hub", "desc": "Search every official reporting channel — police, NCB, WhatsApp, web, and local offices." },
+        { "title": "Self-check", "desc": "Private, chat-style reflection tool — runs entirely in your browser, nothing saved." },
+        { "title": "Stories of hope", "desc": "Read inspiring recovery stories and share yours — first name or anonymous, saved on your device only." },
+        { "title": "Your rights", "desc": "Plain-language Section 64A, informant confidentiality, and free legal aid contacts." },
+        { "title": "Effects on body", "desc": "Factual, non-graphic health information — tap a body part to explore." },
+        { "title": "FAQ", "desc": "Tap a question, get an honest answer — with helplines and links when you need them." },
+        { "title": "Pledge card", "desc": "Create a drug-free pledge image to share — nothing is ever stored." },
+        { "title": "Operation Toofan snapshot", "desc": "Live progress figures with date and official source, right on the home page." },
+        { "title": "Quick helpline button", "desc": "Floating one-tap access to key official numbers on every screen." }
+      ]
+    },
+    "specs": {
+      "heading": "How it's built",
+      "intro": "Technical details for anyone who wants to know what runs under the hood.",
+      "items": [
+        { "label": "Type", "value": "Progressive Web App (PWA) — installable on phone or desktop, no app store needed" },
+        { "label": "Languages", "value": "Full English and Malayalam UI — switch anytime" },
+        { "label": "Design", "value": "Mobile-first layout with chat-style flows on Guide, Worried, Self-check, and FAQ" },
+        { "label": "Privacy model", "value": "No accounts, no backend server, no database, no analytics that identify you" },
+        { "label": "Self-check", "value": "Runs 100% in your browser — answers are never sent or stored anywhere" },
+        { "label": "Stories", "value": "Stories you write stay in your browser's local storage only — never uploaded" },
+        { "label": "Offline", "value": "Core pages work without internet after your first visit (service worker cache)" },
+        { "label": "Themes", "value": "Light and dark mode with smooth theme transition" },
+        { "label": "Map", "value": "Centre map uses OpenFreeMap tiles; directions use OSRM or Google Maps only when you tap 'Get directions'" },
+        { "label": "Helplines", "value": "Tapping call or WhatsApp opens your phone's app directly — lahariundo never sees the contact" },
+        { "label": "Data sources", "value": "Centre and helpline listings from public Kerala Police and Vimukthi Mission sources" },
+        { "label": "Fonts", "value": "Bundled locally — no request to Google Fonts" }
       ]
     },
     "noData": {
       "heading": "Our promise: zero data collection",
       "items": [
         "No user accounts. No login. No registration.",
-        "The self-screening tool runs 100% in your browser and forgets everything when you leave.",
-        "Your location (if you tap 'Find nearest') is used in your browser to sort centres by distance, and is only sent to an external map service if you tap 'Get directions'.",
-        "Tapping a helpline button opens your phone's call or WhatsApp app directly — this app never sees or records the contact.",
-        "No advertising. No tracking pixels. No analytics that identify you.",
-        "No backend server. The app is a static website with no database."
+        "Self-check runs entirely in your browser — nothing is remembered when you leave.",
+        "Stories you write are kept only on your device (browser storage) — never sent to a server.",
+        "Your location is used in-browser to sort nearby centres; it only leaves your device if you tap 'Get directions'.",
+        "Helpline buttons open your phone's dialler or WhatsApp directly — this app never sees or records the call.",
+        "No advertising. No tracking pixels. No identifying analytics.",
+        "No backend server. Static site with no database."
       ]
     },
     "thirdParty": {
@@ -428,10 +442,9 @@
       "intro": "The app has no backend, but a few features load resources from outside services. Here is exactly when that happens:",
       "items": [
         "Map tiles load from OpenFreeMap when you open the centre map — like any website, this reveals your IP address to them.",
-        "Driving routes and directions are requested from OSRM and Google Maps only when you tap 'Get directions' — that is the only time your location leaves your device.",
-        "Awareness videos load from YouTube only if you press play on a video.",
-        "Fonts are bundled with the app, so no request is ever made to Google Fonts.",
-        "None of these set advertising cookies or send any data that identifies you."
+        "Driving routes and directions are requested from OSRM and Google Maps only when you tap 'Get directions'.",
+        "Fonts are bundled with the app — no request is ever made to Google Fonts.",
+        "None of these set advertising cookies or send data that identifies you."
       ]
     },
     "sources": {
@@ -443,7 +456,7 @@
       ]
     },
     "builtBy": "Built as a civic student project. Not affiliated with or endorsed by Kerala Police or the Kerala Government.",
-    "verifyNote": "⚠️ All phone numbers in this app are placeholders marked VERIFY_*. They must be replaced with verified official numbers before this app is published. Wrong contact info in a help app is dangerous.",
+    "verifyNote": "Warning: All phone numbers in this app are placeholders marked VERIFY_*. They must be replaced with verified official numbers before this app is published. Wrong contact info in a help app is dangerous.",
     "contribute": "Found an error? Contact us at: techsupport@ahimsa.global"
   },
 
@@ -485,6 +498,17 @@
     "intro": "Understanding Section 64A of the NDPS Act — how choosing treatment can protect you legally.",
     "disclaimer": "NOT LEGAL ADVICE — This page contains general information about a law. It is not a substitute for advice from a qualified lawyer. Laws can change. Always consult a lawyer or the Legal Services Authority ({{legalAid}}) before making any decision.",
     "disclaimerShort": "Not legal advice — tap to read full disclaimer",
+    "chatPlainLanguage": "Plain-language guide",
+    "chatMenuQuestion": "What would you like to understand?",
+    "chatFollowConditions": "What conditions apply?",
+    "chatFollowLimitations": "Important limitations",
+    "chatMenuOther": "Something else",
+    "chatReportLink": "Report anonymously →",
+    "menu": {
+      "s64a": "Section 64A & treatment",
+      "confidentiality": "Reporting anonymously",
+      "legalAid": "Free legal help"
+    },
     "tabs": {
       "s64a": "Section 64A",
       "confidentiality": "Reporting",
@@ -711,23 +735,32 @@
     },
     "links": {
       "worried": "Worried about someone →",
-      "parents": "Parents & teachers guide →",
       "getHelp": "Find centres near you →",
-      "rights": "Know your rights →",
-      "emergency": "Full emergency steps →"
+      "rights": "Know your rights →"
     }
   },
 
   "effects": {
     "heading": "How drugs affect the body",
-    "intro": "General, factual health information. Pick a substance, then tap a part of the body to learn how it can be affected. No instructions, no judgment — just facts.",
+    "intro": "General, factual health information. Choose a substance, then tap an organ on the figure — or pick one from the list — to see how it can be affected. No instructions, no judgment — just facts.",
     "pickSubstance": "Choose a substance type",
-    "pickPart": "Tap a body part to learn more",
+    "pickPart": "Tap an organ to learn more",
     "selectedPrefix": "Effects on the",
-    "noPart": "Select a body part above to read about its effects.",
+    "noPart": "Tap a highlighted organ on the figure, or choose one from the list below.",
     "nonGraphicNote": "This is general educational information — not a diagnosis or a complete medical account. Effects vary from person to person.",
     "ctaText": "Worried about yourself or someone else? Free, confidential help is available.",
     "cta": "Get help",
+    "source": "Source: National Institute on Drug Abuse (NIDA) and public health authorities.",
+    "figureLabel": "Body figure",
+    "figures": { "male": "Male", "female": "Female", "neutral": "Neutral" },
+    "organListHeading": "Or choose an organ",
+    "affectedBadge": "Affected",
+    "affectedLegend": "Highlighted organs are the ones most affected by this substance.",
+    "bodyWarningHeading": "Whole-body risk",
+    "noteHeading": "Important to know",
+    "pregnancyHeading": "During pregnancy",
+    "emergencyText": "Slowed breathing in an overdose is a medical emergency.",
+    "emergencyCta": "Overdose first aid & numbers",
     "substances": {
       "cannabis": "Cannabis / Ganja",
       "stimulants": "Stimulants (MDMA, meth)",
@@ -740,32 +773,6 @@
       "liver": "Liver",
       "stomach": "Stomach & gut",
       "kidneys": "Kidneys"
-    },
-    "content": {
-      "cannabis": {
-        "brain": "Regular use — especially in the teenage years — can affect memory, attention and motivation while the brain is still developing. In some people it can trigger anxiety or, more rarely, psychosis.",
-        "heart": "Cannabis can raise the heart rate for a few hours after use, which can be a strain for anyone with an existing heart condition.",
-        "lungs": "Smoking any substance irritates the airways and can lead to a long-term cough and breathing problems.",
-        "liver": "Cannabis itself isn't strongly linked to direct liver damage, but products mixed with other substances can carry added risks.",
-        "stomach": "Some heavy long-term users experience cycles of nausea and vomiting that ease once use stops.",
-        "kidneys": "Evidence of direct kidney harm is limited, but dehydration and unknown additives can place extra strain on them."
-      },
-      "stimulants": {
-        "brain": "Stimulants flood the brain's reward system. Over time this can affect mood, sleep and memory and lead to dependence; very high doses risk seizures.",
-        "heart": "They can sharply raise heart rate and blood pressure, which can be dangerous even on a first use.",
-        "lungs": "Breathing speeds up, and smoked forms irritate the lungs and airways.",
-        "liver": "Overheating and high doses can place serious stress on the liver.",
-        "stomach": "Stimulants often reduce appetite, which over time can lead to poor nutrition and weight loss.",
-        "kidneys": "Overheating and dehydration can strain the kidneys; severe cases can cause lasting damage."
-      },
-      "opioids": {
-        "brain": "Opioids slow brain activity and dull pain and emotion. The body adapts quickly, so dependence can build fast.",
-        "heart": "In an overdose, heart rate and blood pressure can drop dangerously low.",
-        "lungs": "The most serious danger is slowed breathing — in an overdose, breathing can stop altogether. This is why an overdose is a medical emergency.",
-        "liver": "Many opioid products are mixed with other ingredients that can harm the liver over time.",
-        "stomach": "Opioids commonly cause constipation and nausea.",
-        "kidneys": "Reduced blood flow and unknown additives can affect how the kidneys work."
-      }
     }
   },
 
@@ -813,7 +820,8 @@
 
   "faq": {
     "heading": "Questions people are afraid to ask",
-    "intro": "Honest, plain answers to the things people worry about most. Tap a question to read the answer.",
+    "intro": "Honest, plain answers to the things people worry about most.",
+    "chatPickQuestion": "Pick a question below to see the answer.",
     "disclaimer": "General information only — not legal or medical advice.",
     "items": [
       {
@@ -838,7 +846,7 @@
       },
       {
         "q": "What about someone under 18?",
-        "a": "Childline is a free, 24/7 helpline for anything involving a child, including drug use. Approach the young person gently and without judgment — the parents & teachers guide has more on how to start."
+        "a": "Childline is a free, 24/7 helpline for anything involving a child, including drug use. Approach the young person gently and without judgment — see 'Worried about someone' for how to start."
       },
       {
         "q": "Does this app store anything I do?",
@@ -849,7 +857,7 @@
       "rights": "Read about Section 64A →",
       "report": "See reporting options →",
       "getHelp": "Find centres near you →",
-      "parents": "Parents & teachers guide →"
+      "worried": "Worried about someone →"
     }
   },
 
@@ -877,6 +885,17 @@
       "I support my friends in staying drug-free."
     ],
     "previewHeading": "Your card",
+    "formatBadge": "Badge",
+    "formatStory": "Story",
+    "badgeHint": "Share as a badge",
+    "livePreview": "Live preview",
+    "sharePrimary": "Share my pledge",
+    "shareTipsHeading": "Where to share",
+    "shareTipWa": "WhatsApp status or group — use the square badge format",
+    "shareTipIg": "Instagram story — use the story format",
+    "shareTipBadge": "Profile photo frame — download the badge and crop to a circle",
+    "datePrefix": "Pledged",
+    "cardStamp": "PLEDGED",
     "download": "Download card",
     "share": "Share",
     "shareText": "I took the drug-free pledge with LahariUndo.",

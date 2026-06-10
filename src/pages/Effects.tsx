@@ -1,38 +1,40 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { HeartPulse, Info, ArrowRight } from 'lucide-react';
+import { HeartPulse, Info, ArrowRight, Thermometer, AlertTriangle, Baby, Siren } from 'lucide-react';
 import { PageHeader } from '../components/PageHeader';
 import { ChipTabs } from '../components/ChipTabs';
 import { ContactAction } from '../components/ContactAction';
+import { AnatomyFigure, type FigureKind } from '../components/AnatomyFigure';
 import { useAppData } from '../context/DataContext';
-import { findContact } from '../utils/contacts';
+import { findContact, findContacts } from '../utils/contacts';
+import { EFFECTS, ORGANS, SUBSTANCES, type SubstanceId, type OrganId, type Bilingual } from '../data/effectsContent';
 
-type Substance = 'cannabis' | 'stimulants' | 'opioids';
-type BodyPart = 'brain' | 'heart' | 'lungs' | 'liver' | 'stomach' | 'kidneys';
-
-const SUBSTANCES: Substance[] = ['cannabis', 'stimulants', 'opioids'];
-const PARTS: BodyPart[] = ['brain', 'heart', 'lungs', 'liver', 'stomach', 'kidneys'];
-
-// Hotspot positions over the silhouette (percentage of the figure box).
-const HOTSPOTS: Record<BodyPart, { top: string; left: string }> = {
-  brain: { top: '6%', left: '50%' },
-  lungs: { top: '30%', left: '50%' },
-  heart: { top: '33%', left: '38%' },
-  liver: { top: '45%', left: '61%' },
-  stomach: { top: '50%', left: '47%' },
-  kidneys: { top: '58%', left: '50%' },
-};
+const FIGURES: FigureKind[] = ['neutral', 'male', 'female'];
 
 export function Effects() {
   const { t, i18n } = useTranslation();
   const isML = i18n.language === 'ml';
   const { data } = useAppData();
 
-  const [substance, setSubstance] = useState<Substance>('cannabis');
-  const [part, setPart] = useState<BodyPart | null>(null);
+  const [substance, setSubstance] = useState<SubstanceId>('cannabis');
+  const [organ, setOrgan] = useState<OrganId | null>(null);
+  const [figure, setFigure] = useState<FigureKind>('neutral');
+
+  const tx = (b: Bilingual) => (isML ? b.ml : b.en);
+  const content = EFFECTS[substance];
+  const affected = content.affected;
+  const emergencyOrgans = ORGANS.filter((o) => content.organs[o].emergency);
+  const organLabel = (id: OrganId) => t(`effects.parts.${id}`);
 
   const vimukthi = findContact(data, 'vimukthi-14405');
+  const emergencyContacts = findContacts(data, ['emergency-112', 'ambulance-108']);
+
+  const selectedEffect = organ ? content.organs[organ] : null;
+  const selectedIsEmergency = !!selectedEffect?.emergency;
+
+  // Reset organ selection when substance changes so stale text never lingers.
+  const chooseSubstance = (s: SubstanceId) => { setSubstance(s); setOrgan(null); };
 
   return (
     <div className="flex flex-col gap-5">
@@ -49,75 +51,153 @@ export function Effects() {
         <ChipTabs
           tabs={SUBSTANCES.map((s) => ({ id: s, label: t(`effects.substances.${s}`) }))}
           active={substance}
-          onChange={(s) => { setSubstance(s); }}
+          onChange={chooseSubstance}
           isML={isML}
         />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-        {/* Figure with hotspots */}
-        <div>
-          <p className={`ui-label mb-2 ${isML ? 'ml-text' : ''}`}>{t('effects.pickPart')}</p>
-          <div className="relative mx-auto w-full max-w-[260px] aspect-[1/2]">
-            {/* Decorative silhouette */}
-            <svg
-              viewBox="0 0 100 200"
-              className="w-full h-full text-surface-3"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <circle cx="50" cy="18" r="13" fill="currentColor" />
-              <rect x="40" y="32" width="20" height="8" rx="4" fill="currentColor" />
-              <path
-                d="M30 44 Q50 38 70 44 L74 96 Q72 104 64 104 L60 104 L58 150 Q58 158 52 158 Q50 130 50 104 Q50 130 48 158 Q42 158 42 150 L40 104 L36 104 Q28 104 26 96 Z"
-                fill="currentColor"
-              />
-              <path d="M30 46 L18 90 Q16 96 22 98 Q28 96 30 88 Z" fill="currentColor" />
-              <path d="M70 46 L82 90 Q84 96 78 98 Q72 96 70 88 Z" fill="currentColor" />
-            </svg>
-
-            {/* Keyboard-accessible hotspot buttons */}
-            {PARTS.map((p) => {
-              const pos = HOTSPOTS[p];
-              const selected = part === p;
-              return (
+        {/* Figure column */}
+        <div className="flex flex-col gap-3">
+          {/* Figure toggle */}
+          <div className="flex items-center justify-between gap-2 flex-wrap">
+            <span className={`ui-label ${isML ? 'ml-text' : ''}`}>{t('effects.figureLabel')}</span>
+            <div className="tab-toggle tab-toggle-compact" role="group" aria-label={t('effects.figureLabel')}>
+              {FIGURES.map((f) => (
                 <button
-                  key={p}
+                  key={f}
                   type="button"
-                  onClick={() => setPart(p)}
-                  aria-pressed={selected}
-                  aria-label={t(`effects.parts.${p}`)}
-                  style={{ top: pos.top, left: pos.left }}
-                  className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap px-2 py-1 rounded-full text-[10px] font-bold border transition-all ${
-                    selected
-                      ? 'bg-accent text-accent-text border-accent ring-2 ring-accent/30 scale-105'
-                      : 'bg-surface text-secondary border-border-strong hover:border-accent hover:text-accent'
-                  } ${isML ? 'ml-text' : ''}`}
+                  onClick={() => setFigure(f)}
+                  aria-pressed={figure === f}
+                  className={`tab-toggle-btn text-xs ${figure === f ? 'tab-toggle-btn-active' : ''} ${isML ? 'ml-text' : ''}`}
                 >
-                  {t(`effects.parts.${p}`)}
+                  {t(`effects.figures.${f}`)}
                 </button>
-              );
-            })}
+              ))}
+            </div>
+          </div>
+
+          <div className="card p-3 flex flex-col items-center">
+            <AnatomyFigure
+              figure={figure}
+              affected={affected}
+              emergencyOrgans={emergencyOrgans}
+              selected={organ}
+              bodyWarning={!!content.bodyWarning}
+              onSelect={setOrgan}
+              organLabel={organLabel}
+              affectedLabel={t('effects.affectedBadge')}
+            />
+            <p className={`text-[11px] text-muted text-center mt-1 ${isML ? 'ml-text' : ''}`}>
+              {t('effects.affectedLegend')}
+            </p>
+          </div>
+
+          {/* Non-visual fallback: plain organ list (also a convenient picker) */}
+          <div>
+            <h3 className={`ui-label mb-2 ${isML ? 'ml-text' : ''}`}>{t('effects.organListHeading')}</h3>
+            <div className="grid grid-cols-2 gap-2">
+              {ORGANS.map((id) => {
+                const isAffected = affected.includes(id);
+                const isSel = organ === id;
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    onClick={() => setOrgan(id)}
+                    aria-pressed={isSel}
+                    className={`flex items-center justify-between gap-2 px-3 py-2 rounded-lg border text-xs font-semibold text-left transition-colors ${
+                      isSel
+                        ? 'bg-accent text-accent-text border-accent'
+                        : 'bg-surface border-border text-secondary hover:border-accent hover:text-accent'
+                    } ${isML ? 'ml-text' : ''}`}
+                  >
+                    <span>{organLabel(id)}</span>
+                    {isAffected && (
+                      <span className={`shrink-0 text-[9px] font-bold px-1.5 py-0.5 rounded-full ${isSel ? 'bg-accent-text/20' : 'bg-accent-soft text-accent'}`}>
+                        {t('effects.affectedBadge')}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
-        {/* Content panel */}
-        <div className="flex flex-col gap-3">
-          {part ? (
-            <div className="tone-rose border rounded-card p-4 fade-up" key={`${substance}-${part}`}>
+        {/* Detail panel */}
+        <div className="flex flex-col gap-3" aria-live="polite">
+          {/* Whole-body warning (e.g. stimulants → body temperature) */}
+          {content.bodyWarning && (
+            <div className="tone-amber border rounded-card p-4">
+              <div className="flex items-center gap-2 mb-1">
+                <Thermometer size={15} className="text-amber-600 shrink-0" />
+                <h3 className={`heading-text font-bold text-primary text-sm ${isML ? 'ml-text' : ''}`}>
+                  {t('effects.bodyWarningHeading')}
+                </h3>
+              </div>
+              <p className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
+                {tx(content.bodyWarning)}
+              </p>
+            </div>
+          )}
+
+          {selectedEffect ? (
+            <div
+              key={`${substance}-${organ}`}
+              className={`${selectedIsEmergency ? 'tone-red border' : 'tone-rose border'} rounded-card p-4 fade-up`}
+            >
               <p className={`ui-label mb-1 ${isML ? 'ml-text' : ''}`}>
-                {t('effects.selectedPrefix')} {t(`effects.parts.${part}`)}
+                {t('effects.selectedPrefix')} {organLabel(organ as OrganId)}
               </p>
               <h3 className={`heading-text font-bold text-primary text-base mb-2 ${isML ? 'ml-text' : ''}`}>
                 {t(`effects.substances.${substance}`)}
               </h3>
               <p className={`text-sm text-secondary leading-relaxed ${isML ? 'ml-text' : ''}`}>
-                {t(`effects.content.${substance}.${part}`)}
+                {tx(selectedEffect.text)}
               </p>
+
+              {selectedIsEmergency && (
+                <div className="mt-3 pt-3 border-t border-border flex flex-col gap-2">
+                  <p className={`text-sm font-bold text-red-700 dark:text-red-400 flex items-start gap-1.5 ${isML ? 'ml-text' : ''}`}>
+                    <Siren size={14} className="mt-0.5 shrink-0" />
+                    {t('effects.emergencyText')}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Link to="/emergency" className="btn-action bg-red-600 text-white hover:bg-red-700">
+                      <AlertTriangle size={12} />
+                      {t('effects.emergencyCta')}
+                    </Link>
+                    {emergencyContacts.map((c) => <ContactAction key={c.id} contact={c} />)}
+                  </div>
+                </div>
+              )}
             </div>
           ) : (
-            <div className="compact-card flex items-center justify-center text-center min-h-[8rem]">
+            <div className="compact-card flex items-center justify-center text-center min-h-[7rem]">
               <p className={`text-sm text-muted ${isML ? 'ml-text' : ''}`}>{t('effects.noPart')}</p>
+            </div>
+          )}
+
+          {/* Closing note (mixed/adulterated drugs) */}
+          {content.note && (
+            <div className="tone-amber border rounded-card p-3 flex items-start gap-2">
+              <AlertTriangle size={13} className="text-amber-600 mt-0.5 shrink-0" />
+              <div>
+                <p className={`text-xs font-bold text-primary ${isML ? 'ml-text' : ''}`}>{t('effects.noteHeading')}</p>
+                <p className={`text-xs text-secondary leading-relaxed mt-0.5 ${isML ? 'ml-text' : ''}`}>{tx(content.note)}</p>
+              </div>
+            </div>
+          )}
+
+          {/* Pregnancy note — only on the female figure */}
+          {figure === 'female' && content.pregnancy && (
+            <div className="tone-violet border rounded-card p-3 flex items-start gap-2">
+              <Baby size={13} className="text-violet-500 mt-0.5 shrink-0" />
+              <div>
+                <p className={`text-xs font-bold text-primary ${isML ? 'ml-text' : ''}`}>{t('effects.pregnancyHeading')}</p>
+                <p className={`text-xs text-secondary leading-relaxed mt-0.5 ${isML ? 'ml-text' : ''}`}>{tx(content.pregnancy)}</p>
+              </div>
             </div>
           )}
 
@@ -125,6 +205,7 @@ export function Effects() {
             <Info size={12} className="mt-0.5 shrink-0" />
             {t('effects.nonGraphicNote')}
           </p>
+          <p className={`text-[11px] text-muted ${isML ? 'ml-text' : ''}`}>{t('effects.source')}</p>
         </div>
       </div>
 
