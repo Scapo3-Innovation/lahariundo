@@ -16,7 +16,12 @@
     "resources": "Resources",
     "rights": "Your Rights",
     "emergency": "Emergency",
-    "about": "About"
+    "about": "About",
+    "guide": "What do I do?",
+    "recovery": "Recovery",
+    "effects": "Effects on body",
+    "faq": "FAQ",
+    "pledge": "Pledge"
   },
 
   "contactBar": {
@@ -30,6 +35,10 @@
     "heading": "How can we help you?",
     "subheading": "Choose what fits your situation. Everything here is private — this app stores nothing.",
     "cards": {
+      "guide": {
+        "title": "I'm not sure what to do",
+        "desc": "Answer a couple of questions and we'll guide you to the right next step"
+      },
       "worried": {
         "title": "I'm worried about someone",
         "desc": "Warning signs, how to talk to them, and where to get support"
@@ -49,6 +58,25 @@
       "parents": {
         "title": "I'm a parent or teacher",
         "desc": "Warning signs, how to start the conversation, what to do next"
+      }
+    },
+    "moreHeading": "More tools",
+    "more": {
+      "recovery": {
+        "title": "What does getting help look like?",
+        "desc": "A calm, step-by-step roadmap from reaching out to recovery"
+      },
+      "effects": {
+        "title": "How drugs affect the body",
+        "desc": "Factual, general health information — tap a body part to learn"
+      },
+      "faq": {
+        "title": "Questions people are afraid to ask",
+        "desc": "Honest answers on arrest, anonymity, cost and more"
+      },
+      "pledge": {
+        "title": "Make a drug-free pledge",
+        "desc": "Create and share a pledge card — nothing is saved"
       }
     }
   },
@@ -338,6 +366,30 @@
   "about": {
     "heading": "About lahariundo",
     "mission": "lahariundo is a free, non-commercial civic resource built to support Kerala's Operation Toofan anti-drug initiative. It is designed to be a calm, trustworthy front door that connects people to official help — without collecting, storing, or transmitting any personal data about anyone.",
+    "features": {
+      "heading": "Everything this app can do",
+      "intro": "All of it is free, private, and works without an account — most of it works offline too.",
+      "items": [
+        { "title": "Guided “What do I do?”", "desc": "Answer a few simple questions and get clear next steps for any situation." },
+        { "title": "Find help near you", "desc": "Locate free government de-addiction centres on a map or by district." },
+        { "title": "Report anonymously", "desc": "Official Police & NCB channels — call, WhatsApp, web portal, or email." },
+        { "title": "Emergency & overdose", "desc": "One-tap emergency numbers and clear overdose first-aid steps." },
+        { "title": "Know your rights", "desc": "Plain-language Section 64A, informant confidentiality, and free legal aid." },
+        { "title": "Anonymous self-check", "desc": "A private reflection tool that runs entirely in your browser." },
+        { "title": "Recovery roadmap", "desc": "A calm, step-by-step picture of what getting help actually looks like." },
+        { "title": "How drugs affect the body", "desc": "Factual, non-graphic health information you explore by body part." },
+        { "title": "Learn & myth-busting", "desc": "Key facts, myths vs reality, and awareness videos." },
+        { "title": "Parents & teachers toolkit", "desc": "Warning signs and how to start a supportive conversation." },
+        { "title": "FAQ", "desc": "Honest answers to the questions people are most afraid to ask." },
+        { "title": "Resource hub", "desc": "A searchable directory of every helpline and district office." },
+        { "title": "Worried about someone", "desc": "Spot the signs and learn how to reach out without confrontation." },
+        { "title": "Make a pledge card", "desc": "Create and share a drug-free pledge image — nothing is ever saved." },
+        { "title": "Operation Toofan snapshot", "desc": "Progress figures shown clearly with their date and official source." },
+        { "title": "Bilingual & accessible", "desc": "Full Malayalam/English, light & dark themes, keyboard friendly." },
+        { "title": "Works offline (installable)", "desc": "Add it to your home screen — the core pages keep working with no internet." },
+        { "title": "Quick helpline bar", "desc": "Key official helplines are one tap away on every screen." }
+      ]
+    },
     "noData": {
       "heading": "Our promise: zero data collection",
       "items": [
@@ -467,6 +519,337 @@
       "recoveryDesc": "Kneel beside the person. Extend their arm nearest to you. Pull the far knee up. Roll them gently toward you so they rest on their side. Tilt their head back slightly to keep the airway open. Stay with them."
     },
     "privacy": "This app does not log or store your call. Tapping a number opens your phone's dialler directly."
+  },
+
+  "offline": {
+    "offline": "You're offline — saved pages still work",
+    "online": "Back online",
+    "mapTitle": "Map needs internet",
+    "mapBody": "You're offline right now, so the map can't load. Reconnect to view it — or switch to the card list and helplines below, which work offline."
+  },
+
+  "guide": {
+    "heading": "What do I do?",
+    "intro": "Answer a couple of simple questions and we'll point you to the right next step. Nothing you tap here is saved or sent anywhere.",
+    "startOver": "Start over",
+    "back": "Back",
+    "stepsHeading": "Your next steps",
+    "contactsHeading": "Who to contact",
+    "moreHeading": "Read more",
+    "disclaimer": "General guidance only — not legal or medical advice.",
+    "q": {
+      "start": {
+        "question": "What's happening? Choose what fits best.",
+        "options": {
+          "found": "I found drugs",
+          "using": "Someone I know is using",
+          "quit": "I want to quit or get help",
+          "report": "I want to report drug activity",
+          "overdose": "Someone may be overdosing"
+        }
+      },
+      "found": {
+        "question": "Where did you find them?",
+        "options": {
+          "public": "In a public place or at school",
+          "home": "At home — someone in my family"
+        }
+      },
+      "using_danger": {
+        "question": "Are they in immediate physical danger right now — unconscious, struggling to breathe, or having a seizure?",
+        "options": {
+          "yes": "Yes — they need help now",
+          "no": "No — they seem physically okay"
+        }
+      },
+      "using_who": {
+        "question": "Who are you worried about?",
+        "options": {
+          "minor": "A child or someone under 18",
+          "adult": "An adult — a friend or family member"
+        }
+      },
+      "quit": {
+        "question": "What would help most right now?",
+        "options": {
+          "talk": "Just talk to someone first",
+          "centre": "Find a treatment centre near me",
+          "legal": "Understand where I stand legally"
+        }
+      },
+      "report": {
+        "question": "How would you prefer to report?",
+        "options": {
+          "call": "By phone call",
+          "online": "By message or online",
+          "danger": "Someone is in danger right now"
+        }
+      }
+    },
+    "r": {
+      "found_public": {
+        "title": "Reporting drugs found in public",
+        "steps": [
+          "Don't touch or move anything — leave it where it is.",
+          "Quietly note the location and step away to somewhere safe.",
+          "If it's on school grounds, tell a teacher or staff member you trust.",
+          "Report it through an official channel — you can stay anonymous."
+        ]
+      },
+      "found_home": {
+        "title": "You found something at home",
+        "steps": [
+          "Take a breath first — reacting in anger usually shuts the conversation down.",
+          "Choose a calm, private moment to talk, and lead with concern, not blame.",
+          "You don't have to handle this alone — free family counselling is available.",
+          "For help on how to talk to them, see 'Worried about someone'."
+        ]
+      },
+      "using_minor": {
+        "title": "Helping someone under 18",
+        "steps": [
+          "Stay calm and supportive — they need to feel safe, not judged.",
+          "Childline is a free, 24/7 helpline for anything involving a child.",
+          "Free, confidential family counselling can guide your next steps.",
+          "The parents & teachers guide has more on how to start the conversation."
+        ]
+      },
+      "using_adult": {
+        "title": "Helping an adult you care about",
+        "steps": [
+          "You can't force change, but you can keep the door open.",
+          "Talk with concern, not confrontation — listen more than you speak.",
+          "The Vimukthi line offers free, confidential guidance for families too.",
+          "When they're ready, free de-addiction centres are nearby."
+        ]
+      },
+      "quit_talk": {
+        "title": "Talking to someone is a strong first step",
+        "steps": [
+          "You don't need to have a 'serious problem' to call.",
+          "The Vimukthi counselling line is free, confidential, and judgment-free.",
+          "You can call just to ask questions — there's no commitment."
+        ]
+      },
+      "quit_centre": {
+        "title": "Finding a centre near you",
+        "steps": [
+          "Government de-addiction treatment is free and confidential.",
+          "Use the locator to find Vimukthi centres near you.",
+          "The national de-addiction helpline can also refer you to a centre."
+        ]
+      },
+      "quit_legal": {
+        "title": "Where you stand legally",
+        "steps": [
+          "Choosing voluntary treatment can protect you under Section 64A of the NDPS Act.",
+          "Free legal aid is available if you're facing charges and can't afford a lawyer.",
+          "Read the plain-language summary of your rights."
+        ]
+      },
+      "report_call": {
+        "title": "Reporting by phone",
+        "steps": [
+          "Never confront peddlers yourself — report from a safe place.",
+          "You do not have to give your name.",
+          "Call the MANAS national helpline or the Kerala anti-narcotic cell."
+        ]
+      },
+      "report_online": {
+        "title": "Reporting by message or online",
+        "steps": [
+          "You can report anonymously — leave your name out if you prefer.",
+          "Send a WhatsApp tip to the Kerala Police anti-narcotic cell, or",
+          "File a report on the NCB web portal or by email."
+        ]
+      },
+      "overdose": {
+        "title": "This may be an emergency — act now",
+        "steps": [
+          "Call 112 or 108 immediately — don't wait.",
+          "Do not leave the person alone.",
+          "If unconscious but breathing, place them on their side (recovery position).",
+          "You will not get in trouble for calling for help."
+        ]
+      }
+    },
+    "links": {
+      "worried": "Worried about someone →",
+      "parents": "Parents & teachers guide →",
+      "getHelp": "Find centres near you →",
+      "rights": "Know your rights →",
+      "emergency": "Full emergency steps →"
+    }
+  },
+
+  "effects": {
+    "heading": "How drugs affect the body",
+    "intro": "General, factual health information. Pick a substance, then tap a part of the body to learn how it can be affected. No instructions, no judgment — just facts.",
+    "pickSubstance": "Choose a substance type",
+    "pickPart": "Tap a body part to learn more",
+    "selectedPrefix": "Effects on the",
+    "noPart": "Select a body part above to read about its effects.",
+    "nonGraphicNote": "This is general educational information — not a diagnosis or a complete medical account. Effects vary from person to person.",
+    "ctaText": "Worried about yourself or someone else? Free, confidential help is available.",
+    "cta": "Get help",
+    "substances": {
+      "cannabis": "Cannabis / Ganja",
+      "stimulants": "Stimulants (MDMA, meth)",
+      "opioids": "Opioids"
+    },
+    "parts": {
+      "brain": "Brain",
+      "heart": "Heart",
+      "lungs": "Lungs",
+      "liver": "Liver",
+      "stomach": "Stomach & gut",
+      "kidneys": "Kidneys"
+    },
+    "content": {
+      "cannabis": {
+        "brain": "Regular use — especially in the teenage years — can affect memory, attention and motivation while the brain is still developing. In some people it can trigger anxiety or, more rarely, psychosis.",
+        "heart": "Cannabis can raise the heart rate for a few hours after use, which can be a strain for anyone with an existing heart condition.",
+        "lungs": "Smoking any substance irritates the airways and can lead to a long-term cough and breathing problems.",
+        "liver": "Cannabis itself isn't strongly linked to direct liver damage, but products mixed with other substances can carry added risks.",
+        "stomach": "Some heavy long-term users experience cycles of nausea and vomiting that ease once use stops.",
+        "kidneys": "Evidence of direct kidney harm is limited, but dehydration and unknown additives can place extra strain on them."
+      },
+      "stimulants": {
+        "brain": "Stimulants flood the brain's reward system. Over time this can affect mood, sleep and memory and lead to dependence; very high doses risk seizures.",
+        "heart": "They can sharply raise heart rate and blood pressure, which can be dangerous even on a first use.",
+        "lungs": "Breathing speeds up, and smoked forms irritate the lungs and airways.",
+        "liver": "Overheating and high doses can place serious stress on the liver.",
+        "stomach": "Stimulants often reduce appetite, which over time can lead to poor nutrition and weight loss.",
+        "kidneys": "Overheating and dehydration can strain the kidneys; severe cases can cause lasting damage."
+      },
+      "opioids": {
+        "brain": "Opioids slow brain activity and dull pain and emotion. The body adapts quickly, so dependence can build fast.",
+        "heart": "In an overdose, heart rate and blood pressure can drop dangerously low.",
+        "lungs": "The most serious danger is slowed breathing — in an overdose, breathing can stop altogether. This is why an overdose is a medical emergency.",
+        "liver": "Many opioid products are mixed with other ingredients that can harm the liver over time.",
+        "stomach": "Opioids commonly cause constipation and nausea.",
+        "kidneys": "Reduced blood flow and unknown additives can affect how the kidneys work."
+      }
+    }
+  },
+
+  "recovery": {
+    "heading": "What getting help looks like",
+    "intro": "Recovery isn't a single leap — it's a series of supported steps. Here's the path most people follow. Government de-addiction treatment in Kerala is free and confidential.",
+    "freeNote": "Government de-addiction treatment is free.",
+    "tapHint": "Tap each step to read more",
+    "steps": [
+      {
+        "title": "Reaching out",
+        "body": "It starts with one conversation — a call, a visit, or telling someone you trust. You don't need to have hit 'rock bottom' to ask for help.",
+        "reassure": "Asking for help is a sign of strength, not weakness."
+      },
+      {
+        "title": "Assessment",
+        "body": "A professional listens and helps make sense of what's going on — your health, your situation, and what kind of support fits you. Nothing is forced.",
+        "reassure": "This is a conversation, not a judgment."
+      },
+      {
+        "title": "Detox (if needed)",
+        "body": "If the body has become dependent, medically supervised detox helps you through withdrawal safely and as comfortably as possible.",
+        "reassure": "You won't go through this alone — trained staff are with you."
+      },
+      {
+        "title": "Counselling & therapy",
+        "body": "Talking therapy helps you understand the 'why' and build new ways to cope. It can be one-to-one, in groups, or with family.",
+        "reassure": "Setbacks are part of the process, not the end of it."
+      },
+      {
+        "title": "Rehabilitation",
+        "body": "Rebuilding daily routines, skills and confidence — sometimes at a residential centre, sometimes while living at home.",
+        "reassure": "Progress at your own pace is still progress."
+      },
+      {
+        "title": "Aftercare & reintegration",
+        "body": "Ongoing support — follow-ups, support groups, and help returning to study, work and relationships.",
+        "reassure": "Recovery is a journey you keep walking, with support along the way."
+      }
+    ],
+    "ctaHeading": "Ready when you are",
+    "ctaText": "There's no wrong time to start. Find a centre, or just talk to someone first.",
+    "ctaLocator": "Find centres near you"
+  },
+
+  "faq": {
+    "heading": "Questions people are afraid to ask",
+    "intro": "Honest, plain answers to the things people worry about most. Tap a question to read the answer.",
+    "disclaimer": "General information only — not legal or medical advice.",
+    "items": [
+      {
+        "q": "Will I be arrested if I seek help?",
+        "a": "Choosing voluntary de-addiction treatment can actually protect you. Under Section 64A of the NDPS Act, someone charged with a personal-use offence may avoid prosecution by completing treatment at a government-recognised centre. This is general information, not legal advice — read the full summary on the Your Rights page."
+      },
+      {
+        "q": "Is reporting really anonymous?",
+        "a": "Yes. You can report drug activity without giving your name, and an informant's identity is protected. You can call the MANAS helpline, send a WhatsApp tip, or file online — all without identifying yourself."
+      },
+      {
+        "q": "Is government treatment really free?",
+        "a": "Yes. Vimukthi de-addiction and counselling services run by the government are free and confidential, and you don't need a referral to call the helpline."
+      },
+      {
+        "q": "How long does recovery take?",
+        "a": "There's no fixed timeline — it depends on the person and the substance. Recovery is a series of steps, not a single event, and setbacks are a normal part of it. The recovery roadmap explains the stages."
+      },
+      {
+        "q": "How do I help a friend who's using?",
+        "a": "Lead with concern, not confrontation, and listen more than you speak. You can't force someone to change, but you can keep the door open and point them to free, confidential help when they're ready."
+      },
+      {
+        "q": "What about someone under 18?",
+        "a": "Childline is a free, 24/7 helpline for anything involving a child, including drug use. Approach the young person gently and without judgment — the parents & teachers guide has more on how to start."
+      },
+      {
+        "q": "Does this app store anything I do?",
+        "a": "No. There's no account and no database, and nothing you type or tap is saved or sent anywhere. Everything runs in your browser and resets when you close the app."
+      }
+    ],
+    "links": {
+      "rights": "Read about Section 64A →",
+      "report": "See reporting options →",
+      "recovery": "See the recovery roadmap →",
+      "parents": "Parents & teachers guide →"
+    }
+  },
+
+  "toofan": {
+    "heading": "Operation Toofan — progress snapshot",
+    "asOf": "As of",
+    "source": "Source",
+    "placeholder": "Placeholder figures — not live data. Replace before publishing.",
+    "cases": "Cases registered",
+    "arrests": "Arrests",
+    "seizuresHeading": "Seizures",
+    "noData": "Progress figures are not available right now."
+  },
+
+  "pledge": {
+    "heading": "Make your pledge",
+    "intro": "Create a drug-free pledge card to share. Your name is used only to draw the card — it is never saved or sent anywhere.",
+    "nameLabel": "Your name (optional)",
+    "namePlaceholder": "e.g. Ananya",
+    "messageLabel": "Choose your pledge",
+    "messages": [
+      "I pledge to stay drug-free.",
+      "I choose a healthy, drug-free life.",
+      "I stand for a drug-free Kerala.",
+      "I support my friends in staying drug-free."
+    ],
+    "previewHeading": "Your card",
+    "download": "Download card",
+    "share": "Share",
+    "shareText": "I took the drug-free pledge with LahariUndo.",
+    "shareTitle": "My LahariUndo pledge",
+    "downloaded": "Card downloaded",
+    "shareFailed": "Sharing isn't available here — your card was downloaded instead.",
+    "privacy": "Your name never leaves your device. The card is drawn entirely in your browser and is never stored or sent.",
+    "cardTag": "DRUG-FREE PLEDGE",
+    "cardBrand": "LahariUndo · Kerala Drug Help"
   },
 
   "footer": {

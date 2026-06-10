@@ -14,6 +14,11 @@ import { About } from './pages/About';
 import { Resources } from './pages/Resources';
 import { Rights } from './pages/Rights';
 import { Emergency } from './pages/Emergency';
+import { Guide } from './pages/Guide';
+import { Effects } from './pages/Effects';
+import { Recovery } from './pages/Recovery';
+import { Faq } from './pages/Faq';
+import { Pledge } from './pages/Pledge';
 import { NotFound } from './pages/NotFound';
 
 function App() {
@@ -34,6 +39,11 @@ function App() {
       <Route path="/resources" element={<Resources />} />
       <Route path="/rights" element={<Rights />} />
       <Route path="/emergency" element={<Emergency />} />
+      <Route path="/guide" element={<Guide />} />
+      <Route path="/effects" element={<Effects />} />
+      <Route path="/recovery" element={<Recovery />} />
+      <Route path="/faq" element={<Faq />} />
+      <Route path="/pledge" element={<Pledge />} />
       <Route path="/about" element={<About />} />
       <Route path="*" element={<NotFound />} />
      </Routes>

@@ -1,11 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { ShieldCheck, Info, ExternalLink, AlertTriangle } from 'lucide-react';
+import { ShieldCheck, Info, ExternalLink, AlertTriangle, Sparkles, Check } from 'lucide-react';
+import { ToofanStats } from '../components/ToofanStats';
+
+interface Feature { title: string; desc: string }
 
 export function About() {
  const { t, i18n } = useTranslation();
  const isML = i18n.language === 'ml';
 
  const noDataItems = t('about.noData.items', { returnObjects: true }) as string[];
+ const features = t('about.features.items', { returnObjects: true }) as Feature[];
  const sourceLinks = t('about.sources.links', { returnObjects: true }) as Array<{ label: string; url: string }>;
 
  return (
@@ -30,6 +34,32 @@ export function About() {
     </div>
    </div>
 
+   {/* Feature overview */}
+   <section className="card p-5">
+    <div className="flex items-center gap-2 mb-1">
+     <Sparkles size={16} className="text-accent shrink-0" />
+     <h2 className={`heading-text font-bold text-primary text-base ${isML ? 'ml-text' : ''}`}>
+      {t('about.features.heading')}
+     </h2>
+    </div>
+    <p className={`text-secondary text-sm mb-4 leading-relaxed ${isML ? 'ml-text' : ''}`}>
+     {t('about.features.intro')}
+    </p>
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+     {Array.isArray(features) && features.map((f, i) => (
+      <div key={i} className="compact-card flex items-start gap-2.5">
+       <span className="mt-0.5 w-5 h-5 rounded-full bg-accent-soft text-accent flex items-center justify-center shrink-0">
+        <Check size={12} strokeWidth={3} />
+       </span>
+       <div>
+        <p className={`text-sm font-bold text-primary leading-snug ${isML ? 'ml-text' : ''}`}>{f.title}</p>
+        <p className={`text-xs text-secondary leading-relaxed mt-0.5 ${isML ? 'ml-text' : ''}`}>{f.desc}</p>
+       </div>
+      </div>
+     ))}
+    </div>
+   </section>
+
    {/* Data promise */}
    <div className="bg-teal-700 rounded-card p-5">
     <div className="flex items-center gap-2 mb-3">
@@ -47,6 +77,9 @@ export function About() {
      ))}
     </ul>
    </div>
+
+   {/* Operation Toofan progress snapshot */}
+   <ToofanStats />
 
    {/* Sources */}
    <div className="bg-surface rounded-card border border-border p-5">

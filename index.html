@@ -39,6 +39,62 @@
     <!-- ── Fonts ──────────────────────────────────────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ── Initial splash (paints before the JS bundle loads) ───── -->
+    <style>
+      #app-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 100000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        background: #fafafa;
+        transition: opacity 0.4s ease;
+      }
+      [data-theme="dark"] #app-splash { background: #09090b; }
+      #app-splash.app-splash-hide { opacity: 0; pointer-events: none; }
+      #app-splash .app-splash-logo {
+        width: 88px;
+        height: 88px;
+        object-fit: contain;
+        animation: appSplashPulse 1.4s ease-in-out infinite;
+      }
+      #app-splash .app-splash-name {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-weight: 700;
+        font-size: 1.15rem;
+        letter-spacing: 0.04em;
+        color: #15803d;
+      }
+      [data-theme="dark"] #app-splash .app-splash-name { color: #22c55e; }
+      #app-splash .app-splash-dots { display: flex; gap: 6px; }
+      #app-splash .app-splash-dots span {
+        width: 7px;
+        height: 7px;
+        border-radius: 9999px;
+        background: #15803d;
+        opacity: 0.3;
+        animation: appSplashDot 1s infinite ease-in-out;
+      }
+      [data-theme="dark"] #app-splash .app-splash-dots span { background: #22c55e; }
+      #app-splash .app-splash-dots span:nth-child(2) { animation-delay: 0.15s; }
+      #app-splash .app-splash-dots span:nth-child(3) { animation-delay: 0.3s; }
+      @keyframes appSplashPulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.08); opacity: 0.82; }
+      }
+      @keyframes appSplashDot {
+        0%, 100% { opacity: 0.25; transform: translateY(0); }
+        50% { opacity: 1; transform: translateY(-3px); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #app-splash .app-splash-logo,
+        #app-splash .app-splash-dots span { animation: none; }
+      }
+    </style>
   </head>
   <body>
     <script>
@@ -50,6 +106,17 @@
         document.documentElement.setAttribute('data-theme', t);
       })();
     </script>
+    <!-- Splash: shown instantly on load/refresh, removed once React mounts -->
+    <div id="app-splash" role="status" aria-label="Loading lahariundo">
+      <img
+        class="app-splash-logo"
+        src="/logo.svg"
+        alt=""
+        onerror="this.onerror=null;this.src='/logo-opt.png';"
+      />
+      <div class="app-splash-name">lahariundo</div>
+      <div class="app-splash-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

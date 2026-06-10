@@ -28,6 +28,9 @@ export default defineConfig({
         // Precache the app shell + data.json + key static assets so the
         // resources hub, helplines, rights, FAQ and roadmap work fully offline.
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff,woff2}'],
+        // Large promo-only images aren't part of the offline shell — skip them
+        // so they don't bloat the precache (and exceed the 2 MB limit).
+        globIgnores: ['**/logo-wordmark.png', '**/og-image.png'],
         // SPA fallback so deep links (/faq, /recovery, …) resolve offline.
         navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/data\.json$/],

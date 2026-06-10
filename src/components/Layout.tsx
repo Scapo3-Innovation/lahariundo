@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ContactBar } from './ContactBar';
 import { LanguageToggle } from './LanguageToggle';
 import { ThemeToggle } from './ThemeToggle';
+import { OfflineIndicator } from './OfflineIndicator';
 import type { ReactNode } from 'react';
 
 interface Props {
@@ -16,14 +17,19 @@ export function Layout({ children }: Props) {
 
  const navLinks = [
   { to: '/',         label: t('nav.home') },
+  { to: '/guide',    label: t('nav.guide') },
   { to: '/get-help', label: t('nav.getHelp') },
   { to: '/report',   label: t('nav.report') },
   { to: '/worried',  label: t('nav.worried') },
+  { to: '/recovery', label: t('nav.recovery') },
   { to: '/resources', label: t('nav.resources') },
   { to: '/screening', label: t('nav.screening') },
+  { to: '/effects',  label: t('nav.effects') },
+  { to: '/faq',      label: t('nav.faq') },
   { to: '/learn',    label: t('nav.learn') },
   { to: '/rights',   label: t('nav.rights') },
   { to: '/parents',  label: t('nav.parents') },
+  { to: '/pledge',   label: t('nav.pledge') },
   { to: '/about',    label: t('nav.about') },
   { to: '/emergency', label: t('nav.emergency') },
  ];
@@ -105,6 +111,7 @@ export function Layout({ children }: Props) {
    </footer>
 
    <ContactBar />
+   <OfflineIndicator />
   </div>
  );
 }

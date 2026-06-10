@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { MapPin, LayoutGrid, Navigation, Phone, Loader2, Scale } from 'lucide-react';
+import { MapPin, LayoutGrid, Navigation, Phone, Loader2, Scale, WifiOff } from 'lucide-react';
 import { CentreCard } from '../components/CentreCard';
 import { PageHeader } from '../components/PageHeader';
 import { PhoneLink } from '../components/PhoneLink';
@@ -9,6 +9,7 @@ import { DistrictSelector } from '../components/DistrictSelector';
 import { DataErrorBanner } from '../components/DataErrorBanner';
 import { useToast } from '../components/ToastProvider';
 import { useAppData } from '../context/DataContext';
+import { useOnlineStatus } from '../hooks/useOnlineStatus';
 import { getCurrentPosition, isGeolocationSupported } from '../utils/geolocation';
 import { googleMapsDirectionsUrl } from '../utils/routing';
 import type { Centre } from '../types';
@@ -80,6 +81,7 @@ export function GetHelp() {
   const isML = i18n.language === 'ml';
   const { showStatus } = useToast();
   const { data, loading, error, retry } = useAppData();
+  const online = useOnlineStatus();
   const centres = data?.centres ?? [];
 
   const [tab, setTab] = useState<'list' | 'map'>('map');
@@ -275,97 +277,124 @@ export function GetHelp() {
         </div>
       )}
 
-      {/* Toolbar: location + view toggle */}
-      <div className="card p-3 sm:p-4 mb-4">
-        <div className="flex flex-col sm:flex-row sm:items-end gap-3">
-          <div className="flex flex-wrap items-center gap-2 flex-1 min-w-0">
-            <button
-              onClick={() => findNearest()}
-              disabled={locating}
-              className="btn-primary py-2.5 px-3 text-xs w-full sm:w-auto disabled:opacity-60"
-            >
-              {locating ? <Loader2 size={13} className="animate-spin" /> : <Navigation size={13} />}
-              {locating ? (isML ? 'കണ്ടെത്തുന്നു…' : 'Locating…') : t('getHelp.findNearest')}
-            </button>
-            <DistrictSelector
-              onSelect={handleDistrictSelect}
-              selectedId={selectedDistrict}
-              className="w-full sm:w-52 sm:min-w-[12rem]"
-            />
-          </div>
+      {/* Toolbar: location controls + view toggle */}
+      <div className="card p-3 mb-4 flex flex-col gap-2.5">
+        {/* Row 1 — location: find-nearest + district */}
+        <div className="flex flex-col sm:flex-row gap-2">
+          <button
+            onClick={() => findNearest()}
+            disabled={locating}
+            className="btn-primary py-2.5 px-4 text-xs whitespace-nowrap shrink-0 disabled:opacity-60"
+          >
+            {locating ? <Loader2 size={14} className="animate-spin" /> : <Navigation size={14} />}
+            {locating ? (isML ? 'കണ്ടെത്തുന്നു…' : 'Locating…') : t('getHelp.findNearest')}
+          </button>
+          <DistrictSelector
+            onSelect={handleDistrictSelect}
+            selectedId={selectedDistrict}
+            className="flex-1 min-w-0"
+          />
+        </div>
 
-          <div className="tab-toggle w-full sm:tab-toggle-compact shrink-0 self-stretch sm:self-auto">
-            <button
-              onClick={showMap}
-              className={`tab-toggle-btn ${tab === 'map' ? 'tab-toggle-btn-active' : ''}`}
-            >
-              <MapPin size={13} />
-              {t('getHelp.mapTab')}
-            </button>
-            <button
-              onClick={showList}
-              className={`tab-toggle-btn ${tab === 'list' ? 'tab-toggle-btn-active' : ''}`}
-            >
-              <LayoutGrid size={13} />
-              {t('getHelp.listTab')}
-            </button>
-          </div>
+        {/* Row 2 — view toggle: full-width segmented control */}
+        <div className="tab-toggle">
+          <button
+            onClick={showMap}
+            className={`tab-toggle-btn ${tab === 'map' ? 'tab-toggle-btn-active' : ''}`}
+          >
+            <MapPin size={14} />
+            {t('getHelp.mapTab')}
+          </button>
+          <button
+            onClick={showList}
+            className={`tab-toggle-btn ${tab === 'list' ? 'tab-toggle-btn-active' : ''}`}
+          >
+            <LayoutGrid size={14} />
+            {t('getHelp.listTab')}
+          </button>
         </div>
 
         {locationNote && (
-          <p className={`mt-2.5 text-[11px] text-accent flex items-center gap-1 ${isML ? 'ml-text' : ''}`}>
+          <p className={`text-[11px] text-accent flex items-center gap-1 ${isML ? 'ml-text' : ''}`}>
             <Navigation size={10} />
             {locationNote}
           </p>
         )}
       </div>
 
-      {/* Primary content: map (always mounted) + list */}
-      {!MapComponent ? (
-        <MapSkeleton />
-      ) : (
-        <>
-          <MapComponent
-            centres={centres}
-            userLat={userLat}
-            userLng={userLng}
-            selectedId={selectedId}
-            directionsToId={directionsToId}
-            visible={tab === 'map'}
-            onSelectCentre={setSelectedId}
-            onDirectionsRequest={handleDirections}
-            onDirectionsClear={() => setDirectionsToId(null)}
-            onGeolocate={handleGeolocate}
-            onGeolocateError={handleGeolocateError}
-            onMapReady={handleMapReady}
-            language={i18n.language}
-          />
-          {tab === 'list' && (
-            loading
-              ? <CentreListSkeleton />
-              : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
-                  {sortedCentres.map((c) => (
-                    <CentreCard
-                      key={c.id}
-                      centre={c}
-                      distanceKm={
-                        userLat != null && userLng != null
-                          ? haversineKm(userLat, userLng, c.lat, c.lng)
-                          : null
-                      }
-                      selected={selectedId === c.id}
-                      onClick={() => handleCardClick(c.id)}
-                      onDirections={handleDirections}
-                      userLat={userLat}
-                      userLng={userLng}
-                    />
-                  ))}
+      {/* Primary content: map + list. The map needs network tiles, so when
+          offline we show a graceful message instead of a broken map; the
+          card list still works from cached data.json. */}
+      {(() => {
+        const centreList = loading
+          ? <CentreListSkeleton />
+          : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
+              {sortedCentres.map((c) => (
+                <CentreCard
+                  key={c.id}
+                  centre={c}
+                  distanceKm={
+                    userLat != null && userLng != null
+                      ? haversineKm(userLat, userLng, c.lat, c.lng)
+                      : null
+                  }
+                  selected={selectedId === c.id}
+                  onClick={() => handleCardClick(c.id)}
+                  onDirections={handleDirections}
+                  userLat={userLat}
+                  userLng={userLng}
+                />
+              ))}
+            </div>
+          );
+
+        if (!online) {
+          return (
+            <>
+              {tab === 'map' && (
+                <div className="tone-amber border rounded-card p-5 flex flex-col items-center text-center gap-2">
+                  <WifiOff size={22} className="text-amber-600" />
+                  <h2 className={`heading-text font-bold text-primary text-sm ${isML ? 'ml-text' : ''}`}>
+                    {t('offline.mapTitle')}
+                  </h2>
+                  <p className={`text-sm text-secondary leading-relaxed max-w-md ${isML ? 'ml-text' : ''}`}>
+                    {t('offline.mapBody')}
+                  </p>
+                  <button onClick={showList} className="btn-primary mt-1 py-2 px-3 text-xs">
+                    <LayoutGrid size={13} />
+                    {t('getHelp.listTab')}
+                  </button>
                 </div>
-              )
-          )}
-        </>
-      )}
+              )}
+              {tab === 'list' && centreList}
+            </>
+          );
+        }
+
+        if (!MapComponent) return <MapSkeleton />;
+
+        return (
+          <>
+            <MapComponent
+              centres={centres}
+              userLat={userLat}
+              userLng={userLng}
+              selectedId={selectedId}
+              directionsToId={directionsToId}
+              visible={tab === 'map'}
+              onSelectCentre={setSelectedId}
+              onDirectionsRequest={handleDirections}
+              onDirectionsClear={() => setDirectionsToId(null)}
+              onGeolocate={handleGeolocate}
+              onGeolocateError={handleGeolocateError}
+              onMapReady={handleMapReady}
+              language={i18n.language}
+            />
+            {tab === 'list' && centreList}
+          </>
+        );
+      })()}
 
       {/* Secondary info below map/list */}
       <div className="mt-6 flex flex-col gap-3">
